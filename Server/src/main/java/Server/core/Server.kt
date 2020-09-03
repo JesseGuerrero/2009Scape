@@ -17,6 +17,16 @@ import java.io.File
 import java.net.BindException
 import java.util.*
 
+/*
+* TODO:
+*  1. Remove Hans exp multipler.
+*  2. Default to 2.25x exp
+*  3. Make Jawarrior1 65x exp for prestige testing
+*  4. Create prestige save per player save, don't forget to update the template
+*  5. Start on thief prestige
+*       -Gold
+* */
+
 /**
  * The main class, for those that are unable to read the class' name.
  * @author Emperor
