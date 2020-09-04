@@ -142,7 +142,7 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 
 						break;
 					case 2:
-						interpreter.sendOptions("XP Rate", "2.5x", "50x", "300x", "10000x");
+						interpreter.sendOptions("XP Rate", "2.5x", "50x", "500x", "100000x");
 						stage++;
 						break;
 					case 3://button option
@@ -161,11 +161,11 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 						stage = 14;
 						break;
 					case 3:
-						player.getSkills().experienceMutiplier = 300.0;
+						player.getSkills().experienceMutiplier = 500.0;
 						stage = 14;
 						break;
 					case 4:
-						player.getSkills().experienceMutiplier = 10000.0;
+						player.getSkills().experienceMutiplier = 100000.0;
 						stage = 14;
 						break;
 				}

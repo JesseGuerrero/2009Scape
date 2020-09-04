@@ -35,7 +35,7 @@ public final class Skills {
 	/**
 	 * The maximum experience multiplier.
 	 */
-	public static final double MAX_EXPERIENCE_MOD = 10000.0;
+	public static final double MAX_EXPERIENCE_MOD = 100000.0;
 
 	/**
 	 * Represents an array of skill names.
