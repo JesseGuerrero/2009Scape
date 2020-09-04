@@ -19,10 +19,9 @@ import java.util.*
 
 /*
 * TODO:
-*  1. Default to 2.25x exp
-*  2. Make Jawarrior1 65x exp for prestige testing
-*  3. Create prestige save per player save, don't forget to update the template
-*  4. Start on thief prestige
+*  1. Make Jawarrior1 65x exp for prestige testing
+*  2. Create prestige save per player save, don't forget to update the template
+*  3. Start on thief prestige
 *       -Gold
 * */
 
