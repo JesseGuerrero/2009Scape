@@ -570,13 +570,17 @@ public final class Skills {
 	}
 
 	/**
-	 * Gets the static skill level.
+	 * Gets the prestige skill level.
 	 * @param slot The slot.
-	 * @return The static level.
+	 * @return The prestige level.
 	 */
 	public int getPrestigeLevel(int slot) {
 		return prestige[slot];
-	} //TODO: ADD setPrestige
+	}
+
+	public void addPrestigeLevel(int slot) {
+		prestige[slot] = prestige[slot]++;
+	}
 
 	/**
 	 * Sets the experience gained.
