@@ -4,6 +4,7 @@ import core.game.node.entity.npc.NPC;
 import core.game.node.entity.player.link.IronmanMode;
 import core.plugin.InitializablePlugin;
 import core.game.node.entity.player.Player;
+import plugin.skill.Skills;
 
 
 /**
@@ -413,8 +414,9 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 						//prestige defence
 						stage = 999;
 					case 4:
-						interpreter.sendDialogues(npc, FacialExpression.THINKING, "well see");
-						//prestige thievery
+						player.getSkills().addPrestigeLevel(Skills.THIEVING);
+						player.getSkills().setStaticLevel(Skills.THIEVING, 1);
+						interpreter.sendDialogues(npc, FacialExpression.HAPPY, "Your thieving prestige is now " + player.getSkills().getPrestigeLevel(Skills.THIEVING));
 						stage = 999;
 					case 5://exit
 						stage = 999;
