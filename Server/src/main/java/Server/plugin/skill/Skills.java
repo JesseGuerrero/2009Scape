@@ -35,7 +35,7 @@ public final class Skills {
 	/**
 	 * The maximum experience multiplier.
 	 */
-	public static final double MAX_EXPERIENCE_MOD = 100000.0;
+	public static final double MAX_EXPERIENCE_MOD = 1_000_000.0;
 
 	/**
 	 * Represents an array of skill names.
@@ -204,6 +204,7 @@ public final class Skills {
 			this.staticLevels[i] = skills.staticLevels[i];
 			this.dynamicLevels[i] = skills.dynamicLevels[i];
 			this.experience[i] = skills.experience[i];
+			this.prestige[i] = skills.prestige[i];
 		}
 		prayerPoints = skills.prayerPoints;
 		lifepoints = skills.lifepoints;
@@ -426,6 +427,7 @@ public final class Skills {
 				buffer.put((byte) dynamicLevels[i]);
 			}
 			buffer.put((byte) staticLevels[i]);
+			buffer.put((byte) prestige[i]);
 		}
 		buffer.putInt((int) experienceGained);
 	}
@@ -579,7 +581,7 @@ public final class Skills {
 	}
 
 	public void addPrestigeLevel(int slot) {
-		prestige[slot] = prestige[slot]++;
+		this.prestige[slot] = ++prestige[slot];
 	}
 
 	/**

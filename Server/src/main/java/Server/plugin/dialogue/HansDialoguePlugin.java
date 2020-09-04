@@ -142,7 +142,7 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 
 						break;
 					case 2:
-						interpreter.sendOptions("XP Rate", "2.5x", "50x", "500x", "100000x");
+						interpreter.sendOptions("XP Rate", "2.5x", "50x", "500x", "1,000,000x");
 						stage++;
 						break;
 					case 3://button option
@@ -165,7 +165,7 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 						stage = 14;
 						break;
 					case 4:
-						player.getSkills().experienceMutiplier = 100000.0;
+						player.getSkills().experienceMutiplier = 1000000.0;
 						stage = 14;
 						break;
 				}
@@ -415,6 +415,7 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 						stage = 999;
 					case 4:
 						player.getSkills().addPrestigeLevel(Skills.THIEVING);
+						System.out.println(player.getSkills().getPrestigeLevel(Skills.THIEVING));
 						player.getSkills().setStaticLevel(Skills.THIEVING, 1);
 						interpreter.sendDialogues(npc, FacialExpression.HAPPY, "Your thieving prestige is now " + player.getSkills().getPrestigeLevel(Skills.THIEVING));
 						stage = 999;
