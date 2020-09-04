@@ -40,7 +40,7 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 	@Override
 	public boolean open(Object... args) {
 		npc = (NPC) args[0];
-		interpreter.sendDialogues(npc, FacialExpression.NEUTRAL, "Hello. What are you doing here?");
+		interpreter.sendDialogues(npc, FacialExpression.NEUTRAL, "Hello, welcome to the server, what would you like to know?");
 		stage = 0;
 		return true;
 	}
@@ -50,7 +50,7 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 
 		switch (stage) {
 			case 0:
-				interpreter.sendOptions("Select an Option", "I'm looking for whoever is in charge of this place.", "I have come to kill everyone in this castle!", "I don't know. I'm lost. Where am I?", "More Options...");
+				interpreter.sendOptions("Select an Option", "I'm looking for whoever is in charge of this place.", "I have come to kill everyone in this castle!", "I don't know. I'm lost. Where am I?", "Account Options...");
 				stage++;
 				break;
 			case 1:
@@ -71,7 +71,7 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 						stage = 50;
 						break;
 					case 4:
-						interpreter.sendOptions("Select an Option", "Have you been here as long as me?", "About my xp rate...", "About Iron Man mode...","About random events...", "Go Back...");
+						interpreter.sendOptions("Select an Option", "Have you been here as long as me?", "What is the xp rate...", "About Iron Man mode...","About random events...", "Go Back...");
 						stage = 10;
 						break;
 				}
@@ -84,8 +84,8 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 						stage = 41;
 						break;
 					case 2:
-						npc("Your current XP rate is: " + player.getSkills().experienceMutiplier);
-						stage = 11;
+						npc("The XP rate for all players is: " + player.getSkills().experienceMutiplier);
+						stage = 50; //50 is end
 						break;
 					case 3:
 						//About Iron Man Mode...
