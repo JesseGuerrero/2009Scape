@@ -1,5 +1,6 @@
 package plugin.skill.thieving;
 
+import core.tools.PlayerLoader;
 import plugin.ttrail.ClueLevel;
 import plugin.ttrail.ClueScrollPlugin;
 import core.game.node.entity.npc.NPC;
@@ -19,9 +20,10 @@ import java.util.stream.IntStream;
  * Represents a pickpocket npc.
  * @author Ceikry
  */
+
 public enum Pickpocket {
 	MAN(new int[] { 1, 2, 3, 4, 5, 6, 16, 24, 170, 3915 }, 1, 8, 1,new ChanceItem[] {
-					new ChanceItem(995, 3,  DropFrequency.ALWAYS)
+					new ChanceItem(995, 3, DropFrequency.ALWAYS)
 	}),
 	FARMER(new int[] { 7, 1757, 1758 }, 10, 14.5, 1, new ChanceItem[] {
 					new ChanceItem(995,  9, DropFrequency.COMMON),

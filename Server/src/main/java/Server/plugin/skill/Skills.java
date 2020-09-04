@@ -361,9 +361,17 @@ public final class Skills {
 	 * Returns the dynamic levels to the static levels
 	 */
 	public void restore() {
+
 		for (int i = 0; i < 24; i++) {
 			int staticLevel = getStaticLevel(i);
+			//changes the level before it is set. Rember this is the base restoration level
+			if (entity instanceof Player && prestige[i] > 0) {
+				int[] prestige = ((Player)entity).getSkills().getPrestige();
+				staticLevel = getStaticLevel(i) + 10*prestige[i];
+			}
+
 			setLevel(i, staticLevel);
+
 		}
 		if (entity instanceof Player) {
 			entity.asPlayer().getAudioManager().send(2674);
@@ -401,7 +409,7 @@ public final class Skills {
 			}
 			staticLevels[id] = Integer.parseInt( skill.get("static").toString());
 			experience[id] = Double.parseDouble(skill.get("experience").toString());
-			prestige[id] = Integer.parseInt( skill.get("prestige").toString());;
+			prestige[id] = Integer.parseInt( skill.get("prestige").toString());
 		}
 	}
 
@@ -584,6 +592,10 @@ public final class Skills {
 		this.prestige[slot] = ++prestige[slot];
 	}
 
+	public int[] getPrestige() {
+		return prestige;
+	}
+
 	/**
 	 * Sets the experience gained.
 	 * @param experienceGained The experience gained.
@@ -647,7 +659,12 @@ public final class Skills {
 				}
 			}
 		}
-		return dynamicLevels[slot];
+		//Additional Code: Everytime dynamic is called we just add 10*prestige for ALL skills
+		if (entity instanceof Player && prestige[slot] > 0) {
+			int[] prestige = ((Player)entity).getSkills().getPrestige();
+			return dynamicLevels[slot] + 10*prestige[slot];
+		} else { return dynamicLevels[slot]; }
+//		return dynamicLevels[slot]; //old code
 	}
 
 	/**

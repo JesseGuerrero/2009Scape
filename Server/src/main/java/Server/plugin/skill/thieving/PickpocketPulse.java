@@ -109,7 +109,22 @@ public final class PickpocketPulse extends SkillPulse<NPC> {
 			}
 		    player.getSkills().addExperience(Skills.THIEVING, type.getExperience(), true);
 		    List<Item> loot = type.getRandomLoot(player);
+
+		    //Additional Code: prestigeLevel is a multiplier as a double for precision
+			double prestigeLevel = new Double(player.getSkills().getPrestigeLevel(Skills.THIEVING));
 		    loot.stream().forEach(item -> {
+		    	//Additional Code: loot is a list which is being iterated as an item object.
+				//995 is coins
+				//If its a master gardnder/farmer then we add 1 to each item amount.
+				//gold is increased ceil(1.1*prestige) + 1
+		    	if(item.getId() == 995 && prestigeLevel > 0) {
+					double newAmt = (item.getAmount() * (1 + prestigeLevel/10.0)) + 1;
+					item.setAmount((int)Math.ceil(newAmt));
+					System.out.println(prestigeLevel + " prestige: " + item.getAmount() + " gold");
+				}
+		    	if(type == Pickpocket.MARTIN_THE_MASTER_GARDENER || type == Pickpocket.MASTER_FARMER) {
+		    		item.setAmount((int)(item.getAmount() + prestigeLevel));
+				}
 		    	if(!player.getInventory().add(item)){
 					GroundItemManager.create(item,player.getLocation(),player);
 				}
