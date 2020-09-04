@@ -19,8 +19,8 @@ import java.util.*
 
 /*
 * TODO:
-*  1. Create a prestige option for jawarrior1 for Hans in Lumbridge
-*  2. Create prestige save per player save, don't forget to update the template
+*  1. Create prestige save per skill player save, don't forget to update the template
+*  2. Create prestige getter & setter
 *  3. Start on thief prestige
 *       -Gold
 *       -seed amount randomizer, using default random lib

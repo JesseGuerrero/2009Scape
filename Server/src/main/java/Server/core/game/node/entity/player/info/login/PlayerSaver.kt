@@ -734,6 +734,7 @@ class PlayerSaver (val player: Player){
                 skill.put("dynamic",player.skills.dynamicLevels[i].toString())
             }
             skill.put("experience",player.skills.getExperience(i).toString())
+            skill.put("prestige", "0"); //update this as a getter in Player later
             skills.add(skill)
         }
         root.put("skills",skills)

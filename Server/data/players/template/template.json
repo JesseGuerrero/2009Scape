@@ -27,145 +27,169 @@
       "static": "1",
       "dynamic": "1",
       "id": "0",
-      "experience": "0.0"
+      "experience": "0.0",
+      "prestige": "0"
     },
     {
       "static": "1",
       "dynamic": "1",
       "id": "1",
-      "experience": "0.0"
+      "experience": "0.0",
+      "prestige": "0"
     },
     {
       "static": "1",
       "dynamic": "1",
       "id": "2",
-      "experience": "0.0"
+      "experience": "0.0",
+      "prestige": "0"
     },
     {
       "static": "10",
       "dynamic": "10",
       "id": "3",
-      "experience": "1154.0"
+      "experience": "1154.0",
+      "prestige": "0"
     },
     {
       "static": "1",
       "dynamic": "1",
       "id": "4",
-      "experience": "0.0"
+      "experience": "0.0",
+      "prestige": "0"
     },
     {
       "static": "1",
       "dynamic": "1",
       "id": "5",
-      "experience": "0.0"
+      "experience": "0.0",
+      "prestige": "0"
     },
     {
       "static": "1",
       "dynamic": "1",
       "id": "6",
-      "experience": "0.0"
+      "experience": "0.0",
+      "prestige": "0"
     },
     {
       "static": "1",
       "dynamic": "1",
       "id": "7",
-      "experience": "0.0"
+      "experience": "0.0",
+      "prestige": "0"
     },
     {
       "static": "1",
       "dynamic": "1",
       "id": "8",
-      "experience": "0.0"
+      "experience": "0.0",
+      "prestige": "0"
     },
     {
       "static": "1",
       "dynamic": "1",
       "id": "9",
-      "experience": "0.0"
+      "experience": "0.0",
+      "prestige": "0"
     },
     {
       "static": "1",
       "dynamic": "1",
       "id": "10",
-      "experience": "0.0"
+      "experience": "0.0",
+      "prestige": "0"
     },
     {
       "static": "1",
       "dynamic": "1",
       "id": "11",
-      "experience": "0.0"
+      "experience": "0.0",
+      "prestige": "0"
     },
     {
       "static": "1",
       "dynamic": "1",
       "id": "12",
-      "experience": "0.0"
+      "experience": "0.0",
+      "prestige": "0"
     },
     {
       "static": "1",
       "dynamic": "1",
       "id": "13",
-      "experience": "0.0"
+      "experience": "0.0",
+      "prestige": "0"
     },
     {
       "static": "1",
       "dynamic": "1",
       "id": "14",
-      "experience": "0.0"
+      "experience": "0.0",
+      "prestige": "0"
     },
     {
       "static": "1",
       "dynamic": "1",
       "id": "15",
-      "experience": "0.0"
+      "experience": "0.0",
+      "prestige": "0"
     },
     {
       "static": "1",
       "dynamic": "1",
       "id": "16",
-      "experience": "0.0"
+      "experience": "0.0",
+      "prestige": "0"
     },
     {
       "static": "1",
       "dynamic": "1",
       "id": "17",
-      "experience": "0.0"
+      "experience": "0.0",
+      "prestige": "0"
     },
     {
       "static": "1",
       "dynamic": "1",
       "id": "18",
-      "experience": "0.0"
+      "experience": "0.0",
+      "prestige": "0"
     },
     {
       "static": "1",
       "dynamic": "1",
       "id": "19",
-      "experience": "0.0"
+      "experience": "0.0",
+      "prestige": "0"
     },
     {
       "static": "1",
       "dynamic": "1",
       "id": "20",
-      "experience": "0.0"
+      "experience": "0.0",
+      "prestige": "0"
     },
     {
       "static": "1",
       "dynamic": "1",
       "id": "21",
-      "experience": "0.0"
+      "experience": "0.0",
+      "prestige": "0"
     },
     {
       "static": "1",
       "dynamic": "1",
       "id": "22",
-      "experience": "0.0"
+      "experience": "0.0",
+      "prestige": "0"
     },
     {
       "static": "1",
       "dynamic": "1",
       "id": "23",
-      "experience": "0.0"
+      "experience": "0.0",
+      "prestige": "0"
     }
   ],
   "spellbook": "192",

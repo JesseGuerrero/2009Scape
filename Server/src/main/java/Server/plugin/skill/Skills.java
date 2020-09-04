@@ -382,7 +382,7 @@ public final class Skills {
 		experienceGained = buffer.getInt();
 	}
 
-	public void parse(JSONArray skillData){
+	public void parse(JSONArray skillData){//TODO: Parse into Player class here
 		for(int i = 0; i < skillData.size(); i++){
 			JSONObject skill = (JSONObject) skillData.get(i);
 			int id = Integer.parseInt( skill.get("id").toString());
