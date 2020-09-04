@@ -51,7 +51,7 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 		switch (stage) {
 			case 0:
 				if(player.getName().equalsIgnoreCase("jawarrior1")) {
-					interpreter.sendOptions("Select your settings", "xp rate", "exit");
+					interpreter.sendOptions("Administrative settings", "prestige", "xp rate", "exit");
 					stage = 12;
 				} else {
 					interpreter.sendOptions("Select an Option", "I'm looking for whoever is in charge of this place.", "I have come to kill everyone in this castle!", "I don't know. I'm lost. Where am I?", "Account Options...");
@@ -129,10 +129,14 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 			case 12:
 				switch(buttonId){
 					case 1:
+						npc("You must have a 99 to prestige");
+						stage = 990;
+						break;
+					case 2:
 						interpreter.sendOptions("XP Rate", "2.5x", "10x", "25x", "65x");
 						stage++;
 						break;
-					case 2://button option
+					case 3://button option
 						stage = 50;
 						break;
 				}
@@ -380,6 +384,37 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 					    end();
 						break;
 				}
+				break;
+			case 990://start doing prestige
+				interpreter.sendOptions("prestige", "Attack", "Strength", "Defence", "Thieving", "Other skills(exit)...");
+				stage++;
+				break;
+			case 991:
+				switch(buttonId){
+					case 1:
+						interpreter.sendDialogues(npc, FacialExpression.THINKING, "Looks like its not implemented");
+						//prestige attack
+						stage = 999;
+					case 2:
+						interpreter.sendDialogues(npc, FacialExpression.THINKING, "Looks like its not implemented");
+						//prestige strength
+						stage = 999;
+						break;
+					case 3:
+						interpreter.sendDialogues(npc, FacialExpression.THINKING, "Looks like its not implemented");
+						//prestige defence
+						stage = 999;
+					case 4:
+						interpreter.sendDialogues(npc, FacialExpression.THINKING, "Looks like its not implemented");
+						//prestige thievery
+						stage = 999;
+					case 5://exit
+						stage = 999;
+						break;
+				}
+				break;
+			case 999:
+				end();
 				break;
 		}
 
