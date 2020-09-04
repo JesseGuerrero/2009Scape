@@ -40,7 +40,7 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 	@Override
 	public boolean open(Object... args) {
 		npc = (NPC) args[0];
-		interpreter.sendDialogues(npc, FacialExpression.NEUTRAL, "Hello, welcome to the server, what would you like to know?");
+		interpreter.sendDialogues(npc, FacialExpression.FRIENDLY, "Hello, welcome to the server");
 		stage = 0;
 		return true;
 	}
@@ -54,15 +54,15 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 					interpreter.sendOptions("Administrative settings", "prestige", "xp rate", "exit");
 					stage = 12;
 				} else {
-					interpreter.sendOptions("Select an Option", "I'm looking for whoever is in charge of this place.", "I have come to kill everyone in this castle!", "I don't know. I'm lost. Where am I?", "Account Options...");
+					interpreter.sendOptions("Account settings", "Prestige", "I have come to kill everyone in this castle!", "I don't know. I'm lost. Where am I?", "Account Options...");
 					stage++;
 				}
 				break;
 			case 1:
 				switch (buttonId) {
 					case 1:
-						interpreter.sendDialogues(npc, FacialExpression.NEUTRAL, "Who, the Duke? He's in his study, on the first floor.");
-						stage = 50;
+						interpreter.sendDialogues(npc, FacialExpression.THINKING, "Let's find out what we can do");
+						stage = 12;
 						break;
 					case 2:
 						end();
@@ -129,8 +129,16 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 			case 12:
 				switch(buttonId){
 					case 1:
-						npc("You must have a 99 to prestige");
-						stage = 990;
+						if(player.getSkills().getMasteredSkills() > 0) {
+							interpreter.sendDialogues(npc, FacialExpression.AMAZED,"Good job you have a 99!");
+							stage = 990;
+						} else {
+							npc("You must have a 99 to prestige, currently you do not.");
+							stage = 50;
+						}
+
+
+
 						break;
 					case 2:
 						interpreter.sendOptions("XP Rate", "2.5x", "10x", "25x", "65x");
@@ -386,7 +394,7 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 				}
 				break;
 			case 990://start doing prestige
-				interpreter.sendOptions("prestige", "Attack", "Strength", "Defence", "Thieving", "Other skills(exit)...");
+				interpreter.sendOptions("Prestige settings", "Attack", "Strength", "Defence", "Thieving", "Other skills(exit)...");
 				stage++;
 				break;
 			case 991:
@@ -405,7 +413,7 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 						//prestige defence
 						stage = 999;
 					case 4:
-						interpreter.sendDialogues(npc, FacialExpression.THINKING, "Looks like its not implemented");
+						interpreter.sendDialogues(npc, FacialExpression.THINKING, "well see");
 						//prestige thievery
 						stage = 999;
 					case 5://exit

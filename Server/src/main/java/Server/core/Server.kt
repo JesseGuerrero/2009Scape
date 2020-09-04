@@ -19,9 +19,8 @@ import java.util.*
 
 /*
 * TODO:
-*  1. Create prestige getter & setter
-*  2. Create prestige hans command dialogue, just selecting is how to ask for prestige level up
-*  3. Start on thief prestige
+*  1. Create prestige hans command dialogue, just selecting is how to ask for prestige level up
+*  2. Start on thief prestige
 *       -Gold
 *       -seed amount randomizer, using default random lib
 * */
