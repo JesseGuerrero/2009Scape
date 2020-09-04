@@ -19,10 +19,11 @@ import java.util.*
 
 /*
 * TODO:
-*  1. Create prestige hans command dialogue, just selecting is how to ask for prestige level up
+*  1. Learn how to call on the current player
 *  2. Start on thief prestige
 *       -Gold
 *       -seed amount randomizer, using default random lib
+*  3. Start on strength and combat level
 * */
 
 /**
