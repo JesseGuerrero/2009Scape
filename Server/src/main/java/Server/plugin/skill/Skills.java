@@ -72,6 +72,11 @@ public final class Skills {
 	 */
 	private final int[] dynamicLevels;
 
+	/*
+	* Prestige holder
+	* */
+	private final int[] prestige;
+
 	/**
 	 * Represents the amount of prayer points left.
 	 */
@@ -116,11 +121,12 @@ public final class Skills {
 	 * Constructs a new {@code Skills} {@code Object}.
 	 * @param entity The entity.
 	 */
-	public Skills(Entity entity) {
+	public Skills(Entity entity) {//TODO: make prestige for skills here?
 		this.entity = entity;
 		this.experience = new double[24];
 		this.staticLevels = new int[24];
 		this.dynamicLevels = new int[24];
+		this.prestige = new int[24];
 		this.restoration = new SkillRestoration[24];
 		for (int i = 0; i < 24; i++) {
 			this.staticLevels[i] = 1;
@@ -193,7 +199,7 @@ public final class Skills {
 	 * Copies the skills data.
 	 * @param skills The skills.
 	 */
-	public void copy(Skills skills) {
+	public void copy(Skills skills) {//TODO: This copy skills may be used a lot
 		for (int i = 0; i < 24; i++) {
 			this.staticLevels[i] = skills.staticLevels[i];
 			this.dynamicLevels[i] = skills.dynamicLevels[i];
@@ -394,6 +400,7 @@ public final class Skills {
 			}
 			staticLevels[id] = Integer.parseInt( skill.get("static").toString());
 			experience[id] = Double.parseDouble(skill.get("experience").toString());
+			prestige[id] = Integer.parseInt( skill.get("prestige").toString());;
 		}
 	}
 
@@ -561,6 +568,15 @@ public final class Skills {
 	public int getStaticLevel(int slot) {
 		return staticLevels[slot];
 	}
+
+	/**
+	 * Gets the static skill level.
+	 * @param slot The slot.
+	 * @return The static level.
+	 */
+	public int getPrestigeLevel(int slot) {
+		return prestige[slot];
+	} //TODO: ADD setPrestige
 
 	/**
 	 * Sets the experience gained.

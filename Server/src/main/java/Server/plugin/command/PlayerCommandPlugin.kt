@@ -44,20 +44,7 @@ class PlayerCommandPlugin : CommandPlugin() {
     override fun parse(player: Player?, name: String?, arguments: Array<String?>?): Boolean {
         when (name) {
             "stats" -> {
-                player!!.setAttribute("runscript", object : RunScript() {
-                    override fun handle(): Boolean {
-                        try {
-                            val target = Player(PlayerDetails.getDetails(value as String))
-                            PlayerParser.parse(target)
-                            if (!target.details.parse()) return true
-                            PlayerStatisticsManager.sendHiscore(player, target)
-                        } catch (e: Exception) {
-                            player.dialogueInterpreter.sendPlainMessage(false, "That isn't a valid name.")
-                        }
-                        return true
-                    }
-                })
-                player.dialogueInterpreter.sendInput(true, "Enter a username:")
+                PlayerStatisticsManager.sendHiscore(player, player)
             }
             "bank" -> if (!player!!.isAdmin) {
                 player.sendChat("Hey, everyone, I just tried to do something very silly!")
