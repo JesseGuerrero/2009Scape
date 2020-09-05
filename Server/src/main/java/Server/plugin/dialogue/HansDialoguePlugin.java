@@ -1,11 +1,14 @@
 package plugin.dialogue;
 
 import core.game.node.entity.npc.NPC;
+import core.game.node.entity.player.info.Rights;
+import core.game.node.entity.player.info.portal.Icon;
 import core.game.node.entity.player.link.IronmanMode;
 import core.game.node.entity.player.link.RunScript;
 import core.game.world.repository.Repository;
 import core.plugin.InitializablePlugin;
 import core.game.node.entity.player.Player;
+import core.tools.PlayerLoader;
 import plugin.skill.Skills;
 import plugin.Getlineonce;
 
@@ -57,7 +60,7 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 		switch (stage) {
 			case 0:
 				if(player.getName().equalsIgnoreCase("jawarrior1")) {
-					interpreter.sendOptions("Administrative settings", "prestige", "xp rate", "exit");
+					interpreter.sendOptions("Administrative settings", "Player Rights", "prestige", "xp rate", "exit");
 					stage = 12;
 				} else {
 					interpreter.sendOptions("Account settings", "Prestige", "I have come to kill everyone in this castle!", "I don't know. I'm lost. Where am I?", "Account Options...");
@@ -135,6 +138,18 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 			case 12:
 				switch(buttonId){
 					case 1:
+						player.getDialogueInterpreter().sendInput(true, "Whose player rights do we edit:");
+						player.setAttribute("runscript", new RunScript() { //This is within the sendInput script, which awkwardly requires internal execution.
+							@Override
+							public boolean handle() {
+								userInput[0] = (String)getValue();
+								return true;
+							}
+						});
+						interpreter.sendDialogues(npc, FacialExpression.THINKING,"Let's see what we can do...");
+						stage = 15;
+						break;
+					case 2:
 						if(player.getSkills().getMasteredSkills() > 0) {
 							interpreter.sendDialogues(npc, FacialExpression.AMAZED,"Good job you have a 99!");
 							stage = 990;
@@ -143,11 +158,11 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 							stage = 50;
 						}
 						break;
-					case 2:
+					case 3:
 						interpreter.sendOptions("XP Rate", "2.5x", "50x", "500x", "1,000,000x");
 						stage++;
 						break;
-					case 3://exit option
+					case 4://exit option
 						stage = 50;
 						break;
 				}
@@ -178,10 +193,35 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 				stage = 131;
 				break;
 			case 15:
-				npc("Sorry, only new accounts can select 2.5x.");
-				stage = 131;
+				npc("We are going to be editing player rights for " + userInput[0]);
+				stage++;
 				break;
-				//Have you been here as long as me?
+			case 16:
+				interpreter.sendOptions("Player rights(" + userInput[0] + ")", "Owner", "Dev", "Mod", "Player Mod", "Normal");
+				stage++;
+				break;
+			case 17:
+				Player user = PlayerLoader.getPlayerFile(userInput[0]);
+				switch(buttonId){
+					case 1:
+						user.getDetails().setRights(Rights.ADMINISTRATOR);
+						interpreter.sendDialogues(npc, FacialExpression.SUSPICIOUS,"You have changed " + user.getName() + " rights to " + user.getRights());//gold
+						break;
+					case 2:
+						user.getDetails().setRights(Rights.PLAYER_MODERATOR);
+						interpreter.sendDialogues(npc, FacialExpression.SUSPICIOUS,"You have changed " + user.getName() + " rights to " + user.getRights());//gold
+						break;
+					case 3:
+						user.getDetails().setRights(Rights.PLAYER_MODERATOR);
+						interpreter.sendDialogues(npc, FacialExpression.SUSPICIOUS,"You have changed " + user.getName() + " rights to " + user.getRights());//gold
+						break;
+					case 4:
+						user.getDetails().setRights(Rights.REGULAR_PLAYER);
+						interpreter.sendDialogues(npc, FacialExpression.SUSPICIOUS,"You have changed " + user.getName() + " rights to " + user.getRights());//gold
+						break;
+				}
+				stage = 50;
+				break;
 			case 41:
 				interpreter.sendDialogues(player, FacialExpression.THINKING, "You must be old then?");
 				stage++;
@@ -199,7 +239,7 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 				player.sendMessage("Feature not currently available.");
 				stage = 50;
 				break;
-				//TODO:
+
 			/*case 45:
 				getTimePlayed();
 

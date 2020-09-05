@@ -19,9 +19,9 @@ import java.util.*
 
 /*
 * TODO:
-*  1. Prayer
-*  2. Learn how to spawn items
-*  3. Herblore
+*  1. Learn how to spawn items
+*  2. Equipment wearable on prestige
+*  3. Prayer + percentages on pray
 * */
 
 /**
