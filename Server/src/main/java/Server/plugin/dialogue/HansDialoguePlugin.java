@@ -138,15 +138,7 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 			case 12:
 				switch(buttonId){
 					case 1:
-						player.getDialogueInterpreter().sendInput(true, "Whose player rights do we edit:");
-						player.setAttribute("runscript", new RunScript() { //This is within the sendInput script, which awkwardly requires internal execution.
-							@Override
-							public boolean handle() {
-								userInput[0] = (String)getValue();
-								return true;
-							}
-						});
-						interpreter.sendDialogues(npc, FacialExpression.THINKING,"Let's see what we can do...");
+						interpreter.sendDialogues(npc, FacialExpression.THINKING,"We are going to edit your player rights...");
 						stage = 15;
 						break;
 					case 2:
@@ -193,31 +185,30 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 				stage = 131;
 				break;
 			case 15:
-				npc("We are going to be editing player rights for " + userInput[0]);
+				npc("We are going to be editing player rights for you");
 				stage++;
 				break;
 			case 16:
-				interpreter.sendOptions("Player rights(" + userInput[0] + ")", "Owner", "Dev", "Mod", "Player Mod", "Normal");
+				interpreter.sendOptions("Player rights(" + player.getName() + ")", "Admin", "Dev", "Player Mod", "Normal");
 				stage++;
 				break;
 			case 17:
-				Player user = PlayerLoader.getPlayerFile(userInput[0]);
 				switch(buttonId){
 					case 1:
-						user.getDetails().setRights(Rights.ADMINISTRATOR);
-						interpreter.sendDialogues(npc, FacialExpression.SUSPICIOUS,"You have changed " + user.getName() + " rights to " + user.getRights());//gold
+						player.getDetails().setRights(Rights.ADMINISTRATOR);
+						interpreter.sendDialogues(npc, FacialExpression.SUSPICIOUS,"You have changed " + player.getName() + " rights to " + player.getRights());//gold
 						break;
 					case 2:
-						user.getDetails().setRights(Rights.PLAYER_MODERATOR);
-						interpreter.sendDialogues(npc, FacialExpression.SUSPICIOUS,"You have changed " + user.getName() + " rights to " + user.getRights());//gold
+						player.getDetails().setRights(Rights.ADMINISTRATOR);
+						interpreter.sendDialogues(npc, FacialExpression.SUSPICIOUS,"You have changed " + player.getName() + " rights to " + player.getRights());//gold
 						break;
 					case 3:
-						user.getDetails().setRights(Rights.PLAYER_MODERATOR);
-						interpreter.sendDialogues(npc, FacialExpression.SUSPICIOUS,"You have changed " + user.getName() + " rights to " + user.getRights());//gold
+						player.getDetails().setRights(Rights.PLAYER_MODERATOR);
+						interpreter.sendDialogues(npc, FacialExpression.SUSPICIOUS,"You have changed " + player.getName() + " rights to " + player.getRights());//gold
 						break;
 					case 4:
-						user.getDetails().setRights(Rights.REGULAR_PLAYER);
-						interpreter.sendDialogues(npc, FacialExpression.SUSPICIOUS,"You have changed " + user.getName() + " rights to " + user.getRights());//gold
+						player.getDetails().setRights(Rights.REGULAR_PLAYER);
+						interpreter.sendDialogues(npc, FacialExpression.SUSPICIOUS,"You have changed " + player.getName() + " rights to " + player.getRights());//gold
 						break;
 				}
 				stage = 50;
