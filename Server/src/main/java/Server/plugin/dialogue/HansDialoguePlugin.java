@@ -2,16 +2,22 @@ package plugin.dialogue;
 
 import core.game.node.entity.npc.NPC;
 import core.game.node.entity.player.link.IronmanMode;
+import core.game.node.entity.player.link.RunScript;
+import core.game.world.repository.Repository;
 import core.plugin.InitializablePlugin;
 import core.game.node.entity.player.Player;
 import plugin.skill.Skills;
-
+import plugin.Getlineonce;
 
 /**
  * Represents the dialogue plugin used for the hans npc.
  */
 @InitializablePlugin
 public final class HansDialoguePlugin extends DialoguePlugin {
+	//Prestige info, we are using [0] to call these
+	int[] skillInput = {-1};
+	boolean[] isSkillInput = {false};
+	String[] userInput = new String[1];
 
 	private int[] timePlayed = new int[3];
 	private int joinDateDays;
@@ -48,7 +54,6 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 
 	@Override
 	public boolean handle(int interfaceId, int buttonId) {
-
 		switch (stage) {
 			case 0:
 				if(player.getName().equalsIgnoreCase("jawarrior1")) {
@@ -392,35 +397,52 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 				}
 				break;
 			case 990://start doing prestige
-				interpreter.sendOptions("Prestige settings", "Attack", "Strength", "Defence", "Thieving", "Other skills(exit)...");
+				player.getDialogueInterpreter().sendInput(true, "Enter a skill to prestige:");
+				player.setAttribute("runscript", new RunScript() { //This is within the sendInput script, which awkwardly requires internal execution.
+					@Override
+					public boolean handle() {
+						userInput[0] = (String)getValue();
+						System.out.println(userInput[0]);
+						for(int i = 0; i < 24; i++) {
+							String skill = Skills.SKILL_NAME[i];
+							if(userInput[0].equalsIgnoreCase(skill)){
+								isSkillInput[0] = true;
+								skillInput[0] = Skills.getSkillByName(skill);
+								break;
+							}
+						}
+						return true;
+					}
+				});
+				interpreter.sendDialogues(npc, FacialExpression.THINKING,"Let's see what we can do...");
 				stage++;
 				break;
 			case 991:
-				switch(buttonId){
-					case 1:
-						interpreter.sendDialogues(npc, FacialExpression.THINKING, "Looks like its not implemented");
-						//prestige attack
-						stage = 999;
-					case 2:
-						interpreter.sendDialogues(npc, FacialExpression.THINKING, "Looks like its not implemented");
-						//prestige strength
-						stage = 999;
-						break;
-					case 3:
-						interpreter.sendDialogues(npc, FacialExpression.THINKING, "Looks like its not implemented");
-						//prestige defence
-						stage = 999;
-					case 4:
-						player.getSkills().addPrestigeLevel(Skills.THIEVING);
-						System.out.println(player.getSkills().getPrestigeLevel(Skills.THIEVING));
-						player.getSkills().setStaticLevel(Skills.THIEVING, 1);
-						interpreter.sendDialogues(npc, FacialExpression.HAPPY, "Thieving prestige is now " + player.getSkills().getPrestigeLevel(Skills.THIEVING) +
-								". You'll more loot.");
-						stage = 999;
-					case 5://exit
-						stage = 999;
-						break;
+				if(!isSkillInput[0]) {
+					interpreter.sendDialogues(npc, FacialExpression.ANNOYED, "Umm, " + userInput[0] + " is not a skill...");
+					stage = 999;
+				} else if(skillInput[0] == Skills.THIEVING || skillInput[0] == Skills.STRENGTH) {
+					interpreter.sendDialogues(npc, FacialExpression.ASKING, "Are you sure you want to prestige " +
+							Skills.SKILL_NAME[skillInput[0]] + "?");
+					stage++;
+				} else {
+					stage = 999;
 				}
+				break;
+			case 992:
+				interpreter.sendDialogues(npc, FacialExpression.EVIL_LAUGH, "Absolutely certain?");
+				stage++;
+				break;
+			case 993:
+				interpreter.sendDialogues(npc, FacialExpression.NEUTRAL, "Click out now or forever prestige " + Skills.SKILL_NAME[skillInput[0]] + "!");
+				stage++;
+				break;
+			case 994:
+				player.getSkills().addPrestigeLevel(skillInput[0]);
+				player.getSkills().setStaticLevel(skillInput[0], 1);
+				interpreter.sendDialogues(npc, FacialExpression.HAPPY, Skills.SKILL_NAME[skillInput[0]] + " prestige is now " + player.getSkills().getPrestigeLevel(skillInput[0]) +
+						" Congrats!");
+				stage = 999;
 				break;
 			case 999:
 				end();

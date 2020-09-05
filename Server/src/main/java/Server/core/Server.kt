@@ -19,11 +19,9 @@ import java.util.*
 
 /*
 * TODO:
-*  1. Learn how to call on the current player
-*  2. Start on thief prestige
-*       -Gold
-*       -seed amount randomizer, using default random lib
-*  3. Start on strength and combat level
+*  1. Do hitpoints, defence & attack
+*  2. Start on prayer
+*  3. Start on Combat level
 * */
 
 /**
