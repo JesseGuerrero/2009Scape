@@ -540,9 +540,9 @@ public final class Skills {
 			return ((NPC) entity).getDefinition().getCombatLevel();
 		}
 		int combatLevel = 0;
-		int melee = staticLevels[ATTACK] + staticLevels[STRENGTH];
-		int range = (int) (1.5 * staticLevels[RANGE]);
-		int mage = (int) (1.5 * staticLevels[MAGIC]);
+		int melee = staticLevels[ATTACK] + staticLevels[STRENGTH] + prestige[ATTACK]*10 + prestige[STRENGTH]*10;
+		int range = (int) (1.5 * staticLevels[RANGE] * prestige[RANGE]*10);
+		int mage = (int) (1.5 * staticLevels[MAGIC] + prestige[MAGIC]*10);
 		if (melee > range && melee > mage) {
 			combatLevel = melee;
 		} else if (range > melee && range > mage) {
@@ -550,7 +550,8 @@ public final class Skills {
 		} else {
 			combatLevel = mage;
 		}
-		combatLevel = staticLevels[DEFENCE] + staticLevels[HITPOINTS] + (staticLevels[PRAYER] / 2) + (int) (1.3 * combatLevel);
+		combatLevel = staticLevels[DEFENCE] + prestige[DEFENCE]*10 + staticLevels[HITPOINTS] + prestige[HITPOINTS]*10 + ((staticLevels[PRAYER] + prestige[PRAYER])/ 2) +
+				(int) (1.3 * combatLevel);
 		return combatLevel / 4;
 	}
 
