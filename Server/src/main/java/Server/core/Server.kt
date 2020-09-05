@@ -19,9 +19,9 @@ import java.util.*
 
 /*
 * TODO:
-*  1. Do hitpoints, defence & attack
-*  2. Start on prayer
-*  3. Start on Combat level
+*  1. Prayer
+*  2. Learn how to spawn items
+*  3. Herblore
 * */
 
 /**

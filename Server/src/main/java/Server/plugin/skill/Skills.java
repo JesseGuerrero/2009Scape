@@ -541,7 +541,7 @@ public final class Skills {
 		}
 		int combatLevel = 0;
 		int melee = staticLevels[ATTACK] + staticLevels[STRENGTH] + prestige[ATTACK]*10 + prestige[STRENGTH]*10;
-		int range = (int) (1.5 * staticLevels[RANGE] * prestige[RANGE]*10);
+		int range = (int) (1.5 * staticLevels[RANGE] + prestige[RANGE]*10);
 		int mage = (int) (1.5 * staticLevels[MAGIC] + prestige[MAGIC]*10);
 		if (melee > range && melee > mage) {
 			combatLevel = melee;
