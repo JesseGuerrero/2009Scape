@@ -701,7 +701,7 @@ public final class Skills {
 	 * @return The maximum amount.
 	 */
 	public int getMaximumLifepoints() {
-		return staticLevels[HITPOINTS] + lifepointsIncrease;
+		return staticLevels[HITPOINTS] + lifepointsIncrease + prestige[Skills.HITPOINTS]*10;
 	}
 
 	/**

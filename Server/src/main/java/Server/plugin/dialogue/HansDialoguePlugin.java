@@ -421,7 +421,8 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 				if(!isSkillInput[0]) {
 					interpreter.sendDialogues(npc, FacialExpression.ANNOYED, "Umm, " + userInput[0] + " is not a skill...");
 					stage = 999;
-				} else if(skillInput[0] == Skills.THIEVING || skillInput[0] == Skills.STRENGTH) {
+				} else if(skillInput[0] == Skills.THIEVING || skillInput[0] == Skills.STRENGTH || skillInput[0] == Skills.HITPOINTS ||
+						skillInput[0] == Skills.ATTACK || skillInput[0] == Skills.DEFENCE) {
 					interpreter.sendDialogues(npc, FacialExpression.ASKING, "Are you sure you want to prestige " +
 							Skills.SKILL_NAME[skillInput[0]] + "?");
 					stage++;
