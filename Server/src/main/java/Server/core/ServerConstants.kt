@@ -144,7 +144,7 @@ class ServerConstants {
 
 		//the server name
 		@JvmField
-		var SERVER_NAME: String = ""
+		var SERVER_NAME: String = "NonName"
 
 
 		/**

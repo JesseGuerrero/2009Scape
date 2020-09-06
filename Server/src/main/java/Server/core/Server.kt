@@ -20,7 +20,7 @@ import java.util.*
 /*
 * TODO:
 * 1. Slayer loot + %10 of getting 1 extra
-* 2. Agility Dynamic check Run energy + 10 every prestige
+* 2. Agility Dynamic check Run energy + 10 every prestige, also add special attack
 * 3. Woodcutting, fishing, mining check gathering tick limits
 * 4. Evaluate new UMPIRE
 * */

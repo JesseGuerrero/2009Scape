@@ -224,7 +224,7 @@ public final class Skills {
 		if (assist != null && assist.translateExperience(player, slot, experience, mod)) {
 			return;
 		}
-		boolean already200m = this.experience[slot] == 200000000;
+		boolean alreadyMaxXP = this.experience[slot] == 13035000;
 		double experienceAdd = (experience * mod);
 		//check if a player has brawling gloves and, if equipped, modify xp
 		if(!player.getBrawlingGlovesManager().GloveCharges.isEmpty()){
@@ -244,11 +244,11 @@ public final class Skills {
 			player.getAntiMacroHandler().monitors[slot] = new ExperienceMonitor(slot);
 			player.getAntiMacroHandler().monitors[slot].setExperienceAmount((int) experienceAdd);
 		}
-		if (this.experience[slot] >= 200000000) {
-			if(!already200m && !player.isArtificial()){
-				Repository.sendNews(entity.asPlayer().getUsername()+" has just reached 200m experience in " + SKILL_NAME[slot] + "!");
-			}
-			this.experience[slot] = 200000000;
+		if (this.experience[slot] >= 13035000) {
+//			if(!alreadyMaxXP && !player.isArtificial()){//don't need as no 200m
+//				Repository.sendNews(entity.asPlayer().getUsername()+" has just reached 200m experience in " + SKILL_NAME[slot] + "!");
+//			}
+			this.experience[slot] = 13035000;
 		}
 		if (entity instanceof Player && this.experience[slot] > 175) {
 			if (player.getSavedData().getGlobalData().getTutorialStage() < TutorialSession.MAX_STAGE && slot != HITPOINTS) {
