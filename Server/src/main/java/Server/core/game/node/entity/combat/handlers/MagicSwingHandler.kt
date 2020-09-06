@@ -16,6 +16,7 @@ import core.tools.RandomFunction
 import plugin.skill.Skills
 import plugin.quest.tutorials.tutorialisland.TutorialSession
 import plugin.quest.tutorials.tutorialisland.TutorialStage
+import kotlin.math.ceil
 import kotlin.math.floor
 
 /**
@@ -173,6 +174,14 @@ open class MagicSwingHandler
         var prayer = 1.0
         if (entity is Player) {
             prayer += entity.prayer.getSkillBonus(Skills.MAGIC)
+
+            //println(prayer)
+            //prestige only if there is already a bonus
+            if(prayer > 1) {
+                //println("prestige activated")
+                val user = entity as Player
+                prayer += user.skills.getPrestigeLevel(Skills.PRAYER) * .05
+            }
         }
         val additional = 1.0 // Slayer helmet/salve/...
         val effective = floor(level * prayer * additional + spellBonus)
@@ -196,7 +205,23 @@ open class MagicSwingHandler
         if (entityMod != 0.0) {
             levelMod += entityMod
         }
-        return (baseDamage * levelMod).toInt() + 1
+
+        var maxHit = ((baseDamage * levelMod) + 1)
+//        println("initial " + maxHit)
+
+        //prestige prayer
+        if (entity is Player) {
+            if(1+ entity.prayer.getSkillBonus(Skills.MAGIC) > 1) {
+                val user = entity as Player
+                val prayBonus = 1+user.skills.getPrestigeLevel(Skills.PRAYER)*.05
+//                println("PrayBonus: " + prayBonus)
+
+                maxHit = floor(maxHit * prayBonus) + 1
+            }
+        }
+
+//        println("Maxhit: " + maxHit)
+        return maxHit.toInt()
     }
 
     override fun calculateDefence(entity: Entity?, attacker: Entity?): Int {
@@ -204,6 +229,14 @@ open class MagicSwingHandler
         var prayer = 1.0
         if (entity is Player) {
             prayer += entity.prayer.getSkillBonus(Skills.MAGIC)
+
+            //println(prayer)
+            //prestige only if there is already a bonus
+            if(prayer > 1) {
+                //println("prestige activated")
+                val user = entity as Player
+                prayer += user.skills.getPrestigeLevel(Skills.PRAYER) * .05
+            }
         }
         val effective = floor(level * prayer * 0.3) + entity.skills.getLevel(Skills.MAGIC, true) * 0.7
         val equipment = entity.properties.bonuses[WeaponInterface.BONUS_MAGIC + 5]

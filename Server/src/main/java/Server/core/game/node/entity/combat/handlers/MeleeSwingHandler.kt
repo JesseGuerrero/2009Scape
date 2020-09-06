@@ -146,6 +146,14 @@ open class MeleeSwingHandler
         var prayer = 1.0
         if (entity is Player) {
             prayer += entity.prayer.getSkillBonus(Skills.ATTACK)
+
+            //println(prayer)
+            //prestige only if there is already a bonus
+            if(prayer > 1) {
+                //println("prestige activated")
+                val user = entity as Player
+                prayer += user.skills.getPrestigeLevel(Skills.PRAYER) * .05
+            }
         }
         var additional = 1.0 // Black mask/slayer helmet/salve/...
         if (entity.properties.combatPulse.getVictim() != null) {
@@ -176,6 +184,15 @@ open class MeleeSwingHandler
         var prayer = 1.0
         if (entity is Player) {
             prayer += entity.prayer.getSkillBonus(Skills.STRENGTH)
+
+            //println(prayer)
+            //prestige only if there is already a bonus
+            if(prayer > 1) {
+                //println("prestige activated")
+                val user = entity as Player
+                prayer += user.skills.getPrestigeLevel(Skills.PRAYER) * .05
+            }
+
         }
         var cumulativeStr = floor(level * prayer)
         if (entity.properties.attackStyle.style == WeaponInterface.STYLE_AGGRESSIVE) {
@@ -200,6 +217,14 @@ open class MeleeSwingHandler
         var prayer = 1.0
         if (entity is Player) {
             prayer += entity.prayer.getSkillBonus(Skills.DEFENCE)
+
+            //println(prayer)
+            //prestige only if there is already a bonus
+            if(prayer > 1) {
+                //println("prestige activated")
+                val user = entity as Player
+                prayer += user.skills.getPrestigeLevel(Skills.PRAYER) * .05
+            }
         }
         val effective = floor(level * prayer + styleBonus)
         val equipment = entity.properties.bonuses[attacker!!.properties.attackStyle.bonusType + 5]

@@ -48,7 +48,8 @@ public class PrayerAltarPlugin extends OptionHandler {
 			visualize(player);
 			return true;
 		}
-		if (player.getSkills().getPrayerPoints() == player.getSkills().getStaticLevel(Skills.PRAYER)) {
+		//prestiged, made sure to add prestige dynamic on top of static
+		if (player.getSkills().getPrayerPoints() == player.getSkills().getStaticLevel(Skills.PRAYER) + player.getSkills().getPrestigeLevel(Skills.PRAYER)*10) {
 			player.getPacketDispatch().sendMessage("You already have full prayer points.");
 			return true;
 		}

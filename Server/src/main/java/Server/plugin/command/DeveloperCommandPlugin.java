@@ -586,14 +586,47 @@ public final class DeveloperCommandPlugin extends CommandPlugin {
                     player.getPacketDispatch().sendMessage("Region zone " + z.getZone().getName() + " active...");
                 }
                 return true;
-            case "additem":
+
             case "deleteitem":
             case "deleteitemb":
-                if (name.equals("additem")) {
-                    addItem(player, args);
-                } else {
-                    deleteItem(player, args);
+                int itemId = 1;
+                if(args[1] instanceof String) {
+                    try {
+                        itemId = toInteger(args[1]);
+                        Item item = new Item(itemId);
+
+                        int itemAmt = 1;
+                        try {
+                            itemAmt = toInteger(args[2]);
+                        } catch(Exception e) { ; }
+
+                        for(int i = 0; i < itemAmt; i++) {
+                            if (args[0].equals("deleteitemb")) {
+                                player.getBank().remove(item);
+                            } else {
+                                player.getInventory().remove(item);
+                            }
+                        }
+                    } catch (Exception e) {
+                        System.out.println("not valid arguments");
+                    }
                 }
+                break;
+            case "additem":
+                int itemIda = 1;
+                int itemAmta = 0;
+                try {
+                    if (args[1] instanceof String && args[2] instanceof String) {
+
+                        itemIda = toInteger(args[1]);
+                        itemAmta = toInteger(args[2]);
+                        player.getInventory().add(new Item(itemIda, itemAmta));
+                    }
+                }
+                catch(Exception e) {
+                    System.out.println("not valid arguments");
+                }
+
                 break;
             case "roar":
                 player.getPacketDispatch().sendInterfaceConfig(762, 20, false);

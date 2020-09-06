@@ -397,7 +397,7 @@ public final class Skills {
 		experienceGained = buffer.getInt();
 	}
 
-	public void parse(JSONArray skillData){//TODO: Parse into Player class here
+	public void parse(JSONArray skillData){//Parses into Player class here
 		for(int i = 0; i < skillData.size(); i++){
 			JSONObject skill = (JSONObject) skillData.get(i);
 			int id = Integer.parseInt( skill.get("id").toString());
@@ -760,7 +760,8 @@ public final class Skills {
 	 * Recharges the prayer points.
 	 */
 	public void rechargePrayerPoints() {
-		prayerPoints = staticLevels[PRAYER];
+		//prestiged
+		prayerPoints = staticLevels[PRAYER] + getPrestigeLevel(PRAYER)*10;
 		if (entity instanceof Player) {
 			PacketRepository.send(SkillLevel.class, new SkillContext((Player) entity, PRAYER));
 		}
@@ -792,8 +793,10 @@ public final class Skills {
 		if (prayerPoints < 0) {
 			prayerPoints = 0;
 		}
-		if (prayerPoints > staticLevels[PRAYER]) {
-			prayerPoints = staticLevels[PRAYER];
+
+		//prestiged
+		if (prayerPoints > staticLevels[PRAYER] + getPrestigeLevel(PRAYER)*10) {
+			prayerPoints = staticLevels[PRAYER]+ getPrestigeLevel(PRAYER)*10;
 		}
 		if (entity instanceof Player) {
 			PacketRepository.send(SkillLevel.class, new SkillContext((Player) entity, PRAYER));

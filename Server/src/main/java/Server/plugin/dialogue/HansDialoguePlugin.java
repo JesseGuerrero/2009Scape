@@ -454,7 +454,7 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 					stage = 999;
 				} else if(skillInput[0] == Skills.THIEVING || skillInput[0] == Skills.STRENGTH || skillInput[0] == Skills.HITPOINTS ||
 						skillInput[0] == Skills.ATTACK || skillInput[0] == Skills.DEFENCE || skillInput[0] == Skills.RANGE ||
-						skillInput[0] == Skills.MAGIC) {
+						skillInput[0] == Skills.MAGIC || skillInput[0] == Skills.PRAYER) {
 					interpreter.sendDialogues(npc, FacialExpression.ASKING, "Are you sure you want to prestige " +
 							Skills.SKILL_NAME[skillInput[0]] + "?");
 					stage++;
@@ -473,6 +473,8 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 			case 994:
 				player.getSkills().addPrestigeLevel(skillInput[0]);
 				player.getSkills().setStaticLevel(skillInput[0], 1);
+				Repository.sendNews(player.getUsername() + " has just achieved " + player.getSkills().getPrestigeLevel(skillInput[0]) + " prestige in "
+						+ Skills.SKILL_NAME[skillInput[0]] + "!");
 				interpreter.sendDialogues(npc, FacialExpression.HAPPY, Skills.SKILL_NAME[skillInput[0]] + " prestige is now " + player.getSkills().getPrestigeLevel(skillInput[0]) +
 						" Congrats!");
 				stage = 999;
