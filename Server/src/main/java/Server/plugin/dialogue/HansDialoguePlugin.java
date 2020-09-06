@@ -55,6 +55,7 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 		return true;
 	}
 
+
 	@Override
 	public boolean handle(int interfaceId, int buttonId) {
 		switch (stage) {
@@ -63,7 +64,7 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 					interpreter.sendOptions("Administrative settings", "Player Rights", "prestige", "xp rate", "exit");
 					stage = 12;
 				} else {
-					interpreter.sendOptions("Account settings", "Prestige", "I have come to kill everyone in this castle!", "I don't know. I'm lost. Where am I?", "Account Options...");
+					interpreter.sendOptions("Account settings", "Prestige", "Change xp rate", "I don't know. I'm lost. Where am I?", "Account Options...");
 					stage++;
 				}
 				break;
@@ -74,8 +75,8 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 						stage = 12;
 						break;
 					case 2:
-						end();
-						npc.sendChat("Help! Help!");
+						interpreter.sendOptions("XP Rate", "2.5x", "10x", "20x", "30x");
+						stage = 18;
 						break;
 					case 3:
 						interpreter.sendDialogues(npc, FacialExpression.NEUTRAL, "You are in Lumbridge Castle.");
@@ -95,7 +96,7 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 						stage = 41;
 						break;
 					case 2:
-						npc("The XP rate for all players is: " + player.getSkills().experienceMutiplier);
+						npc("The XP rate for you is: " + player.getSkills().experienceMutiplier);
 						stage = 50; //50 is end
 						break;
 					case 3:
@@ -211,6 +212,31 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 						interpreter.sendDialogues(npc, FacialExpression.SUSPICIOUS,"You have changed " + player.getName() + " rights to " + player.getRights());//gold
 						break;
 				}
+				stage = 50;
+				break;
+			case 18:
+				switch(buttonId){
+					case 1:
+						player.getSkills().experienceMutiplier = 2.5;
+						stage++;
+						break;
+					case 2:
+						player.getSkills().experienceMutiplier = 10.0;
+						stage++;
+						break;
+					case 3:
+						player.getSkills().experienceMutiplier = 20.0;
+						stage++;
+						break;
+					case 4:
+						player.getSkills().experienceMutiplier = 30.0;
+						stage++;
+						break;
+				}
+				npc("One moment, please...");
+				break;
+			case 19:
+				npc("Tada, your xp rate is now " + player.getSkills().experienceMutiplier);
 				stage = 50;
 				break;
 			case 41:

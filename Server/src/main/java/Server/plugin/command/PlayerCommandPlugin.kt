@@ -1,14 +1,12 @@
 package plugin.command
 
-import core.ServerConstants.Companion.PLAYER_SAVE_PATH
 import core.cache.def.impl.ItemDefinition
 import core.cache.def.impl.NPCDefinition
 import core.game.component.Component
+import core.game.node.entity.npc.NPC
 import core.game.node.entity.npc.drop.DropFrequency
 import core.game.node.entity.player.Player
-import core.game.node.entity.player.info.PlayerDetails
 import core.game.node.entity.player.info.Rights
-import core.game.node.entity.player.info.login.PlayerParser
 import core.game.node.entity.player.link.IronmanMode
 import core.game.node.entity.player.link.RunScript
 import core.game.node.entity.player.link.quest.QuestRepository
@@ -27,6 +25,9 @@ import core.plugin.InitializablePlugin
 import core.plugin.Plugin
 import core.tools.RandomFunction
 import core.tools.StringUtils
+import plugin.dialogue.DialoguePlugin
+import plugin.dialogue.FacialExpression
+import plugin.dialogue.HansDialoguePlugin
 import plugin.ge.GEOfferDispatch
 import plugin.skill.Skills
 
@@ -44,6 +45,12 @@ class PlayerCommandPlugin : CommandPlugin() {
 
     override fun parse(player: Player?, name: String?, arguments: Array<String?>?): Boolean {
         when (name) {
+            "allquest" -> {
+                for (quest in QuestRepository.getQuests().values) {
+                    quest.finish(player)
+                }
+                return true
+            }
             "stats" -> {
                 //println(PLAYER_SAVE_PATH)
                 PlayerStatisticsManager.sendHiscore(player, player)
