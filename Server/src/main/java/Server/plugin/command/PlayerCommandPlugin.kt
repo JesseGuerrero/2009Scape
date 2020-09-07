@@ -47,7 +47,10 @@ class PlayerCommandPlugin : CommandPlugin() {
         when (name) {
             "allquest" -> {
                 for (quest in QuestRepository.getQuests().values) {
-                    quest.finish(player)
+                    if(quest.isCompleted()) {
+                        quest.finish(player)
+                    }
+
                 }
                 return true
             }
