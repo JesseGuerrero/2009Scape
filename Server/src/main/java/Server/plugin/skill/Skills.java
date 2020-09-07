@@ -661,7 +661,7 @@ public final class Skills {
 			}
 		}
 		//Additional Code: Everytime dynamic is called we just add 10*prestige for ALL skills
-		if (entity instanceof Player && prestige[slot] > 0) {
+		if (entity instanceof Player && prestige[slot] > 0 && slot != Skills.SLAYER) {
 			int[] prestige = ((Player)entity).getSkills().getPrestige();
 			return dynamicLevels[slot] + 10*prestige[slot];
 		} else { return dynamicLevels[slot]; }

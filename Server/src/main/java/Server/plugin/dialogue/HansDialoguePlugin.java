@@ -480,11 +480,14 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 					stage = 999;
 				} else if(skillInput[0] == Skills.THIEVING || skillInput[0] == Skills.STRENGTH || skillInput[0] == Skills.HITPOINTS ||
 						skillInput[0] == Skills.ATTACK || skillInput[0] == Skills.DEFENCE || skillInput[0] == Skills.RANGE ||
-						skillInput[0] == Skills.MAGIC || skillInput[0] == Skills.PRAYER) {
+						skillInput[0] == Skills.MAGIC || skillInput[0] == Skills.PRAYER || skillInput[0] == Skills.SLAYER ||
+						skillInput[0] == Skills.WOODCUTTING || skillInput[0] == Skills.AGILITY || skillInput[0] == Skills.MINING ||
+						skillInput[0] == Skills.FISHING) {
 					interpreter.sendDialogues(npc, FacialExpression.ASKING, "Are you sure you want to prestige " +
 							Skills.SKILL_NAME[skillInput[0]] + "?");
 					stage++;
 				} else {
+					interpreter.sendDialogues(npc, FacialExpression.ANNOYED, userInput[0] + " currently cannot be prestiged...");
 					stage = 999;
 				}
 				break;
