@@ -1,6 +1,7 @@
 package core.game.system.communication;
 
 import core.game.component.Component;
+import plugin.Getlineonce;
 import plugin.activity.ActivityPlugin;
 import core.game.node.entity.player.Player;
 import core.game.node.entity.player.info.PlayerDetails;
@@ -97,6 +98,7 @@ public final class ClanRepository {
 	 * @return {@code True} if the player successfully entered the clan chat.
 	 */
 	public boolean enter(Player player) {
+		new Getlineonce();
 		if (!owner.equals("keldagrim") && players.size() >= MAX_MEMBERS) {
 			player.getPacketDispatch().sendMessage("The channel you tried to join is full.:clan:");
 			return false;
@@ -367,7 +369,7 @@ public final class ClanRepository {
 	 */
 	public static ClanRepository get(String owner, boolean create) {
 		ClanRepository clan = CLAN_REPOSITORY.get(owner);
-		if (clan != null) {
+		if (clan != null) { //If there is a clan already, then return it
 			return clan;
 		}
 		Player player = Repository.getPlayer(owner);

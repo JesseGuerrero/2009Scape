@@ -12,6 +12,7 @@ import core.net.amsc.WorldCommunicator;
 import core.plugin.Plugin;
 import core.plugin.InitializablePlugin;
 import core.tools.StringUtils;
+import plugin.Getlineonce;
 
 /**
  * Represents the plugin used to handle the clan interfaces.
@@ -50,6 +51,7 @@ public final class ClanInterfacePlugin extends ComponentPlugin {
 			case 23:
 				if (opcode == 155) {
 					clan.setJoinRequirement(ClanRank.NONE);
+					new Getlineonce();
 				} else {
 					clan.setJoinRequirement(getRank(opcode));
 				}
@@ -93,6 +95,7 @@ public final class ClanInterfacePlugin extends ComponentPlugin {
 					clan.clean(true);
 					break;
 				default:
+					new Getlineonce();
 					player.setAttribute("runscript", new RunScript() {
 						@Override
 						public boolean handle() {
