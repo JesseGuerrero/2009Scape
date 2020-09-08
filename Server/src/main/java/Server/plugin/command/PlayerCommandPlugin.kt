@@ -28,6 +28,7 @@ import core.tools.RandomFunction
 import core.tools.StringUtils
 import plugin.ge.GEOfferDispatch
 import plugin.skill.Skills
+import plugin.skill.fishing.FishSpots
 
 /**
  * Handles a player command.
@@ -68,7 +69,7 @@ class PlayerCommandPlugin : CommandPlugin() {
                 return true
             }
             "stats" -> {
-                //println(PLAYER_SAVE_PATH)
+                println(FishSpots.FISHING_GUILD)
                 PlayerStatisticsManager.sendHiscore(player, player)
             }
             "bank" -> if (!player!!.isAdmin) {

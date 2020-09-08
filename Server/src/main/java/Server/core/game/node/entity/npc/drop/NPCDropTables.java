@@ -151,7 +151,10 @@ public final class NPCDropTables {
 							onTask = true;
 						}
 						if(onTask) {
-							p.getPacketDispatch().sendMessage("You have " + p.getSlayer().getAmount() + " kills left on task.");
+							int killsLeft = p.getSlayer().getAmount();
+							if(killsLeft % 10 == 0) {
+								p.getPacketDispatch().sendMessage("You have " + killsLeft + " kills left on task.");
+							}
 
 						}
 					}
