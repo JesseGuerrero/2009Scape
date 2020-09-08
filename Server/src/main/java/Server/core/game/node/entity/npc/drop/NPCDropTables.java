@@ -95,14 +95,25 @@ public final class NPCDropTables {
 
 		boolean onTask = false;
 		if(isPlayer) {
-			int[] taskIds = p.getSlayer().getTask().ids;
-			for (int i = 0; i < taskIds.length; i++) {
-				if (taskIds[i] == npc.getId()) {
-					System.out.println("Slayer " + npc.getId());
-					onTask = true;
+			int[] taskIds = {};
+			boolean success = false;
+			try {
+				taskIds = p.getSlayer().getTask().ids;
+				success = true;
+			} catch(Exception e) {
+				System.out.println("Empty task");
+			} if(success) {
+				if (p.getSlayer().getTask().ids != null) {
+
+					for (int i = 0; i < taskIds.length; i++) {
+						if (taskIds[i] == npc.getId()) {
+							System.out.println("Slayer " + npc.getId());
+							onTask = true;
+						}
+					}
 				}
+				System.out.println("task: " + onTask);
 			}
-			System.out.println("task: " + onTask);
 		}
 		final boolean onTasks = onTask;//to go in lambda
 
