@@ -80,6 +80,46 @@ public final class NPCDropTables {
 		this.def = def;
 	}
 
+
+//	/**
+//	 * Handles the dropping.
+//	 * @param npc The NPC dropping the loot.
+//	 * @param looter The entity gaining the loot.
+//	 */
+//	public void drop(NPC npc, Entity looter) {
+//		Player p = looter instanceof Player ? (Player) looter : null;
+//
+//		DropTables table = DropTables.forId(npc.getId());
+//		if(table != null){
+//			table.getDrops().forEach(drop -> createDrop(drop,p,npc,npc.getDropLocation()));
+//			DropPlugins.getDrops(npc.getId()).forEach(drop -> createDrop(drop,p,npc,npc.getDropLocation()));
+//			return;
+//		}
+//
+//		if (!charmTable.isEmpty()) {
+//			boolean rollCharms = RandomFunction.random(5) == 3;
+//			if(rollCharms) {
+//				List<Item> reward = RandomFunction.rollChanceTable(false, charmTable);
+//				reward.stream().forEach(item -> {
+//					createDrop(item, p, npc, npc.getDropLocation());
+//				});
+//			}
+//		}
+//		RandomFunction.rollChanceTable(false,defaultTable).stream().forEach(item -> {
+//			createDrop(item, p, npc, npc.getDropLocation());
+//		});
+//		RandomFunction.rollChanceTable(false,mainTable).stream().forEach(item -> {
+//			//boolean hasWealthRing = p != null && p.getEquipment().getNew(EquipmentContainer.SLOT_RING).getId() == 2572;
+//			boolean isRDTSlot = item.getId() == RareDropTable.SLOT_ITEM_ID;
+//			if (isRDTSlot) {
+//				item = RareDropTable.retrieve();
+//			}
+//			if (item != null && p != null && npc != null) {
+//				createDrop(item, p, npc, npc.getDropLocation());
+//			}
+//		});
+//	}
+
 	/**
 	 * Handles the dropping.
 	 * @param npc The NPC dropping the loot.
@@ -109,6 +149,10 @@ public final class NPCDropTables {
 						if (taskIds[i] == npc.getId()) {
 							System.out.println("Slayer " + npc.getId());
 							onTask = true;
+						}
+						if(onTask) {
+							p.getPacketDispatch().sendMessage("You have " + p.getSlayer().getAmount() + " kills left on task.");
+
 						}
 					}
 				}

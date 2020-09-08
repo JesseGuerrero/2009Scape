@@ -246,7 +246,7 @@ public final class Skills {
 		}
 		if (this.experience[slot] >= 13035000) {
 //			if(!alreadyMaxXP && !player.isArtificial()){//don't need as no 200m
-//				Repository.sendNews(entity.asPlayer().getUsername()+" has just reached 200m experience in " + SKILL_NAME[slot] + "!");
+				//Repository.sendNews(entity.asPlayer().getUsername()+" has just reached 200m experience in " + SKILL_NAME[slot] + "!");
 //			}
 			this.experience[slot] = 13035000;
 		}

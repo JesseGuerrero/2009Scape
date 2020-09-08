@@ -38,7 +38,7 @@ public class MysteryBoxDropper extends DropPlugin {
         int roll = RandomFunction.random(1,100);
         drops.clear();
         if(roll <= chance){
-            drops.add(new Item(ItemNames.MYSTERY_BOX_6199));
+            //drops.add(new Item(ItemNames.MYSTERY_BOX_6199));
         }
         return drops;
     }

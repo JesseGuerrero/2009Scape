@@ -43,17 +43,18 @@ class SystemCommand : CommandPlugin() {
                 WorldCommunicator.connect()
                 return true
             }
-            "update" -> {
-                if (args!!.size > 1) {
-                    SystemManager.getUpdater().setCountdown(args[1]!!.toInt())
-                }
-                SystemManager.flag(SystemState.UPDATING)
-                return true
-            }
-            "cancel_update", "cancelupdate", "cancel" -> {
-                SystemManager.getUpdater().cancel()
-                return true
-            }
+//            "update" -> {
+//                if (args!!.size > 1) {
+//                    print("This ran")
+//                    SystemManager.getUpdater().setCountdown(args[1]!!.toInt())
+//                }
+//                SystemManager.flag(SystemState.UPDATING)
+//                return true
+//            }
+//            "cancel_update", "cancelupdate", "cancel" -> {
+//                SystemManager.getUpdater().cancel()
+//                return true
+//            }
             "clear_resource" -> {
                 ResourceManager.clearResource(toInteger(args!![1]!!))
                 println("Cleared resource " + args[1] + "!")

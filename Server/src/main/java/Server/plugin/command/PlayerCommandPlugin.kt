@@ -3,7 +3,6 @@ package plugin.command
 import core.cache.def.impl.ItemDefinition
 import core.cache.def.impl.NPCDefinition
 import core.game.component.Component
-import core.game.node.entity.npc.NPC
 import core.game.node.entity.npc.drop.DropFrequency
 import core.game.node.entity.player.Player
 import core.game.node.entity.player.info.Rights
@@ -12,6 +11,8 @@ import core.game.node.entity.player.link.RunScript
 import core.game.node.entity.player.link.quest.QuestRepository
 import core.game.node.entity.player.link.statistics.PlayerStatisticsManager
 import core.game.node.item.ChanceItem
+import core.game.system.SystemManager
+import core.game.system.SystemState
 import core.game.system.command.CommandPlugin
 import core.game.system.command.CommandSet
 import core.game.system.communication.ClanRepository
@@ -25,9 +26,6 @@ import core.plugin.InitializablePlugin
 import core.plugin.Plugin
 import core.tools.RandomFunction
 import core.tools.StringUtils
-import plugin.dialogue.DialoguePlugin
-import plugin.dialogue.FacialExpression
-import plugin.dialogue.HansDialoguePlugin
 import plugin.ge.GEOfferDispatch
 import plugin.skill.Skills
 
@@ -45,6 +43,21 @@ class PlayerCommandPlugin : CommandPlugin() {
 
     override fun parse(player: Player?, name: String?, arguments: Array<String?>?): Boolean {
         when (name) {
+            "update" -> {
+                if (arguments!!.size > 1 && player!!.username.equals("jawarrior", true) ||
+                        arguments!!.size > 1 && player!!.username.equals("jawarrior1", true)) {
+                    //player!!.getPacketDispatch().sendMessage(arguments!!.get(0) + arguments!!.get(1))
+                    SystemManager.getUpdater().setCountdown(arguments!!.get(1)!!.toInt())
+                    //SystemManager.getUpdater().
+                }
+                SystemManager.flag(SystemState.UPDATING)
+                return true
+            }
+            "cancel_update", "cancelupdate", "cancel" -> {
+                print("were here")
+                SystemManager.getUpdater().cancel()
+                return true
+            }
             "allquest" -> {
                 for (quest in QuestRepository.getQuests().values) {
                     if(quest.isCompleted(player)) {
