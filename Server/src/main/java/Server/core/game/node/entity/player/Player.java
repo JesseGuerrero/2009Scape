@@ -439,6 +439,8 @@ public class Player extends Entity {
 		antiMacroHandler.pulse();
 		hunterManager.pulse();
 		musicPlayer.tick();
+
+
 		//TODO: Logout
 		if (!artificial && (System.currentTimeMillis() - getSession().getLastPing()) > 50_000L) {
 			details.getSession().disconnect();
