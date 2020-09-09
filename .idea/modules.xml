@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/RS-2009.iml" filepath="$PROJECT_DIR$/.idea/RS-2009.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../IdeaProj/darkan-game-client/darkan-727-client.iml" filepath="$PROJECT_DIR$/../../IdeaProj/darkan-game-client/darkan-727-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../Spring/personalwebsite/personalwebsite.iml" filepath="$PROJECT_DIR$/../../Spring/personalwebsite/personalwebsite.iml" />
     </modules>
   </component>
 </project>

@@ -142,7 +142,7 @@
       "static": "87",
       "dynamic": "87",
       "id": "0",
-      "experience": "4174857.5",
+      "experience": "4207737.5",
       "prestige": "0"
     },
     {
@@ -156,14 +156,14 @@
       "static": "93",
       "dynamic": "93",
       "id": "2",
-      "experience": "7639000.0",
+      "experience": "7771120.0",
       "prestige": "0"
     },
     {
       "static": "85",
-      "dynamic": "78",
+      "dynamic": "75",
       "id": "3",
-      "experience": "3518845.424999974",
+      "experience": "3573707.924999973",
       "prestige": "0"
     },
     {
@@ -175,7 +175,7 @@
     },
     {
       "static": "52",
-      "dynamic": "23",
+      "dynamic": "44",
       "id": "5",
       "experience": "124647.5",
       "prestige": "0"
@@ -444,7 +444,7 @@
     "gardenerAttack": false
   },
   "settings": {
-    "attackStyle": "0",
+    "attackStyle": "1",
     "splitPrivate": true,
     "disableChatEffects": false,
     "clanChatSetting": "0",
@@ -773,7 +773,7 @@
       "0.0",
       "0.0"
     ],
-    "lootShareDelay": "1599716030766",
+    "lootShareDelay": "1599748629387",
     "godBooks": [
       false,
       false,
@@ -1609,7 +1609,7 @@
         "id": "2558"
       }
     ],
-    "location": "3239,3606,0",
+    "location": "3241,9991,0",
     "inventory": [
       {
         "amount": "1",
@@ -1682,6 +1682,12 @@
         "charge": "1000",
         "slot": "11",
         "id": "1163"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "12",
+        "id": "1163"
       }
     ]
   },
@@ -1689,7 +1695,7 @@
     "duplicationFlag": "1",
     "macroFlag": "1"
   },
-  "totalEXP": "2.4731532424999908E7",
+  "totalEXP": "2.4951394924999885E7",
   "appearance": {
     "appearance_cache": [
       {
@@ -2376,7 +2382,7 @@
     },
     {
       "index": "0",
-      "value": "0"
+      "value": "3"
     },
     {
       "index": "0",
