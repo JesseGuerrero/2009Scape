@@ -47,12 +47,12 @@ public final class QuizMasterEvent extends AntiMacroEvent {
 
 	@Override
 	public void save(ByteBuffer buffer) {
-		SavedData.save(buffer, score, 1);
-		SavedData.save(buffer, startedQuiz, 2);
-		buffer.put((byte) 3);
-		Location l = player.getAttribute("ame:location", ServerConstants.HOME_LOCATION);
-		l.save(buffer);
-		buffer.put((byte) 0);
+//		SavedData.save(buffer, score, 1);
+//		SavedData.save(buffer, startedQuiz, 2);
+//		buffer.put((byte) 3);
+//		Location l = player.getAttribute("ame:location", ServerConstants.HOME_LOCATION);
+//		l.save(buffer);
+//		buffer.put((byte) 0);
 	}
 
 	@Override

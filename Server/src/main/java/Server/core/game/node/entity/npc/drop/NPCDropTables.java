@@ -144,22 +144,21 @@ public final class NPCDropTables {
 				System.out.println("Empty task");
 			} if(success) {
 				if (p.getSlayer().getTask().ids != null) {
-
 					for (int i = 0; i < taskIds.length; i++) {
 						if (taskIds[i] == npc.getId()) {
-							System.out.println("Slayer " + npc.getId());
+							//System.out.println("Slayer " + npc.getId());
 							onTask = true;
 						}
-						if(onTask) {
-							int killsLeft = p.getSlayer().getAmount();
-							if(killsLeft % 10 == 0) {
-								p.getPacketDispatch().sendMessage("You have " + killsLeft + " kills left on task.");
-							}
-
+					}
+					if(onTask) {
+						int killsLeft = p.getSlayer().getAmount();
+						if(killsLeft % 10 == 0) {
+							p.getPacketDispatch().sendMessage("You have " + killsLeft + " kills left on task.");
 						}
+
 					}
 				}
-				System.out.println("task: " + onTask);
+				//System.out.println("task: " + onTask);
 			}
 		}
 		final boolean onTasks = onTask;//to go in lambda
@@ -185,7 +184,7 @@ public final class NPCDropTables {
 		}
 
 		if (!charmTable.isEmpty()) {
-			new Getlineonce();
+			//new Getlineonce();
 			boolean rollCharms = RandomFunction.random(5) == 3;
 			if(rollCharms) {
 				List<Item> reward = RandomFunction.rollChanceTable(false, charmTable);

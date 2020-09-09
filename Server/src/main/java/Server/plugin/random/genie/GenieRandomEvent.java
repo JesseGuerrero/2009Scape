@@ -40,12 +40,12 @@ public final class GenieRandomEvent extends AntiMacroEvent {
 
 	@Override
 	public boolean start(Player player, boolean login, Object... args) {
-		if (player.hasItem(new Item(2528))) {
-			return false;
-		}
-		super.init(player);
-		final GenieNPC npc = new GenieNPC(409, player.getLocation(), this, player);
-		npc.init();
+//		if (player.hasItem(new Item(2528))) {
+//			return false;
+//		}
+//		super.init(player);
+//		final GenieNPC npc = new GenieNPC(409, player.getLocation(), this, player);
+//		npc.init();
 		return true;
 	}
 

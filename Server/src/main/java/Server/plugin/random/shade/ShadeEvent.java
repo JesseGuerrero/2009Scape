@@ -34,9 +34,9 @@ public final class ShadeEvent extends AntiMacroEvent {
 
 	@Override
 	public boolean start(Player player, boolean login, Object... args) {
-		final ShadeNPC shade = new ShadeNPC(getId(player), player.getLocation(), this, player);
-		shade.init();
-		super.init(player);
+//		final ShadeNPC shade = new ShadeNPC(getId(player), player.getLocation(), this, player);
+//		shade.init();
+//		super.init(player);
 		return true;
 	}
 

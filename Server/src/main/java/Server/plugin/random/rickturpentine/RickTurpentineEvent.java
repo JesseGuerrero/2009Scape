@@ -46,9 +46,9 @@ public final class RickTurpentineEvent extends AntiMacroEvent {
 
 	@Override
 	public boolean start(Player player, boolean login, Object... args) {
-		final RickTurpentineNPC npc = new RickTurpentineNPC(2476, player.getLocation(), this, player);
-		npc.init();
-		super.init(player);
+//		final RickTurpentineNPC npc = new RickTurpentineNPC(2476, player.getLocation(), this, player);
+//		npc.init();
+//		super.init(player);
 		return true;
 	}
 

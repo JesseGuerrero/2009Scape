@@ -47,11 +47,11 @@ public final class LostFoundRandomEvent extends AntiMacroEvent {
 
 	@Override
 	public boolean start(Player player, boolean login, Object... args) {
-		player.getProperties().setTeleportLocation(Location.create(2338, 4747, 0));
-		if (player.getAttribute("l&f_dest") == null) {
-			player.setAttribute("l&f_dest", args.length > 0 ? args[0] : player.getLocation());
-		}
-		player.sendChat("Uh? Help!");
+//		player.getProperties().setTeleportLocation(Location.create(2338, 4747, 0));
+//		if (player.getAttribute("l&f_dest") == null) {
+//			player.setAttribute("l&f_dest", args.length > 0 ? args[0] : player.getLocation());
+//		}
+//		player.sendChat("Uh? Help!");
 		return true;
 	}
 

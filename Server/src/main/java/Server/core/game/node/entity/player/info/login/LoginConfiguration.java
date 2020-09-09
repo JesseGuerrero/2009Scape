@@ -250,6 +250,10 @@ public final class LoginConfiguration {
         player.getInterfaceManager().close();
         player.getEmoteManager().refresh();
         player.getInterfaceManager().openInfoBars();
+
+        //turn off randos
+        player.getAntiMacroHandler().isDisabled = true;
+        player.setAttribute("/save:randoms:disabled",true);
         //LoginConfiguration.setClan(player);
     }
 

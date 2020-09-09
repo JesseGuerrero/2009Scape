@@ -48,24 +48,24 @@ public final class DrillDemonEvent extends AntiMacroEvent {
 
 	@Override
 	public boolean start(Player player, boolean login, Object... args) {
-		if (login) {
-			return true;
-		}
-		final NPC sergeant = NPC.create(2790, player.getLocation());
-		if (!initSergeant(sergeant)) {
-			return false;
-		}
-		player.lock(4);
-		sergeant.lock(4);
-		sergeant.face(player);
-		player.graphics(Graphics.create(86), 3);
-		sergeant.sendChat("Private " + player.getUsername() + "! Get yourself to the parade ground ASAP!");
-		GameWorld.Pulser.submit(new Pulse(3, player, sergeant) {
-			@Override
-			public boolean pulse() {
-				return true;
-			}
-		});
+//		if (login) {
+//			return true;
+//		}
+//		final NPC sergeant = NPC.create(2790, player.getLocation());
+//		if (!initSergeant(sergeant)) {
+//			return false;
+//		}
+//		player.lock(4);
+//		sergeant.lock(4);
+//		sergeant.face(player);
+//		player.graphics(Graphics.create(86), 3);
+//		sergeant.sendChat("Private " + player.getUsername() + "! Get yourself to the parade ground ASAP!");
+//		GameWorld.Pulser.submit(new Pulse(3, player, sergeant) {
+//			@Override
+//			public boolean pulse() {
+//				return true;
+//			}
+//		});
 		return true;
 	}
 

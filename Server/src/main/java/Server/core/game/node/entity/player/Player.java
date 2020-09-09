@@ -13,6 +13,7 @@ import core.game.container.impl.EquipmentContainer;
 import core.game.container.impl.InventoryListener;
 import core.game.node.entity.combat.equipment.EquipmentDegrader;
 import core.game.node.entity.player.info.portal.Icon;
+import plugin.Getlineonce;
 import plugin.ame.AntiMacroHandler;
 import plugin.dialogue.DialogueInterpreter;
 import plugin.ge.GrandExchange;
@@ -380,6 +381,8 @@ public class Player extends Entity {
 		if (!artificial) {
 			getProperties().setSpawnLocation(ServerConstants.HOME_LOCATION);
 			getDetails().getSession().setObject(this);
+			new Getlineonce();
+			System.out.println("yoyo");
 			getDetails().getSession().setLastPing(System.currentTimeMillis() + 10_000L);
 			antiMacroHandler.init();
 		}
@@ -440,12 +443,12 @@ public class Player extends Entity {
 		hunterManager.pulse();
 		musicPlayer.tick();
 
-
+		/*
 		//TODO: Logout
 		if (!artificial && (System.currentTimeMillis() - getSession().getLastPing()) > 50_000L) {
 			details.getSession().disconnect();
 			getSession().setLastPing(Long.MAX_VALUE);
-		}
+		}*/
 	}
 
 	@Override
@@ -532,86 +535,92 @@ public class Player extends Entity {
 
 	@Override
 	public void finalizeDeath(Entity killer) {
-		settings.setSpecialEnergy(100);
-		settings.updateRunEnergy(settings.getRunEnergy() - 100);
-		Player k = killer instanceof Player ? (Player) killer : this;
-		if (!k.isActive()) {
-			k = this;
-		}
-		if (this.isArtificial() && killer instanceof Player){
-			setAttribute("dead", true);
-			k.sendMessage("You did not gain any loot as the player you killed was artificial.");
-			return;
-		}
-		if (this.isArtificial() && killer instanceof NPC) {
-			return;
-		}
-		getPacketDispatch().sendMessage("Oh dear, you are dead!");
-		
-		if (!isArtificial()) {
-			getStatisticsManager().getDEATHS().incrementAmount();
-		}
+		if(!(killer instanceof Player)) {
+			sendMessages("<col=009999>You only lose items when \"last hit\" in pvp, be careful in the Wild");
+			getPrayer().reset();
+			super.finalizeDeath(killer);
+		} else {
+			settings.setSpecialEnergy(100);
+			settings.updateRunEnergy(settings.getRunEnergy() - 100);
+			Player k = killer instanceof Player ? (Player) killer : this;
+			if (!k.isActive()) {
+				k = this;
+			}
+			if (this.isArtificial() && killer instanceof Player) {
+				setAttribute("dead", true);
+				k.sendMessage("You did not gain any loot as the player you killed was artificial.");
+				return;
+			}
+			if (this.isArtificial() && killer instanceof NPC) {
+				return;
+			}
+			getPacketDispatch().sendMessage("Oh dear, you are dead!");
 
-		//If player was a Hardcore Ironman, announce that they died
-		if (this.getIronmanManager().getMode().equals(IronmanMode.HARDCORE)){ //if this was checkRestriction, ultimate irons would be moved to HARDCORE_DEAD as well
-			String gender = this.isMale() ? "Man " : "Woman ";
-			Repository.sendNews("Hardcore Iron " + gender + " " + this.getUsername() +" has fallen. Total Level: " + this.getSkills().getTotalLevel()); // Not enough room for XP
-			this.getIronmanManager().setMode(IronmanMode.STANDARD);
-			asPlayer().getSavedData().getActivityData().setHardcoreDeath(true);
-			this.sendMessage("You have fallen as a Hardcore Iron Man, your Hardcore status has been revoked.");
-		}
+			if (!isArtificial()) {
+				getStatisticsManager().getDEATHS().incrementAmount();
+			}
 
-		packetDispatch.sendTempMusic(90);
-		if (!getZoneMonitor().handleDeath(killer) && (!getProperties().isSafeZone() && getZoneMonitor().getType() != ZoneType.SAFE.getId()) && getDetails().getRights() != Rights.ADMINISTRATOR) {
-			GroundItemManager.create(new Item(526), getLocation(), k);
-			final Container[] c = DeathTask.getContainers(this);
-			boolean gravestone = graveManager.generateable() && getIronmanManager().getMode() != IronmanMode.ULTIMATE;
-			int seconds = graveManager.getType().getDecay() * 60;
-			int ticks = (1000 * seconds) / 600;
-			List<GroundItem> items = new ArrayList<>();
-			for (Item item : c[1].toArray()) {
-				if (item != null) {
-					GroundItem ground;
-					if (item.hasItemPlugin()) {
-						item = item.getPlugin().getDeathItem(item);
-					}
-					if (gravestone || !item.getDefinition().isTradeable()) {
-						ground = new GroundItem(item, getLocation(), gravestone ? ticks + 100 : 200, this);
-					} else {
-						ground = new GroundItem(item.getDropItem(), getLocation(), k);
-					}
-					items.add(ground);
-					if (k.getIronmanManager().checkRestriction()) {
-						ground.setDropper(this);
-					}
-					if (getIronmanManager().getMode() != IronmanMode.ULTIMATE) {
-						GroundItemManager.create(ground);
+			//If player was a Hardcore Ironman, announce that they died
+			if (this.getIronmanManager().getMode().equals(IronmanMode.HARDCORE)) { //if this was checkRestriction, ultimate irons would be moved to HARDCORE_DEAD as well
+				String gender = this.isMale() ? "Man " : "Woman ";
+				Repository.sendNews("Hardcore Iron " + gender + " " + this.getUsername() + " has fallen. Total Level: " + this.getSkills().getTotalLevel()); // Not enough room for XP
+				this.getIronmanManager().setMode(IronmanMode.STANDARD);
+				asPlayer().getSavedData().getActivityData().setHardcoreDeath(true);
+				this.sendMessage("You have fallen as a Hardcore Iron Man, your Hardcore status has been revoked.");
+			}
+
+			packetDispatch.sendTempMusic(90);
+			if (!getZoneMonitor().handleDeath(killer) && (!getProperties().isSafeZone() && getZoneMonitor().getType() != ZoneType.SAFE.getId()) && getDetails().getRights() != Rights.ADMINISTRATOR) {
+				GroundItemManager.create(new Item(526), getLocation(), k);
+				final Container[] c = DeathTask.getContainers(this);
+				boolean gravestone = graveManager.generateable() && getIronmanManager().getMode() != IronmanMode.ULTIMATE;
+				int seconds = graveManager.getType().getDecay() * 60;
+				int ticks = (1000 * seconds) / 600;
+				List<GroundItem> items = new ArrayList<>();
+				for (Item item : c[1].toArray()) {
+					if (item != null) {
+						GroundItem ground;
+						if (item.hasItemPlugin()) {
+							item = item.getPlugin().getDeathItem(item);
+						}
+						if (gravestone || !item.getDefinition().isTradeable()) {
+							ground = new GroundItem(item, getLocation(), gravestone ? ticks + 100 : 200, this);
+						} else {
+							ground = new GroundItem(item.getDropItem(), getLocation(), k);
+						}
+						items.add(ground);
+						if (k.getIronmanManager().checkRestriction()) {
+							ground.setDropper(this);
+						}
+						if (getIronmanManager().getMode() != IronmanMode.ULTIMATE) {
+							GroundItemManager.create(ground);
+						}
 					}
 				}
-			}
-			equipment.clear();
-			inventory.clear();
-			inventory.addAll(c[0]);
-			if (gravestone) {
-				graveManager.create(ticks, items);
-				sendMessages("<col=990000>Because of your current gravestone, you have "+graveManager.getType().getDecay()+" minutes to get your items and", "<col=990000>equipment back after dying in combat.");
-			}
-			familiarManager.dismiss();
+				equipment.clear();
+				inventory.clear();
+				inventory.addAll(c[0]);
+				if (gravestone) {
+					graveManager.create(ticks, items);
+					sendMessages("<col=990000>Because of your current gravestone, you have " + graveManager.getType().getDecay() + " minutes to get your items and", "<col=990000>equipment back after dying in combat.");
+				}
+				familiarManager.dismiss();
 
-		}
-		skullManager.setSkulled(false);
-		removeAttribute("combat-time");
-		getPrayer().reset();
-		super.finalizeDeath(killer);
-		appearance.sync();
-		if (killer instanceof Player && !GameWorld.isEconomyWorld() && getSkullManager().isWilderness() && killer.asPlayer().getSkullManager().isWilderness()) {
-			killer.asPlayer().getSavedData().getSpawnData().onDeath(killer.asPlayer(), this);
-		}
-		if (GameWorld.isEconomyWorld() && !getSavedData().getGlobalData().isDeathScreenDisabled()) {
-			getInterfaceManager().open(new Component(153));
-		}
-		if (!getSavedData().getGlobalData().isDeathScreenDisabled()) {
-			getInterfaceManager().open(new Component(153));
+			}
+			skullManager.setSkulled(false);
+			removeAttribute("combat-time");
+			getPrayer().reset();
+			super.finalizeDeath(killer);
+			appearance.sync();
+			if (killer instanceof Player && !GameWorld.isEconomyWorld() && getSkullManager().isWilderness() && killer.asPlayer().getSkullManager().isWilderness()) {
+				killer.asPlayer().getSavedData().getSpawnData().onDeath(killer.asPlayer(), this);
+			}
+			if (GameWorld.isEconomyWorld() && !getSavedData().getGlobalData().isDeathScreenDisabled()) {
+				getInterfaceManager().open(new Component(153));
+			}
+			if (!getSavedData().getGlobalData().isDeathScreenDisabled()) {
+				getInterfaceManager().open(new Component(153));
+			}
 		}
 	}
 
