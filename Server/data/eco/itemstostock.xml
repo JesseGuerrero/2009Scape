@@ -13,4 +13,14 @@
     <AutoStock itemId="6693" amount="1000" modifier="2"/> <!--Bird nest-->
     <AutoStock itemId="1975" amount="1000" modifier="2"/> <!--Chocolate Dust-->
     <AutoStock itemId="225" amount="1000" modifier="2"/> <!--Limpwurt Root-->
+    <AutoStock itemId="2434" amount="1000" modifier="2"/> <!--Prayer potion-->
+    <AutoStock itemId="2440" amount="1000" modifier="2"/> <!--Super Strength potion-->
+    <AutoStock itemId="2436" amount="1000" modifier="2"/> <!--Super Att potion-->
+    <AutoStock itemId="536" amount="10000" modifier="2"/> <!--Dragon bones-->
+    <AutoStock itemId="561" amount="10000" modifier="2"/> <!--Nature runes-->
+    <AutoStock itemId="9291" amount="10000" modifier="2"/> <!--Runite Bolts-->
+    <AutoStock itemId="554" amount="10000" modifier="2"/> <!--Fire Runes-->
+    <AutoStock itemId="563" amount="10000" modifier="2"/> <!--Law runes-->
+
+
 </stocklist>

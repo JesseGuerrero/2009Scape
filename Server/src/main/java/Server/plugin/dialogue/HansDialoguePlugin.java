@@ -72,10 +72,10 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 				switch (buttonId) {
 					case 1:
 						interpreter.sendDialogues(npc, FacialExpression.THINKING, "Let's find out what we can do");
-						stage = 12;
+						stage++;
 						break;
 					case 2:
-						interpreter.sendOptions("XP Rate", "2.5x", "10x", "20x", "30x");
+						interpreter.sendOptions("XP Rate", "2.5x", "10x", "20x", "300x");
 						stage = 18;
 						break;
 					case 3:
@@ -86,6 +86,15 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 						interpreter.sendOptions("Select an Option", "Have you been here as long as me?", "What is the xp rate...", "About Iron Man mode...","About random events...", "Go Back...");
 						stage = 10;
 						break;
+				}
+				break;
+			case 2:
+				if(player.getSkills().getMasteredSkills() > 0) {
+					interpreter.sendDialogues(npc, FacialExpression.AMAZED,"Good job you have a 99!");
+					stage = 990;
+				} else {
+					npc("You must have a 99 to prestige, currently you do not.");
+					stage = 50;
 				}
 				break;
 			case 10:
@@ -229,7 +238,7 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 						stage++;
 						break;
 					case 4:
-						player.getSkills().experienceMutiplier = 30.0;
+						player.getSkills().experienceMutiplier = 300.0;
 						stage++;
 						break;
 				}
