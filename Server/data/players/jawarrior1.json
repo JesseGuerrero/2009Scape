@@ -1,5 +1,10 @@
 {
-  "configs": [],
+  "configs": [
+    {
+      "index": "1048",
+      "value": "17"
+    }
+  ],
   "familiarManager": {
     "petDetails": []
   },
@@ -20,9 +25,17 @@
   },
   "exp_multiplier": "1000000.0",
   "unlockedMusic": [
-    "98",
-    "77",
     "144",
+    "46",
+    "292",
+    "496",
+    "386",
+    "399",
+    "98",
+    "175",
+    "77",
+    "257",
+    "125",
     "62",
     "76",
     "149",
@@ -32,45 +45,45 @@
   ],
   "skills": [
     {
-      "static": "1",
-      "dynamic": "1",
+      "static": "99",
+      "dynamic": "108",
       "id": "0",
-      "experience": "0.0",
+      "experience": "1.3035E7",
       "prestige": "3"
-    },
-    {
-      "static": "1",
-      "dynamic": "1",
-      "id": "1",
-      "experience": "0.0",
-      "prestige": "2"
     },
     {
       "static": "99",
       "dynamic": "99",
+      "id": "1",
+      "experience": "1.3035E7",
+      "prestige": "4"
+    },
+    {
+      "static": "99",
+      "dynamic": "118",
       "id": "2",
       "experience": "1.3035E7",
       "prestige": "6"
     },
     {
       "static": "99",
-      "dynamic": "139",
+      "dynamic": "9",
       "id": "3",
       "experience": "1.3035E7",
-      "prestige": "4"
+      "prestige": "6"
     },
     {
       "static": "1",
-      "dynamic": "1",
+      "dynamic": "0",
       "id": "4",
       "experience": "0.0",
       "prestige": "2"
     },
     {
-      "static": "95",
-      "dynamic": "7",
+      "static": "99",
+      "dynamic": "89",
       "id": "5",
-      "experience": "9000000.0",
+      "experience": "1.3034431E7",
       "prestige": "1"
     },
     {
@@ -84,14 +97,14 @@
       "static": "99",
       "dynamic": "99",
       "id": "7",
-      "experience": "1.5E8",
+      "experience": "1.3034431E7",
       "prestige": "0"
     },
     {
       "static": "99",
       "dynamic": "99",
       "id": "8",
-      "experience": "2.5E7",
+      "experience": "1.3034431E7",
       "prestige": "0"
     },
     {
@@ -102,17 +115,17 @@
       "prestige": "0"
     },
     {
-      "static": "1",
-      "dynamic": "1",
+      "static": "99",
+      "dynamic": "99",
       "id": "10",
-      "experience": "0.0",
+      "experience": "1.3034431E7",
       "prestige": "1"
     },
     {
       "static": "99",
       "dynamic": "99",
       "id": "11",
-      "experience": "4.0E7",
+      "experience": "1.3034431E7",
       "prestige": "0"
     },
     {
@@ -144,10 +157,10 @@
       "prestige": "0"
     },
     {
-      "static": "1",
-      "dynamic": "1",
+      "static": "99",
+      "dynamic": "99",
       "id": "16",
-      "experience": "0.0",
+      "experience": "1.3034431E7",
       "prestige": "0"
     },
     {
@@ -158,17 +171,17 @@
       "prestige": "8"
     },
     {
-      "static": "1",
-      "dynamic": "1",
+      "static": "99",
+      "dynamic": "99",
       "id": "18",
-      "experience": "0.0",
+      "experience": "1.3035E7",
       "prestige": "1"
     },
     {
-      "static": "1",
-      "dynamic": "1",
+      "static": "99",
+      "dynamic": "99",
       "id": "19",
-      "experience": "0.0",
+      "experience": "1.3034431E7",
       "prestige": "0"
     },
     {
@@ -345,9 +358,9 @@
     "brightness": "2",
     "publicChatSetting": "0",
     "singleMouse": false,
-    "specialEnergy": "100",
+    "specialEnergy": "50",
     "tradeSetting": "0",
-    "retaliation": false,
+    "retaliation": true,
     "privateChatSetting": "0",
     "musicVolume": "0",
     "runEnergy": "100.0"
@@ -355,7 +368,7 @@
   "slayer": {
     "taskStreak": "0",
     "canEarnPoints": false,
-    "taskAmount": "19",
+    "taskAmount": "16",
     "totalTasks": "0",
     "taskId": "37",
     "learned_rewards": [
@@ -537,7 +550,7 @@
       "0",
       "0",
       "0",
-      "0",
+      "11",
       "0",
       "0",
       "0",
@@ -680,7 +693,7 @@
   "core_data": {
     "bank": [
       {
-        "amount": "353",
+        "amount": "367",
         "charge": "1000",
         "slot": "0",
         "id": "995"
@@ -764,7 +777,7 @@
         "id": "556"
       },
       {
-        "amount": "11",
+        "amount": "1003",
         "charge": "1000",
         "slot": "14",
         "id": "558"
@@ -776,7 +789,7 @@
         "id": "555"
       },
       {
-        "amount": "1",
+        "amount": "902",
         "charge": "1000",
         "slot": "16",
         "id": "557"
@@ -804,138 +817,234 @@
         "charge": "1000",
         "slot": "20",
         "id": "882"
-      }
-    ],
-    "equipment": [
+      },
       {
         "amount": "1",
         "charge": "1000",
-        "slot": "0",
+        "slot": "21",
+        "id": "4716"
+      },
+      {
+        "amount": "2",
+        "charge": "1000",
+        "slot": "22",
         "id": "1949"
       },
       {
-        "amount": "1",
+        "amount": "4",
         "charge": "1000",
-        "slot": "4",
+        "slot": "23",
         "id": "1005"
-      }
-    ],
-    "location": "3224,3218,0",
-    "inventory": [
-      {
-        "amount": "918",
-        "charge": "1000",
-        "slot": "0",
-        "id": "556"
       },
       {
         "amount": "1",
         "charge": "1000",
-        "slot": "1",
+        "slot": "24",
+        "id": "4155"
+      },
+      {
+        "amount": "3",
+        "charge": "1000",
+        "slot": "25",
+        "id": "1712"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "26",
         "id": "229"
       },
       {
         "amount": "1",
         "charge": "1000",
-        "slot": "2",
+        "slot": "27",
         "id": "143"
       },
       {
         "amount": "985",
         "charge": "1000",
-        "slot": "3",
+        "slot": "28",
         "id": "565"
       },
       {
-        "amount": "1",
+        "amount": "15",
         "charge": "1000",
-        "slot": "4",
-        "id": "1712"
-      },
+        "slot": "29",
+        "id": "1"
+      }
+    ],
+    "equipment": [
       {
         "amount": "1",
-        "charge": "1000",
-        "slot": "5",
-        "id": "1005"
-      },
-      {
-        "amount": "1",
-        "charge": "1000",
-        "slot": "6",
-        "id": "1005"
+        "charge": "174",
+        "slot": "0",
+        "id": "4881"
       },
       {
         "amount": "1",
         "charge": "1000",
-        "slot": "7",
-        "id": "1005"
-      },
-      {
-        "amount": "993",
-        "charge": "1000",
-        "slot": "8",
-        "id": "558"
-      },
-      {
-        "amount": "901",
-        "charge": "1000",
-        "slot": "9",
-        "id": "557"
-      },
-      {
-        "amount": "14",
-        "charge": "1000",
-        "slot": "10",
-        "id": "995"
+        "slot": "1",
+        "id": "6570"
       },
       {
         "amount": "1",
         "charge": "1000",
-        "slot": "11",
-        "id": "11694"
-      },
-      {
-        "amount": "1",
-        "charge": "1000",
-        "slot": "12",
-        "id": "1712"
-      },
-      {
-        "amount": "1",
-        "charge": "1000",
-        "slot": "13",
-        "id": "1712"
-      },
-      {
-        "amount": "1",
-        "charge": "1000",
-        "slot": "14",
+        "slot": "2",
         "id": "1710"
       },
       {
         "amount": "1",
         "charge": "1000",
-        "slot": "15",
+        "slot": "3",
+        "id": "11694"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "4",
+        "id": "11724"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "7",
+        "id": "11726"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "9",
         "id": "11120"
       },
       {
         "amount": "1",
         "charge": "1000",
+        "slot": "10",
+        "id": "3105"
+      }
+    ],
+    "location": "3203,3428,0",
+    "inventory": [
+      {
+        "amount": "908",
+        "charge": "1000",
+        "slot": "0",
+        "id": "556"
+      },
+      {
+        "amount": "991",
+        "charge": "1000",
+        "slot": "1",
+        "id": "563"
+      },
+      {
+        "amount": "991",
+        "charge": "1000",
+        "slot": "2",
+        "id": "554"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "3",
+        "id": "11734"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "4",
+        "id": "2347"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "5",
+        "id": "14484"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "6",
+        "id": "9743"
+      },
+      {
+        "amount": "1",
+        "charge": "887",
+        "slot": "7",
+        "id": "4886"
+      },
+      {
+        "amount": "1",
+        "charge": "225",
+        "slot": "8",
+        "id": "4899"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "15",
+        "id": "385"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
         "slot": "16",
-        "id": "4155"
+        "id": "385"
       },
       {
         "amount": "1",
         "charge": "1000",
         "slot": "17",
-        "id": "1949"
+        "id": "385"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "18",
+        "id": "385"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "19",
+        "id": "385"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "23",
+        "id": "141"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "24",
+        "id": "161"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "25",
+        "id": "2440"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "26",
+        "id": "159"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "27",
+        "id": "2440"
       }
     ]
   },
   "playerMonitor": {
     "macroFlag": "1"
   },
-  "totalEXP": "3.4580696728E9",
+  "totalEXP": "6.01791596728E10",
   "appearance": {
     "appearance_cache": [
       {
@@ -1207,7 +1316,7 @@
           false,
           false,
           false,
-          false,
+          true,
           false,
           false,
           false,
@@ -1314,7 +1423,7 @@
       ],
       "startedLevels": [
         false,
-        false,
+        true,
         false
       ]
     },

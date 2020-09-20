@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Darkan/GE_Viewer/GE_Viewer.iml" filepath="$PROJECT_DIR$/../Darkan/GE_Viewer/GE_Viewer.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../../Personal Notes/Personal Notes.iml" filepath="$PROJECT_DIR$/../../../Personal Notes/Personal Notes.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/RS-2009.iml" filepath="$PROJECT_DIR$/.idea/RS-2009.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../IdeaProj/darkan-game-client/darkan-727-client.iml" filepath="$PROJECT_DIR$/../../IdeaProj/darkan-game-client/darkan-727-client.iml" />

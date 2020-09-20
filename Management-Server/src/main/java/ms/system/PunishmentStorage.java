@@ -141,6 +141,7 @@ public final class PunishmentStorage {
 			return false;
 		}
 		if (isBanned(address)) {
+			System.out.println("Ban=" +address);
 			return false;
 		}
 		Connection connection = SQLManager.getConnection();
@@ -218,7 +219,7 @@ public final class PunishmentStorage {
 	 * @return {@code True} if banned.
 	 */
 	public static boolean isSystemBanned(UIDInfo info) {
-		return isBanned(info.getIp()) || isBanned(info.getMac()) || isBanned(info.getSerial());
+		return isBanned(info.getIp()) || isBanned(info.getMac()); //|| isBanned(info.getSerial());
 	}
 
 	/**

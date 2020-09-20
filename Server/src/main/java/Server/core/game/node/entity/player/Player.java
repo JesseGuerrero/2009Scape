@@ -381,8 +381,6 @@ public class Player extends Entity {
 		if (!artificial) {
 			getProperties().setSpawnLocation(ServerConstants.HOME_LOCATION);
 			getDetails().getSession().setObject(this);
-			new Getlineonce();
-			System.out.println("yoyo");
 			getDetails().getSession().setLastPing(System.currentTimeMillis() + 10_000L);
 			antiMacroHandler.init();
 		}
