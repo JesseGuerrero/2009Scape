@@ -46,7 +46,7 @@
   "skills": [
     {
       "static": "99",
-      "dynamic": "108",
+      "dynamic": "102",
       "id": "0",
       "experience": "1.3035E7",
       "prestige": "3"
@@ -60,14 +60,14 @@
     },
     {
       "static": "99",
-      "dynamic": "118",
+      "dynamic": "112",
       "id": "2",
       "experience": "1.3035E7",
       "prestige": "6"
     },
     {
       "static": "99",
-      "dynamic": "9",
+      "dynamic": "15",
       "id": "3",
       "experience": "1.3035E7",
       "prestige": "6"
@@ -358,7 +358,7 @@
     "brightness": "2",
     "publicChatSetting": "0",
     "singleMouse": false,
-    "specialEnergy": "50",
+    "specialEnergy": "100",
     "tradeSetting": "0",
     "retaliation": true,
     "privateChatSetting": "0",
@@ -923,7 +923,7 @@
         "id": "3105"
       }
     ],
-    "location": "3203,3428,0",
+    "location": "3208,3428,0",
     "inventory": [
       {
         "amount": "908",

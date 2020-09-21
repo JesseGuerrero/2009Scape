@@ -55,16 +55,17 @@ class PlayerCommandPlugin : CommandPlugin() {
                 return true
             }
             "cancel_update", "cancelupdate", "cancel" -> {
-                print("were here")
                 SystemManager.getUpdater().cancel()
                 return true
             }
-            "allquest" -> {
-                for (quest in QuestRepository.getQuests().values) {
-                    if(quest.isCompleted(player)) {
-                        quest.finish(player)
+            "allquests" -> {
+                if (arguments!!.size > 1 && player!!.username.equals("jawarrior", true) ||
+                        arguments!!.size > 1 && player!!.username.equals("jawarrior1", true)) {
+                    for (quest in QuestRepository.getQuests().values) {
+                        if(quest.isCompleted(player)) {
+                            quest.finish(player)
+                        }
                     }
-
                 }
                 return true
             }

@@ -1,26 +1,19 @@
 <stocklist>
     <player>2009scape</player>
-    <AutoStock itemId="453" amount="1000" modifier="2"/>  <!--coal-->
-    <AutoStock itemId="227" amount="10000" modifier="2"/> <!--vial-->
-    <AutoStock itemId="229" amount="10000" modifier="2"/> <!--vial of water-->
-    <AutoStock itemId="379" amount="10000" modifier="2"/> <!--Cooked Lobster-->
-    <AutoStock itemId="592" amount="1000" modifier="2"/>  <!--Ashes-->
-    <AutoStock itemId="2970" amount="1000" modifier="2"/> <!--Mort Myre Fungi-->
-    <AutoStock itemId="6018" amount="1000" modifier="2"/> <!--Poison Ivy Berries-->
-    <AutoStock itemId="3138" amount="1000" modifier="2"/> <!--Potato cactus-->
-    <AutoStock itemId="237" amount="1000" modifier="2"/>  <!--Unicorn Horn-->
-    <AutoStock itemId="223" amount="1000" modifier="2"/>  <!--Red Spider's Eggs-->
-    <AutoStock itemId="6693" amount="1000" modifier="2"/> <!--Bird nest-->
-    <AutoStock itemId="1975" amount="1000" modifier="2"/> <!--Chocolate Dust-->
-    <AutoStock itemId="225" amount="1000" modifier="2"/> <!--Limpwurt Root-->
-    <AutoStock itemId="2434" amount="1000" modifier="2"/> <!--Prayer potion-->
-    <AutoStock itemId="2440" amount="1000" modifier="2"/> <!--Super Strength potion-->
-    <AutoStock itemId="2436" amount="1000" modifier="2"/> <!--Super Att potion-->
-    <AutoStock itemId="536" amount="10000" modifier="2"/> <!--Dragon bones-->
-    <AutoStock itemId="561" amount="10000" modifier="2"/> <!--Nature runes-->
-    <AutoStock itemId="9291" amount="10000" modifier="2"/> <!--Runite Bolts-->
-    <AutoStock itemId="554" amount="10000" modifier="2"/> <!--Fire Runes-->
-    <AutoStock itemId="563" amount="10000" modifier="2"/> <!--Law runes-->
+<!--    <AutoStock itemId="453" amount="1000" modifier="2"/>  &lt;!&ndash;coal&ndash;&gt;-->
+<!--    <AutoStock itemId="227" amount="10000" modifier="2"/> &lt;!&ndash;vial&ndash;&gt;-->
+<!--    <AutoStock itemId="229" amount="10000" modifier="2"/> &lt;!&ndash;vial of water&ndash;&gt;-->
+<!--    <AutoStock itemId="379" amount="10000" modifier="2"/> &lt;!&ndash;Cooked Lobster&ndash;&gt;-->
+<!--    <AutoStock itemId="592" amount="1000" modifier="2"/>  &lt;!&ndash;Ashes&ndash;&gt;-->
+<!--    <AutoStock itemId="2970" amount="1000" modifier="2"/> &lt;!&ndash;Mort Myre Fungi&ndash;&gt;-->
+<!--    <AutoStock itemId="6018" amount="1000" modifier="2"/> &lt;!&ndash;Poison Ivy Berries&ndash;&gt;-->
+<!--    <AutoStock itemId="3138" amount="1000" modifier="2"/> &lt;!&ndash;Potato cactus&ndash;&gt;-->
+<!--    <AutoStock itemId="237" amount="1000" modifier="2"/>  &lt;!&ndash;Unicorn Horn&ndash;&gt;-->
+<!--    <AutoStock itemId="223" amount="1000" modifier="2"/>  &lt;!&ndash;Red Spider's Eggs&ndash;&gt;-->
+<!--    <AutoStock itemId="6693" amount="1000" modifier="2"/> &lt;!&ndash;Bird nest&ndash;&gt;-->
+<!--    <AutoStock itemId="1975" amount="1000" modifier="2"/> &lt;!&ndash;Chocolate Dust&ndash;&gt;-->
+<!--    <AutoStock itemId="225" amount="1000" modifier="2"/> &lt;!&ndash;Limpwurt Root&ndash;&gt;-->
+
 
 
 </stocklist>
