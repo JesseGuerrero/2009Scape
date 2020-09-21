@@ -64,36 +64,32 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 					interpreter.sendOptions("Administrative settings", "Player Rights", "prestige", "xp rate", "exit");
 					stage = 12;
 				} else {
-					interpreter.sendOptions("Account settings", "Prestige", "Change xp rate", "I don't know. I'm lost. Where am I?", "Account Options...");
+					interpreter.sendOptions("Account settings", "Prestige", "What is my xp rate?", "I don't know. I'm lost. Where am I?");
 					stage++;
 				}
 				break;
 			case 1:
 				switch (buttonId) {
 					case 1:
-						interpreter.sendDialogues(npc, FacialExpression.THINKING, "Let's find out what we can do");
+						interpreter.sendDialogues(npc, FacialExpression.THINKING, "Type \"::prestige\" to see skills you can prestige.");
 						stage++;
 						break;
 					case 2:
-						interpreter.sendOptions("XP Rate", "2.5x", "10x", "20x", "300x");
-						stage = 18;
+						interpreter.sendDialogues(npc, FacialExpression.THINKING, "You xp rate is: " + player.getSkills().experienceMutiplier);
+						stage = 50;
 						break;
 					case 3:
 						interpreter.sendDialogues(npc, FacialExpression.NEUTRAL, "You are in Lumbridge Castle.");
 						stage = 50;
 						break;
-					case 4:
-						interpreter.sendOptions("Select an Option", "Have you been here as long as me?", "What is the xp rate...", "About Iron Man mode...","About random events...", "Go Back...");
-						stage = 10;
-						break;
 				}
 				break;
 			case 2:
 				if(player.getSkills().getMasteredSkills() > 0) {
-					interpreter.sendDialogues(npc, FacialExpression.AMAZED,"Good job you have a 99!");
+					interpreter.sendDialogues(npc, FacialExpression.AMAZED,"Good job you have a valid 99!");
 					stage = 990;
 				} else {
-					npc("You must have a 99 to prestige, currently you do not.");
+					npc("You must have a valid 99 to prestige, currently you do not.");
 					stage = 50;
 				}
 				break;
@@ -156,7 +152,7 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 							interpreter.sendDialogues(npc, FacialExpression.AMAZED,"Good job you have a 99!");
 							stage = 990;
 						} else {
-							npc("You must have a 99 to prestige, currently you do not.");
+							npc("You must have a valid 99 to prestige, currently you do not.");
 							stage = 50;
 						}
 						break;
