@@ -18,6 +18,7 @@ import java.net.BindException
 import java.util.*
 
 /*
+* TODO: Get server up on Trent's VPS
 * TODO: respawn all ground items 15 seconds
 * */
 
