@@ -20,6 +20,8 @@ import java.util.*
 /*
 * TODO: Get server up on Trent's VPS
 * TODO: respawn all ground items 15 seconds
+* TODO: Make mining, woodcutting note 5% every prestige
+* TODO: Make RCing more runes per prestige, or save ess every other prestige
 * */
 
 /**

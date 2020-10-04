@@ -68,14 +68,14 @@ class PlayerCommandPlugin : CommandPlugin() {
                 return true
             }
             "allquests" -> {
-                if (arguments!!.size > 1 && player!!.username.equals("jawarrior", true) ||
-                        arguments!!.size > 1 && player!!.username.equals("jawarrior1", true)) {
-                    for (quest in QuestRepository.getQuests().values) {
-                        if(quest.isCompleted(player)) {
-                            quest.finish(player)
-                        }
+//                if (arguments!!.size > 1 && player!!.username.equals("jawarrior", true) ||
+//                        arguments!!.size > 1 && player!!.username.equals("jawarrior1", true) ||) {
+                for (quest in QuestRepository.getQuests().values) {
+                    if(quest.isCompleted(player)) {
+                        quest.finish(player)
                     }
                 }
+
                 return true
             }
             "stats" -> {
