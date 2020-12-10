@@ -1,7 +1,7 @@
 Management:
 Go to build/distributions/
 unzip managementserver.zip
-inside the folder run "java  -classpath managementserver-1.0.0.jar:* ms.Management"
+inside the lib folder run "java  -classpath managementserver-1.0.0.jar:* ms.Management"
 
 Server:
 Go to build/distributions/
