@@ -1,4 +1,4 @@
-# 2009Scape selfhosting guide
+# WarByCode selfhosting guide
 
 ## Requirements
 You will need:
@@ -61,7 +61,7 @@ The client can also be run with `gradle run`. Gradle also generates jars that yo
 Edit `default.json` in `Server/worldprops`
 
 #### (Optional) Adding Plugins
-- See our [Plugins Repository](https://github.com/2009scape/Plugins)
+- See our [Plugins Repository](https://github.com/WarByCode/Plugins)
 
 #### (Optional) Port Forwarding for non-local users
 Port forwarding instrcutions depend on your router, but you'll want to forward the following ports:

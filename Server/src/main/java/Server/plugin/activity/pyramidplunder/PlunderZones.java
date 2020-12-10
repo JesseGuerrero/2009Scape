@@ -27,7 +27,7 @@ import core.tools.RandomFunction;
 
 /**
  * PlunderZones defines zones for pyramid plunder
- * Copyright (C) 2020  2009scape, et. al
+ * Copyright (C) 2020  WarByCode, et. al
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the modified GNU General Public License

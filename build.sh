@@ -27,8 +27,8 @@ build_client() {
   gradle build || exit
   cd "$origDir" || exit
   tar xvf Client/build/distributions/Client.tar || exit
-  cp Client/build/libs/client-1.0.0.jar Client/bin/2009scape.jar || exit
-  echo "Client jarfile can be found at Client/bin/2009scape.jar"
+  cp Client/build/libs/client-1.0.0.jar Client/bin/WarByCode.jar || exit
+  echo "Client jarfile can be found at Client/bin/WarByCode.jar"
 }
 build_client
 #build_ms() {

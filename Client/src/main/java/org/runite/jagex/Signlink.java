@@ -5,18 +5,19 @@ import java.awt.EventQueue;
 import java.awt.Frame;
 import java.awt.Point;
 import java.awt.Toolkit;
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.RandomAccessFile;
+import java.io.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
+import java.net.URLClassLoader;
+import java.nio.file.*;
 import java.util.Hashtable;
 import java.util.Vector;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
 
 public class Signlink implements Runnable {
 
@@ -34,6 +35,7 @@ public class Signlink implements Runnable {
    public Class122 aClass122_1207 = null;
    private Display aDisplay1208;
    private static String homeDirectory;
+   public static String cacheDirectory = ".warbycode_rs";
    public static String osVersion;
    private static Hashtable aHashtable1211 = new Hashtable(16);
    private String aString1212;
@@ -477,32 +479,32 @@ public class Signlink implements Runnable {
       return this.method1435(9, 0, new Object[]{var3, var2}, 0, -43);
    }
 
-   public static final File method1448(String var0, int var1, boolean var2, String var3) {
-      File var4 = (File)aHashtable1211.get(var3);
+   public static final File method1448(String str0, int int1, boolean bool1, String filename) {
+      File var4 = (File)aHashtable1211.get(filename);
       if(var4 == null) {
-         if(!var2) {
+         if(!bool1) {
             method1438(true, (String)null);
          }
 
-         /*String[] var5 = new String[]{"c:/rscache/", "/rscache/", "c:/windows/", "c:/winnt/", "c:/", homeDirectory, "/tmp/", ""};
-         String[] var6 = new String[]{".530jagex_cache_" + var1, ".530file_store_" + var1};*/
-         String[] var5 = new String[]{homeDirectory, "c:/rscache/", "/rscache/", "c:/windows/", "c:/winnt/", "c:/", "/tmp/", ""};
-         String[] var6 = new String[]{".runite_rs", ".530file_store_" + var1};
+         /*String[] home_dirs = new String[]{"c:/rscache/", "/rscache/", "c:/windows/", "c:/winnt/", "c:/", homeDirectory, "/tmp/", ""};
+         String[] cache_folder = new String[]{".530jagex_cache_" + int1, ".530file_store_" + int1};*/
+         String[] home_dirs = new String[]{homeDirectory, "c:/rscache/", "/rscache/", "c:/windows/", "c:/winnt/", "c:/", "/tmp/", ""};
+         String[] cache_folder = new String[]{cacheDirectory, ".530file_store_" + int1};
 
-         for(int var7 = 0; var7 < 2; ++var7) {
-            for (String s : var6) {
-               for (String value : var5) {
-                  String var10 = value + s + "/" + (var0 != null ? var0 + "/" : "") + var3;
+         for(int i = 0; i < 2; ++i) {
+            for (String s : cache_folder) {
+               for (String value : home_dirs) {
+                  String var10 = value + s + "/" + (str0 != null ? str0 + "/" : "") + filename;
                   RandomAccessFile var11 = null;
 
                   try {
                      File var12 = new File(var10);
-                     if (var7 != 0 || var12.exists()) {
+                     if (i != 0 || var12.exists()) {
                         String var13 = value;
-                        if (var7 != 1 || var13.length() <= 0 || (new File(var13)).exists()) {
+                        if (i != 1 || var13.length() <= 0 || (new File(var13)).exists()) {
                            (new File(value + s)).mkdir();
-                           if (var0 != null) {
-                              (new File(value + s + "/" + var0)).mkdir();
+                           if (str0 != null) {
+                              (new File(value + s + "/" + str0)).mkdir();
                            }
                            if (var10.toString().endsWith(".dll")) {
 //								ClientLoader.getLibraryDownloader().updateDlls(var10.toString());
@@ -513,7 +515,7 @@ public class Signlink implements Runnable {
                            var11.write(var14);
                            var11.seek(0L);
                            var11.close();
-                           aHashtable1211.put(var3, var12);
+                           aHashtable1211.put(filename, var12);
                            return var12;
                         }
                      }
@@ -568,6 +570,20 @@ public class Signlink implements Runnable {
       }
 
       return this.method1435(5, 0, (Object)null, 0, -127);
+   }
+
+   public static void unzipCustom(InputStream is, Path targetDir) throws IOException {
+      try (ZipInputStream zipIn = new ZipInputStream(is)) {
+         for (ZipEntry ze; (ze = zipIn.getNextEntry()) != null; ) {
+            Path resolvedPath = targetDir.resolve(ze.getName());
+            if (ze.isDirectory()) {
+               Files.createDirectories(resolvedPath);
+            } else {
+               Files.createDirectories(resolvedPath.getParent());
+               Files.copy(zipIn, resolvedPath, StandardCopyOption.REPLACE_EXISTING);
+            }
+         }
+      }
    }
 
    public Signlink(Applet var1, int var2, String folder, int cacheIndexes) throws Exception {
@@ -642,14 +658,27 @@ public class Signlink implements Runnable {
       } catch (Exception var10) {
          ;
       }
+      //Set cache and hdlibs path
+      Path clientCachePath = Paths.get(homeDirectory, cacheDirectory);
 
+
+
+
+
+      //move cache
+      InputStream cachePath = (Client.class.getClassLoader().getResource("cache.zip").openStream());
+      unzipCustom(cachePath, (clientCachePath));
+
+
+
+      //cache here
       this.aClass122_1207 = new Class122(method1448((String)null, this.anInt1215, true, "random.dat"), "rw", 25L);
       this.aClass122_1198 = new Class122(method1448(this.aString1212, this.anInt1215, true, "main_file_cache.dat2"), "rw", 104857600L);
       this.aClass122_1204 = new Class122(method1448(this.aString1212, this.anInt1215, true, "main_file_cache.idx255"), "rw", 1048576L);
       this.aClass122Array1197 = new Class122[cacheIndexes];
 
-      for(int var5 = 0; var5 < cacheIndexes; ++var5) {
-         this.aClass122Array1197[var5] = new Class122(method1448(this.aString1212, this.anInt1215, true, "main_file_cache.idx" + var5), "rw", 1048576L);
+      for(int i = 0; i < cacheIndexes; ++i) {
+         this.aClass122Array1197[i] = new Class122(method1448(this.aString1212, this.anInt1215, true, "main_file_cache.idx" + i), "rw", 1048576L);
       }
 
       try {

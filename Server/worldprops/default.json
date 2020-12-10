@@ -1,5 +1,5 @@
 {
-  "name": "09Infinity",
+  "name": "WarByCode",
 
   "GameSettings": {
     "debug": false,
@@ -7,7 +7,7 @@
     "startGui": false,
     "worldID":"1",
     "countryID": "0",
-    "activity": "2009scape classic.",
+    "activity": "WarByCode classic.",
     "pvpWorld": false,
     "msip": "127.0.0.1",
     "default_xp_rate": "300",
@@ -19,8 +19,8 @@
   },
 
   "ServerSettings": {
-    "max_players": "2000",
-    "max_npcs": "32000",
+    "max_players": "200",
+    "max_npcs": "3200",
     "new_player_location": "2524,5002,0",
     "home_location": "3222,3218,0",
     "data_path": "Server/data",

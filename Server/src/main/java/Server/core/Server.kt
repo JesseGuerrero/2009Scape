@@ -29,6 +29,9 @@ import java.util.*
  * @author Emperor
  * @author Vexia
  */
+
+//TODO: AFK Timer to 10Mins
+
 object Server {
     /**
      * The time stamp of when the server started running.
@@ -71,6 +74,7 @@ object Server {
         SQLManager.init()
         Runtime.getRuntime().addShutdownHook(Thread(SystemShutdownHook()))
         SystemLogger.log("Starting NIO reactor...")
+        println("Port " + (43594 + GameWorld.getSettings()!!.worldId) + " is already in use!")
         try {
             NioReactor.configure(43594 + GameWorld.getSettings()!!.worldId).start()
         } catch (e: BindException) {

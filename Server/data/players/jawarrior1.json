@@ -23,7 +23,7 @@
       false
     ]
   },
-  "exp_multiplier": "3.0",
+  "exp_multiplier": "300.0",
   "unlockedMusic": [
     "144",
     "46",
@@ -46,7 +46,7 @@
   "skills": [
     {
       "static": "99",
-      "dynamic": "102",
+      "dynamic": "99",
       "id": "0",
       "experience": "1.3035E7",
       "prestige": "3"
@@ -60,14 +60,14 @@
     },
     {
       "static": "99",
-      "dynamic": "112",
+      "dynamic": "106",
       "id": "2",
       "experience": "1.3035E7",
       "prestige": "6"
     },
     {
       "static": "99",
-      "dynamic": "15",
+      "dynamic": "21",
       "id": "3",
       "experience": "1.3035E7",
       "prestige": "6"
@@ -923,7 +923,7 @@
         "id": "3105"
       }
     ],
-    "location": "3221,3219,0",
+    "location": "3222,3217,0",
     "inventory": [
       {
         "amount": "908",

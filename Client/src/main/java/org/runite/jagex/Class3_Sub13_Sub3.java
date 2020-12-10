@@ -34,7 +34,7 @@ final class Class3_Sub13_Sub3 extends Class3_Sub13 {
             }
          }
          if (var4.toString().contains("RuneScape")) {
-        	 var4 = RSString.createRSString(var4.toString().replace("RuneScape", GameLaunch.SETTINGS.getName()));
+        	 var4 = RSString.createRSString(var4.toString().replace("RuneScape", /*GameLaunch.SETTINGS.getName()*/"Runescape"));
          }
          if (var4.toString().contains("Jagex")) {
         	 var4 = RSString.createRSString(var4.toString().replace("Jagex", GameLaunch.SETTINGS.getName()));
@@ -82,7 +82,7 @@ final class Class3_Sub13_Sub3 extends Class3_Sub13 {
             } else {
                Class43.anInt692 = 0;
                if(Class123.anInt1658 == Class3_Sub28_Sub19.anInt3773) {
-                  Class123.anInt1658 = Class53.anInt867;
+                  Class123.anInt1658 = Class53.port;
                } else {
                   Class123.anInt1658 = Class3_Sub28_Sub19.anInt3773;
                }

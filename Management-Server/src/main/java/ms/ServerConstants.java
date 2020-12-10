@@ -12,7 +12,7 @@ public final class ServerConstants {
 	/**
 	 * The port to be used for communications.
 	 */
-	public static final String SERVER_NAME = "2009Scape";
+	public static final String SERVER_NAME = "WarByCode";
 
 	/**
 	 * The port to be used for communications.

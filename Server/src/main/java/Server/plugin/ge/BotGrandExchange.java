@@ -39,7 +39,7 @@ public class BotGrandExchange {
         }
         SystemLogger.log("Extracted " + botOffers.size() + " unique items from DB. Saving...");
         for (GrandExchangeOffer o : botOffers.values()) {
-            GEOfferDispatch.dispatch(new Player(PlayerDetails.getDetails("2009scape")), o);
+            GEOfferDispatch.dispatch(new Player(PlayerDetails.getDetails("WarByCode")), o);
             SystemLogger.log("Selling " + o.getItemId() + " in amt " + o.getAmount());
         }
     }
@@ -56,7 +56,7 @@ public class BotGrandExchange {
             o = new GrandExchangeOffer(id, true);
             o.setAmount(amount);
             o.setOfferedValue(value);
-            GEOfferDispatch.dispatch(new Player(PlayerDetails.getDetails("2009scape")), o);
+            GEOfferDispatch.dispatch(new Player(PlayerDetails.getDetails("WarByCode")), o);
             SystemLogger.log("Adding new item " + id + " in amt " + o.getAmount());
         }
         botOffers.put(id, GEOfferDispatch.getOfferMapping().get(GEOfferDispatch.getLastItemUID()));

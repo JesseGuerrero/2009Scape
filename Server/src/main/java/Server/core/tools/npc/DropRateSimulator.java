@@ -19,7 +19,7 @@ public class DropRateSimulator implements ActionListener{
 	Object[][] data;
 
 	public void DropSimulator(){
-		JFrame frame = new JFrame("2009scape Drop Simulator");
+		JFrame frame = new JFrame("WarByCode Drop Simulator");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(700,700);
 		JPanel panel = new JPanel();

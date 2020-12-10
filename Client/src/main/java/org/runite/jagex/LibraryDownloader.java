@@ -42,6 +42,7 @@ public class LibraryDownloader {
 		if (lastSlashIndex >= 0 && lastSlashIndex < dll.length() -1) {
 			//println("getArchivedName returning "+getCacheLink().substring(lastSlashIndex + 1));
 			//return getCacheLink().substring(lastSlashIndex + 1);
+			System.out.println(dll.substring(0, lastSlashIndex + 1));
 			return dll.substring(0, lastSlashIndex + 1);//(lastSlashIndex + 1);
 		} else {
 			System.err.println("Failed to get archived cache name.");
@@ -50,6 +51,7 @@ public class LibraryDownloader {
 	}
 
 	private String getCacheLink() {
+		System.out.println("the dropbox link was used");
 		return "https://dl.dropboxusercontent.com/u/9942513/530_project/live/530hdlibs.zip";
 	}
 
@@ -60,6 +62,7 @@ public class LibraryDownloader {
 			println("Libraries already aquired.");
 			return;
 		}
+		System.out.println(getCachePathFromDll(cacheDir1));
 		this.cacheDir = getCachePathFromDll(cacheDir1);
 		println("[FindCache] set to "+this.cacheDir+" using file path "+cacheDir1);
 		fileToExtract = getLibsDir() + getArchivedName();
