@@ -15,6 +15,7 @@ import plugin.ge.BotGrandExchange
 import plugin.ge.GEAutoStock
 import java.io.File
 import java.net.BindException
+import java.nio.file.Paths
 import java.util.*
 
 /*
@@ -58,7 +59,14 @@ object Server {
             ServerConfigParser(args[0])
         } else {
             println("No config file supplied! Attempting to use default...")
-            ServerConfigParser("Server/worldprops/default.json")
+            val path = Paths.get("").toAbsolutePath().toString()
+            println("Working Directory = $path")
+            try {
+                ServerConfigParser("Server/worldprops/default.json")
+            } catch(e: Exception) {
+                print("this ran")
+                ServerConfigParser("/default.json")
+            }
         }
         if (GameWorld.getSettings()!!.isGui) {
             try {

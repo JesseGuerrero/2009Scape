@@ -9,6 +9,7 @@ import org.json.simple.JSONObject
 import org.json.simple.parser.JSONParser
 import java.io.File
 import java.io.FileReader
+import java.lang.Exception
 
 /**
  * Class for parsing the server config, I.E default.json
@@ -25,6 +26,7 @@ class ServerConfigParser(path: String) {
     init {
         if(!confFile.exists()){
             println("File specified for the config file does not exist!!")
+            throw Exception();
         } else if(!pathTo.contains(".json")) {
             println("Config file MUST be a JSON file!!")
         } else {

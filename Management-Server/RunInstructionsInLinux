@@ -1,0 +1,12 @@
+Management:
+Go to build/distributions/
+unzip managementserver.zip
+inside the folder run "java  -classpath managementserver-1.0.0.jar:* ms.Management"
+
+Server:
+Go to build/distributions/
+Unzip server.zip
+go inside the unzipped folder into /lib
+Copy and paste data, scripts, default.json into the lib folder
+move all jar classes to libs folder but the server jar
+In the lib folder run java -classpath server-1.0.0.jar:libs/* core.Server
