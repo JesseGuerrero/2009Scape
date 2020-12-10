@@ -19,8 +19,8 @@
   },
 
   "ServerSettings": {
-    "max_players": "200",
-    "max_npcs": "3200",
+    "max_players": "2000",
+    "max_npcs": "32000",
     "new_player_location": "2524,5002,0",
     "home_location": "3222,3218,0",
     "data_path": "Server/data",
