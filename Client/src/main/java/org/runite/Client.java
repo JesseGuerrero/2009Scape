@@ -85,7 +85,7 @@ public class Client {
 
 		try {
 			//This is the actual IP Address
-			PUBLIC_IP_ADDRESS = "72.191.29.70";
+			PUBLIC_IP_ADDRESS = "167.86.82.69";
 		} catch (Exception e){
 			System.out.println("Can't find config file " + CONF_FILE + " defaulting to IP 127.0.0.1");
 			PUBLIC_IP_ADDRESS = "127.0.0.1";
