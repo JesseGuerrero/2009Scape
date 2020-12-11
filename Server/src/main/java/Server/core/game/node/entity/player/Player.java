@@ -367,6 +367,7 @@ public class Player extends Entity {
 	 * Constructs a new {@code Player} {@code Object}.
 	 * @param details The player's details.
 	 */
+
 	public Player(PlayerDetails details) {
 		super(details.getUsername(), ServerConstants.START_LOCATION);
 		super.active = false;

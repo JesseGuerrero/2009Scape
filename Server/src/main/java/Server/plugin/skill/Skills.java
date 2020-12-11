@@ -1,6 +1,9 @@
 package plugin.skill;
 
+import core.ServerConstants;
 import core.game.content.global.SkillcapePerks;
+import core.game.node.entity.player.info.PlayerDetails;
+import core.game.node.entity.player.info.login.PlayerSaveParser;
 import core.game.world.GameWorld;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -19,6 +22,7 @@ import core.net.packet.context.SkillContext;
 import core.net.packet.out.SkillLevel;
 import plugin.interaction.item.brawling_gloves.BrawlingGloves;
 
+import java.io.File;
 import java.nio.ByteBuffer;
 
 /**
@@ -26,6 +30,13 @@ import java.nio.ByteBuffer;
  * @author Emperor
  */
 public final class Skills {
+
+	/*
+	* These represent prestige factors
+	* */
+	public static int totalStrengthPrestige = 0;
+	public static int totalPlayers = 0;
+	public static int lifepointsFactor = 0;
 
 	/**
 	 * Represents the constant modifier of experience.
@@ -117,6 +128,10 @@ public final class Skills {
 	 */
 	private int skillMilestone;
 
+	static {
+		setupTotalPrestige();
+	}
+
 	/**
 	 * Constructs a new {@code Skills} {@code Object}.
 	 * @param entity The entity.
@@ -138,6 +153,24 @@ public final class Skills {
 		entity.getProperties().setCombatLevel(3);
 	}
 
+
+	private static void setupTotalPrestige() {
+		File folder = new File(ServerConstants.PLAYER_SAVE_PATH);
+		File[] listOfFiles = folder.listFiles();
+		for(File file : listOfFiles) {
+			String filename = file.getName();
+			if(filename.endsWith(".json")) {
+				String playername = (filename.replace(".json", ""));
+				Player player = new Player(new PlayerDetails(playername));
+				new PlayerSaveParser(player).parseSkills();
+				System.out.println(player.getSkills().getPrestigeLevel(Skills.STRENGTH));
+				totalPlayers++;
+				totalStrengthPrestige += player.getSkills().getPrestigeLevel(Skills.STRENGTH);
+			}
+		}
+		lifepointsFactor = (int)Math.ceil(totalStrengthPrestige / Math.ceil(totalPlayers / 100.0));
+//		System.out.println("Lifepoints prestige factor: " + lifepointsFactor);
+	}
 
 	/**
 	 * Determine whether the specified skill is a combat skill.
