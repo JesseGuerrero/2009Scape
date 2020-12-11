@@ -442,12 +442,13 @@ public class Player extends Entity {
 		hunterManager.pulse();
 		musicPlayer.tick();
 
-		/*
+
 		//TODO: Logout
-		if (!artificial && (System.currentTimeMillis() - getSession().getLastPing()) > 50_000L) {
+		int minutes = 12;
+		if (!artificial && (System.currentTimeMillis() - getSession().getLastPing()) > (minutes)*6000L) {
 			details.getSession().disconnect();
 			getSession().setLastPing(Long.MAX_VALUE);
-		}*/
+		}
 	}
 
 	@Override
