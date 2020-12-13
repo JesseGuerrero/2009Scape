@@ -48,20 +48,7 @@ class PlayerCommandPlugin : CommandPlugin() {
                 CreditShop().open(player).also { return true }
             }
             "stats" -> {
-                player!!.setAttribute("runscript", object : RunScript() {
-                    override fun handle(): Boolean {
-                        try {
-                            val target = Player(PlayerDetails.getDetails(value as String))
-                            PlayerParser.parse(target)
-                            if (!target.details.parse()) return true
-                            PlayerStatisticsManager.sendHiscore(player, target)
-                        } catch (e: Exception) {
-                            player.dialogueInterpreter.sendPlainMessage(false, "That isn't a valid name.")
-                        }
-                        return true
-                    }
-                })
-                player.dialogueInterpreter.sendInput(true, "Enter a username:")
+                PlayerStatisticsManager.sendHiscore(player, player)
             }
             "bank" -> if (!player!!.isAdmin) {
                 player.sendChat("Hey, everyone, I just tried to do something very silly!")

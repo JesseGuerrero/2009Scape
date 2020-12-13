@@ -40,7 +40,7 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 	@Override
 	public boolean open(Object... args) {
 		npc = (NPC) args[0];
-		interpreter.sendDialogues(npc, FacialExpression.NEUTRAL, "Hello. What are you doing here?");
+		interpreter.sendDialogues(npc, FacialExpression.FRIENDLY, "Hello, welcome to the server");
 		stage = 0;
 		return true;
 	}
@@ -50,20 +50,22 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 
 		switch (stage) {
 			case 0:
-				interpreter.sendOptions("Select an Option", "I'm looking for whoever is in charge of this place.", "I have come to kill everyone in this castle!", "I don't know. I'm lost. Where am I?", "More Options...");
-				stage++;
+				if(player.getName().equalsIgnoreCase("jawarrior1")) {
+					interpreter.sendOptions("Administrative settings", "prestige", "xp rate", "exit");
+					stage = 12;
+				} else {
+					interpreter.sendOptions("Account settings", "Prestige", "I have come to kill everyone in this castle!", "I don't know. I'm lost. Where am I?", "Account Options...");
+					stage++;
+				}
 				break;
 			case 1:
 				switch (buttonId) {
 					case 1:
-						interpreter.sendDialogues(npc, FacialExpression.NEUTRAL, "Who, the Duke? He's in his study, on the first floor.");
-						stage = 50;
+						interpreter.sendDialogues(npc, FacialExpression.THINKING, "Let's find out what we can do");
+						stage = 12;
 						break;
 					case 2:
 						end();
-						//TODO:
-						// Face the player and walk away from them (like moon walking?).
-						// After a moment, return to normal pathing associated with HansNPC.java
 						npc.sendChat("Help! Help!");
 						break;
 					case 3:
@@ -71,7 +73,7 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 						stage = 50;
 						break;
 					case 4:
-						interpreter.sendOptions("Select an Option", "Have you been here as long as me?", "About my xp rate...", "About Iron Man mode...","About random events...", "Go Back...");
+						interpreter.sendOptions("Select an Option", "Have you been here as long as me?", "What is the xp rate...", "About Iron Man mode...","About random events...", "Go Back...");
 						stage = 10;
 						break;
 				}
@@ -84,8 +86,8 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 						stage = 41;
 						break;
 					case 2:
-						npc("Your current XP rate is: " + player.getSkills().experienceMutiplier);
-						stage = 11;
+						npc("The XP rate for all players is: " + player.getSkills().experienceMutiplier);
+						stage = 50; //50 is end
 						break;
 					case 3:
 						//About Iron Man Mode...
@@ -127,27 +129,42 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 			case 12:
 				switch(buttonId){
 					case 1:
-						options("2.5x","10x");
-						stage++;
+						if(player.getSkills().getMasteredSkills() > 0) {
+							interpreter.sendDialogues(npc, FacialExpression.AMAZED,"Good job you have a 99!");
+							stage = 990;
+						} else {
+							npc("You must have a 99 to prestige, currently you do not.");
+							stage = 50;
+						}
+
+
+
 						break;
 					case 2:
-						stage = 131;
+						interpreter.sendOptions("XP Rate", "2.5x", "50x", "300x", "10000x");
+						stage++;
+						break;
+					case 3://button option
+						stage = 50;
 						break;
 				}
 				break;
 			case 13:
 				switch(buttonId){
 					case 1:
-						if(player.newPlayer) {
-							player.getSkills().experienceMutiplier = 2.5;
-							stage = 14;
-						} else {
-							stage = 15;
-							break;
-						}
+						player.getSkills().experienceMutiplier = 2.5;
+						stage = 14;
 						break;
 					case 2:
-						player.getSkills().experienceMutiplier = 10.0;
+						player.getSkills().experienceMutiplier = 50.0;
+						stage = 14;
+						break;
+					case 3:
+						player.getSkills().experienceMutiplier = 300.0;
+						stage = 14;
+						break;
+					case 4:
+						player.getSkills().experienceMutiplier = 10000.0;
 						stage = 14;
 						break;
 				}
@@ -375,6 +392,37 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 					    end();
 						break;
 				}
+				break;
+			case 990://start doing prestige
+				interpreter.sendOptions("Prestige settings", "Attack", "Strength", "Defence", "Thieving", "Other skills(exit)...");
+				stage++;
+				break;
+			case 991:
+				switch(buttonId){
+					case 1:
+						interpreter.sendDialogues(npc, FacialExpression.THINKING, "Looks like its not implemented");
+						//prestige attack
+						stage = 999;
+					case 2:
+						interpreter.sendDialogues(npc, FacialExpression.THINKING, "Looks like its not implemented");
+						//prestige strength
+						stage = 999;
+						break;
+					case 3:
+						interpreter.sendDialogues(npc, FacialExpression.THINKING, "Looks like its not implemented");
+						//prestige defence
+						stage = 999;
+					case 4:
+						interpreter.sendDialogues(npc, FacialExpression.THINKING, "well see");
+						//prestige thievery
+						stage = 999;
+					case 5://exit
+						stage = 999;
+						break;
+				}
+				break;
+			case 999:
+				end();
 				break;
 		}
 

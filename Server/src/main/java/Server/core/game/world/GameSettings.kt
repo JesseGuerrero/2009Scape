@@ -117,7 +117,7 @@ class GameSettings
             val activity = data["activity"].toString()
             val pvpWorld = data["pvpWorld"] as Boolean
             val msip = data["msip"].toString()
-            val default_xp_rate = data["default_xp_rate"].toString().toDouble()
+            val default_xp_rate = 2.5//data["default_xp_rate"].toString().toDouble()
             val allow_slayer_reroll = data["allow_slayer_reroll"] as Boolean
             val enable_default_clan = data["enable_default_clan"] as Boolean
             val enable_bots = data["enable_bots"] as Boolean

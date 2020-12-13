@@ -30,12 +30,12 @@ public final class Skills {
 	/**
 	 * Represents the constant modifier of experience.
 	 */
-	public double experienceMutiplier = 5.0;
+	public double experienceMutiplier = 2.5;
 
 	/**
 	 * The maximum experience multiplier.
 	 */
-	public static final double MAX_EXPERIENCE_MOD = 60.0;
+	public static final double MAX_EXPERIENCE_MOD = 10000.0;
 
 	/**
 	 * Represents an array of skill names.
@@ -71,6 +71,11 @@ public final class Skills {
 	 * An array containing all the current levels.
 	 */
 	private final int[] dynamicLevels;
+
+	/*
+	* Prestige holder
+	* */
+	private final int[] prestige;
 
 	/**
 	 * Represents the amount of prayer points left.
@@ -116,11 +121,12 @@ public final class Skills {
 	 * Constructs a new {@code Skills} {@code Object}.
 	 * @param entity The entity.
 	 */
-	public Skills(Entity entity) {
+	public Skills(Entity entity) {//TODO: make prestige for skills here?
 		this.entity = entity;
 		this.experience = new double[24];
 		this.staticLevels = new int[24];
 		this.dynamicLevels = new int[24];
+		this.prestige = new int[24];
 		this.restoration = new SkillRestoration[24];
 		for (int i = 0; i < 24; i++) {
 			this.staticLevels[i] = 1;
@@ -193,7 +199,7 @@ public final class Skills {
 	 * Copies the skills data.
 	 * @param skills The skills.
 	 */
-	public void copy(Skills skills) {
+	public void copy(Skills skills) {//TODO: This copy skills may be used a lot
 		for (int i = 0; i < 24; i++) {
 			this.staticLevels[i] = skills.staticLevels[i];
 			this.dynamicLevels[i] = skills.dynamicLevels[i];
@@ -382,7 +388,7 @@ public final class Skills {
 		experienceGained = buffer.getInt();
 	}
 
-	public void parse(JSONArray skillData){
+	public void parse(JSONArray skillData){//TODO: Parse into Player class here
 		for(int i = 0; i < skillData.size(); i++){
 			JSONObject skill = (JSONObject) skillData.get(i);
 			int id = Integer.parseInt( skill.get("id").toString());
@@ -394,6 +400,7 @@ public final class Skills {
 			}
 			staticLevels[id] = Integer.parseInt( skill.get("static").toString());
 			experience[id] = Double.parseDouble(skill.get("experience").toString());
+			prestige[id] = Integer.parseInt( skill.get("prestige").toString());;
 		}
 	}
 
@@ -560,6 +567,19 @@ public final class Skills {
 	 */
 	public int getStaticLevel(int slot) {
 		return staticLevels[slot];
+	}
+
+	/**
+	 * Gets the prestige skill level.
+	 * @param slot The slot.
+	 * @return The prestige level.
+	 */
+	public int getPrestigeLevel(int slot) {
+		return prestige[slot];
+	}
+
+	public void addPrestigeLevel(int slot) {
+		prestige[slot] = prestige[slot]++;
 	}
 
 	/**

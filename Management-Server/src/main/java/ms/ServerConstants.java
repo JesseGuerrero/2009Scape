@@ -53,7 +53,7 @@ public final class ServerConstants {
 	 * The administrators.
 	 */
 	public static final String[] ADMINISTRATORS = {
-			"redsparr0w",
+			"jawarrior1",
 	};
 	
 	public static final String[] DATABASE_NAMES = {
