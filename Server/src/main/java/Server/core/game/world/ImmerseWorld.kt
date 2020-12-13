@@ -64,6 +64,6 @@ object ImmerseWorld {
     }
 
     fun immerseFalador(){
-        GeneralBotCreator(CoalMiner(), skillingBotAssembler.produce(SkillingBotAssembler.Wealth.POOR,Location.create(3037, 9737, 0)))
+//        GeneralBotCreator(CoalMiner(), skillingBotAssembler.produce(SkillingBotAssembler.Wealth.POOR,Location.create(3037, 9737, 0)))
     }
 }

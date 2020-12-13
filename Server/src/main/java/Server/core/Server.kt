@@ -48,7 +48,7 @@ object Server {
             ServerConfigParser(args[0])
         } else {
             println("No config file supplied! Attempting to use default...")
-            ServerConfigParser("Server/worldprops/default.json")
+            ServerConfigParser("/worldprops/default.json")
         }
         if (GameWorld.getSettings()!!.isGui) {
             try {

@@ -20,10 +20,11 @@ public class Client {
 	public static String PUBLIC_IP_ADDRESS;
 
 	/**
-	 * The game settings.
+	 * The game settings. This is to get the client code source on update, these settings
 	 */
-	public static GameSetting SETTINGS = new GameSetting("2009Scape", "play.2009scape.org", 3, "live", false);
-	
+	public static GameSetting SETTINGS = new GameSetting("WarByCode", "127.0.0.1", 3, "live", false);
+
+
 	/**
 	 * The main method.
 	 r @param args the arguments casted on runtime.
@@ -32,15 +33,16 @@ public class Client {
 	 */
 	public static void main(String[]args) {
 		try {
-			PUBLIC_IP_ADDRESS = "play.2009scape.org";
+			//This is the actual IP Address
+			PUBLIC_IP_ADDRESS = "72.191.29.70";
 		} catch (Exception e){
 			System.out.println("Can't find config file " + CONF_FILE + " defaulting to IP 127.0.0.1");
-			PUBLIC_IP_ADDRESS = "play.2009scape.org";
+			PUBLIC_IP_ADDRESS = "127.0.0.1";
 		}
 		System.out.println("Running liveserver client");
 		Configurations.LOCAL_SERVER = false;
 		Configurations.LOCAL_MS = false;
-		Configurations.MS_IP = PUBLIC_IP_ADDRESS; //Needs to be done because of order it's otherwise set
+		Configurations.MS_IP = Configurations.LOCAL_MS ? "127.0.0.1" : PUBLIC_IP_ADDRESS; //Needs to be done because of order it's otherwise set
 
 		for (int i = 0; i < args.length; i++) {
 			String[] cmd = args[i].split("=");
