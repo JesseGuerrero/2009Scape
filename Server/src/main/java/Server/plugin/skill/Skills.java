@@ -35,7 +35,7 @@ public final class Skills {
 	/**
 	 * The maximum experience multiplier.
 	 */
-	public static final double MAX_EXPERIENCE_MOD = 10000.0;
+	public static final double MAX_EXPERIENCE_MOD = 1_000_000.0;
 
 	/**
 	 * Represents an array of skill names.
@@ -204,6 +204,7 @@ public final class Skills {
 			this.staticLevels[i] = skills.staticLevels[i];
 			this.dynamicLevels[i] = skills.dynamicLevels[i];
 			this.experience[i] = skills.experience[i];
+			this.prestige[i] = skills.prestige[i];
 		}
 		prayerPoints = skills.prayerPoints;
 		lifepoints = skills.lifepoints;
@@ -223,7 +224,7 @@ public final class Skills {
 		if (assist != null && assist.translateExperience(player, slot, experience, mod)) {
 			return;
 		}
-		boolean already200m = this.experience[slot] == 200000000;
+		boolean alreadyMaxXP = this.experience[slot] == 13035000;
 		double experienceAdd = (experience * mod);
 		//check if a player has brawling gloves and, if equipped, modify xp
 		if(!player.getBrawlingGlovesManager().GloveCharges.isEmpty()){
@@ -243,11 +244,11 @@ public final class Skills {
 			player.getAntiMacroHandler().monitors[slot] = new ExperienceMonitor(slot);
 			player.getAntiMacroHandler().monitors[slot].setExperienceAmount((int) experienceAdd);
 		}
-		if (this.experience[slot] >= 200000000) {
-			if(!already200m && !player.isArtificial()){
-				Repository.sendNews(entity.asPlayer().getUsername()+" has just reached 200m experience in " + SKILL_NAME[slot] + "!");
-			}
-			this.experience[slot] = 200000000;
+		if (this.experience[slot] >= 13035000) {
+//			if(!alreadyMaxXP && !player.isArtificial()){//don't need as no 200m
+//				Repository.sendNews(entity.asPlayer().getUsername()+" has just reached 200m experience in " + SKILL_NAME[slot] + "!");
+//			}
+			this.experience[slot] = 13035000;
 		}
 		if (entity instanceof Player && this.experience[slot] > 175) {
 			if (player.getSavedData().getGlobalData().getTutorialStage() < TutorialSession.MAX_STAGE && slot != HITPOINTS) {
@@ -360,9 +361,17 @@ public final class Skills {
 	 * Returns the dynamic levels to the static levels
 	 */
 	public void restore() {
+
 		for (int i = 0; i < 24; i++) {
 			int staticLevel = getStaticLevel(i);
+			//changes the level before it is set. Rember this is the base restoration level
+			if (entity instanceof Player && prestige[i] > 0) {
+				int[] prestige = ((Player)entity).getSkills().getPrestige();
+				staticLevel = getStaticLevel(i) + 10*prestige[i];
+			}
+
 			setLevel(i, staticLevel);
+
 		}
 		if (entity instanceof Player) {
 			entity.asPlayer().getAudioManager().send(2674);
@@ -388,7 +397,7 @@ public final class Skills {
 		experienceGained = buffer.getInt();
 	}
 
-	public void parse(JSONArray skillData){//TODO: Parse into Player class here
+	public void parse(JSONArray skillData){//Parses into Player class here
 		for(int i = 0; i < skillData.size(); i++){
 			JSONObject skill = (JSONObject) skillData.get(i);
 			int id = Integer.parseInt( skill.get("id").toString());
@@ -400,7 +409,7 @@ public final class Skills {
 			}
 			staticLevels[id] = Integer.parseInt( skill.get("static").toString());
 			experience[id] = Double.parseDouble(skill.get("experience").toString());
-			prestige[id] = Integer.parseInt( skill.get("prestige").toString());;
+			prestige[id] = Integer.parseInt( skill.get("prestige").toString());
 		}
 	}
 
@@ -426,6 +435,7 @@ public final class Skills {
 				buffer.put((byte) dynamicLevels[i]);
 			}
 			buffer.put((byte) staticLevels[i]);
+			buffer.put((byte) prestige[i]);
 		}
 		buffer.putInt((int) experienceGained);
 	}
@@ -530,9 +540,9 @@ public final class Skills {
 			return ((NPC) entity).getDefinition().getCombatLevel();
 		}
 		int combatLevel = 0;
-		int melee = staticLevels[ATTACK] + staticLevels[STRENGTH];
-		int range = (int) (1.5 * staticLevels[RANGE]);
-		int mage = (int) (1.5 * staticLevels[MAGIC]);
+		int melee = staticLevels[ATTACK] + staticLevels[STRENGTH] + prestige[ATTACK]*10 + prestige[STRENGTH]*10;
+		int range = (int) (1.5 * staticLevels[RANGE] + prestige[RANGE]*10);
+		int mage = (int) (1.5 * staticLevels[MAGIC] + prestige[MAGIC]*10);
 		if (melee > range && melee > mage) {
 			combatLevel = melee;
 		} else if (range > melee && range > mage) {
@@ -540,7 +550,8 @@ public final class Skills {
 		} else {
 			combatLevel = mage;
 		}
-		combatLevel = staticLevels[DEFENCE] + staticLevels[HITPOINTS] + (staticLevels[PRAYER] / 2) + (int) (1.3 * combatLevel);
+		combatLevel = staticLevels[DEFENCE] + prestige[DEFENCE]*10 + staticLevels[HITPOINTS] + prestige[HITPOINTS]*10 + ((staticLevels[PRAYER] + prestige[PRAYER])/ 2) +
+				(int) (1.3 * combatLevel);
 		return combatLevel / 4;
 	}
 
@@ -579,7 +590,11 @@ public final class Skills {
 	}
 
 	public void addPrestigeLevel(int slot) {
-		prestige[slot] = prestige[slot]++;
+		this.prestige[slot] = ++prestige[slot];
+	}
+
+	public int[] getPrestige() {
+		return prestige;
 	}
 
 	/**
@@ -645,7 +660,12 @@ public final class Skills {
 				}
 			}
 		}
-		return dynamicLevels[slot];
+		//Additional Code: Everytime dynamic is called we just add 10*prestige for ALL skills
+		if (entity instanceof Player && prestige[slot] > 0) {
+			int[] prestige = ((Player)entity).getSkills().getPrestige();
+			return dynamicLevels[slot] + 10*prestige[slot];
+		} else { return dynamicLevels[slot]; }
+//		return dynamicLevels[slot]; //old code
 	}
 
 	/**
@@ -682,7 +702,7 @@ public final class Skills {
 	 * @return The maximum amount.
 	 */
 	public int getMaximumLifepoints() {
-		return staticLevels[HITPOINTS] + lifepointsIncrease;
+		return staticLevels[HITPOINTS] + lifepointsIncrease + prestige[Skills.HITPOINTS]*10;
 	}
 
 	/**
@@ -740,7 +760,8 @@ public final class Skills {
 	 * Recharges the prayer points.
 	 */
 	public void rechargePrayerPoints() {
-		prayerPoints = staticLevels[PRAYER];
+		//prestiged
+		prayerPoints = staticLevels[PRAYER] + getPrestigeLevel(PRAYER)*10;
 		if (entity instanceof Player) {
 			PacketRepository.send(SkillLevel.class, new SkillContext((Player) entity, PRAYER));
 		}
@@ -772,8 +793,10 @@ public final class Skills {
 		if (prayerPoints < 0) {
 			prayerPoints = 0;
 		}
-		if (prayerPoints > staticLevels[PRAYER]) {
-			prayerPoints = staticLevels[PRAYER];
+
+		//prestiged
+		if (prayerPoints > staticLevels[PRAYER] + getPrestigeLevel(PRAYER)*10) {
+			prayerPoints = staticLevels[PRAYER]+ getPrestigeLevel(PRAYER)*10;
 		}
 		if (entity instanceof Player) {
 			PacketRepository.send(SkillLevel.class, new SkillContext((Player) entity, PRAYER));

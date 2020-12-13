@@ -1,5 +1,6 @@
 package plugin.command
 
+import core.ServerConstants.Companion.PLAYER_SAVE_PATH
 import core.cache.def.impl.ItemDefinition
 import core.cache.def.impl.NPCDefinition
 import core.game.component.Component
@@ -48,6 +49,7 @@ class PlayerCommandPlugin : CommandPlugin() {
                 CreditShop().open(player).also { return true }
             }
             "stats" -> {
+                //println(PLAYER_SAVE_PATH)
                 PlayerStatisticsManager.sendHiscore(player, player)
             }
             "bank" -> if (!player!!.isAdmin) {

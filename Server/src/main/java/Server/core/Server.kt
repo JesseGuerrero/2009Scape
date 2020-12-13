@@ -15,16 +15,15 @@ import plugin.ge.BotGrandExchange
 import plugin.ge.GEAutoStock
 import java.io.File
 import java.net.BindException
+import java.nio.file.Paths
 import java.util.*
 
 /*
 * TODO:
-*  1. Remove Hans exp multipler.
-*  2. Default to 2.25x exp
-*  3. Make Jawarrior1 65x exp for prestige testing
-*  4. Create prestige save per player save, don't forget to update the template
-*  5. Start on thief prestige
-*       -Gold
+* 1. Slayer loot + %10 of getting 1 extra
+* 2. Agility Dynamic check Run energy + 10 every prestige, also add special attack
+* 3. Woodcutting, fishing, mining check gathering tick limits
+* 4. Evaluate new UMPIRE
 * */
 
 /**
@@ -58,6 +57,7 @@ object Server {
             ServerConfigParser(args[0])
         } else {
             println("No config file supplied! Attempting to use default...")
+            println(Paths.get("").toAbsolutePath().toString())
             ServerConfigParser("/worldprops/default.json")
         }
         if (GameWorld.getSettings()!!.isGui) {

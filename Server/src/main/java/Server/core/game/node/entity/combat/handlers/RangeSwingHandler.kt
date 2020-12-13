@@ -250,6 +250,14 @@ open class RangeSwingHandler
         var prayer = 1.0
         if (entity is Player) {
             prayer += entity.prayer.getSkillBonus(Skills.RANGE)
+
+            //println(prayer)
+            //prestige only if there is already a bonus
+            if(prayer > 1) {
+                //println("prestige activated")
+                val user = entity as Player
+                prayer += user.skills.getPrestigeLevel(Skills.PRAYER) * .05
+            }
         }
         val additional = 1.0 // Slayer helmet/salve/...
         var styleBonus = 0
@@ -267,6 +275,14 @@ open class RangeSwingHandler
         var prayer = 1.0
         if (entity is Player) {
             prayer += entity.prayer.getSkillBonus(Skills.RANGE)
+
+            //println(prayer)
+            //prestige only if there is already a bonus
+            if(prayer > 1) {
+                //println("prestige activated")
+                val user = entity as Player
+                prayer += user.skills.getPrestigeLevel(Skills.PRAYER) * .05
+            }
         }
         var cumulativeStr = floor(level * prayer)
         if (entity.properties.attackStyle.style == WeaponInterface.STYLE_RANGE_ACCURATE) {
@@ -290,6 +306,14 @@ open class RangeSwingHandler
         var prayer = 1.0
         if (entity is Player) {
             prayer += entity.prayer.getSkillBonus(Skills.DEFENCE)
+
+            //println(prayer)
+            //prestige only if there is already a bonus
+            if(prayer > 1) {
+                //println("prestige activated")
+                val user = entity as Player
+                prayer += user.skills.getPrestigeLevel(Skills.PRAYER) * .05
+            }
         }
         val effective = floor(level * prayer + styleBonus)
         val equipment = entity.properties.bonuses[WeaponInterface.BONUS_RANGE + 5]

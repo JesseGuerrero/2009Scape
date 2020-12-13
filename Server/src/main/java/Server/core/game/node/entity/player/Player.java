@@ -13,9 +13,12 @@ import core.game.container.impl.EquipmentContainer;
 import core.game.container.impl.InventoryListener;
 import core.game.node.entity.combat.equipment.EquipmentDegrader;
 import core.tools.TickUtilsKt;
+import core.game.node.entity.player.info.portal.Icon;
+import core.game.node.entity.player.info.portal.Icon;
 import plugin.ame.AntiMacroHandler;
 import plugin.dialogue.DialogueInterpreter;
 import plugin.ge.GrandExchange;
+import plugin.jobs.JobsMinigameManager;
 import plugin.ttrail.TreasureTrailManager;
 import plugin.skill.Skills;
 import plugin.skill.construction.HouseManager;
@@ -306,6 +309,11 @@ public class Player extends Entity {
 	 * The Ironman manager.
 	 */
 	private final IronmanManager ironmanManager = new IronmanManager(this);
+
+	/**
+	 * The jobs minigame manager.
+	 */
+	private final JobsMinigameManager jobsManager = new JobsMinigameManager(this);
 
 	/**
 	 * The statistics manager.
@@ -1323,6 +1331,10 @@ public class Player extends Entity {
 
 	public void setArcheryTotal(int archeryTotal) {
 		this.archeryTotal = archeryTotal;
+	}
+
+	public JobsMinigameManager getJobsManager() {
+		return jobsManager;
 	}
 
 	public PlayerStatisticsManager getStatisticsManager() {

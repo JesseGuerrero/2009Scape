@@ -1,16 +1,26 @@
 package plugin.dialogue;
 
 import core.game.node.entity.npc.NPC;
+import core.game.node.entity.player.info.Rights;
+import core.game.node.entity.player.info.portal.Icon;
 import core.game.node.entity.player.link.IronmanMode;
+import core.game.node.entity.player.link.RunScript;
+import core.game.world.repository.Repository;
 import core.plugin.InitializablePlugin;
 import core.game.node.entity.player.Player;
-
+import core.tools.PlayerLoader;
+import plugin.skill.Skills;
+import plugin.Getlineonce;
 
 /**
  * Represents the dialogue plugin used for the hans npc.
  */
 @InitializablePlugin
 public final class HansDialoguePlugin extends DialoguePlugin {
+	//Prestige info, we are using [0] to call these
+	int[] skillInput = {-1};
+	boolean[] isSkillInput = {false};
+	String[] userInput = new String[1];
 
 	private int[] timePlayed = new int[3];
 	private int joinDateDays;
@@ -47,11 +57,10 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 
 	@Override
 	public boolean handle(int interfaceId, int buttonId) {
-
 		switch (stage) {
 			case 0:
 				if(player.getName().equalsIgnoreCase("jawarrior1")) {
-					interpreter.sendOptions("Administrative settings", "prestige", "xp rate", "exit");
+					interpreter.sendOptions("Administrative settings", "Player Rights", "prestige", "xp rate", "exit");
 					stage = 12;
 				} else {
 					interpreter.sendOptions("Account settings", "Prestige", "I have come to kill everyone in this castle!", "I don't know. I'm lost. Where am I?", "Account Options...");
@@ -129,6 +138,10 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 			case 12:
 				switch(buttonId){
 					case 1:
+						interpreter.sendDialogues(npc, FacialExpression.THINKING,"We are going to edit your player rights...");
+						stage = 15;
+						break;
+					case 2:
 						if(player.getSkills().getMasteredSkills() > 0) {
 							interpreter.sendDialogues(npc, FacialExpression.AMAZED,"Good job you have a 99!");
 							stage = 990;
@@ -136,15 +149,12 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 							npc("You must have a 99 to prestige, currently you do not.");
 							stage = 50;
 						}
-
-
-
 						break;
-					case 2:
-						interpreter.sendOptions("XP Rate", "2.5x", "50x", "300x", "10000x");
+					case 3:
+						interpreter.sendOptions("XP Rate", "2.5x", "50x", "500x", "1,000,000x");
 						stage++;
 						break;
-					case 3://button option
+					case 4://exit option
 						stage = 50;
 						break;
 				}
@@ -160,11 +170,11 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 						stage = 14;
 						break;
 					case 3:
-						player.getSkills().experienceMutiplier = 300.0;
+						player.getSkills().experienceMutiplier = 500.0;
 						stage = 14;
 						break;
 					case 4:
-						player.getSkills().experienceMutiplier = 10000.0;
+						player.getSkills().experienceMutiplier = 1000000.0;
 						stage = 14;
 						break;
 				}
@@ -175,10 +185,34 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 				stage = 131;
 				break;
 			case 15:
-				npc("Sorry, only new accounts can select 2.5x.");
-				stage = 131;
+				npc("We are going to be editing player rights for you");
+				stage++;
 				break;
-				//Have you been here as long as me?
+			case 16:
+				interpreter.sendOptions("Player rights(" + player.getName() + ")", "Admin", "Dev", "Player Mod", "Normal");
+				stage++;
+				break;
+			case 17:
+				switch(buttonId){
+					case 1:
+						player.getDetails().setRights(Rights.ADMINISTRATOR);
+						interpreter.sendDialogues(npc, FacialExpression.SUSPICIOUS,"You have changed " + player.getName() + " rights to " + player.getRights());//gold
+						break;
+					case 2:
+						player.getDetails().setRights(Rights.ADMINISTRATOR);
+						interpreter.sendDialogues(npc, FacialExpression.SUSPICIOUS,"You have changed " + player.getName() + " rights to " + player.getRights());//gold
+						break;
+					case 3:
+						player.getDetails().setRights(Rights.PLAYER_MODERATOR);
+						interpreter.sendDialogues(npc, FacialExpression.SUSPICIOUS,"You have changed " + player.getName() + " rights to " + player.getRights());//gold
+						break;
+					case 4:
+						player.getDetails().setRights(Rights.REGULAR_PLAYER);
+						interpreter.sendDialogues(npc, FacialExpression.SUSPICIOUS,"You have changed " + player.getName() + " rights to " + player.getRights());//gold
+						break;
+				}
+				stage = 50;
+				break;
 			case 41:
 				interpreter.sendDialogues(player, FacialExpression.THINKING, "You must be old then?");
 				stage++;
@@ -196,7 +230,7 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 				player.sendMessage("Feature not currently available.");
 				stage = 50;
 				break;
-				//TODO:
+
 			/*case 45:
 				getTimePlayed();
 
@@ -394,32 +428,56 @@ public final class HansDialoguePlugin extends DialoguePlugin {
 				}
 				break;
 			case 990://start doing prestige
-				interpreter.sendOptions("Prestige settings", "Attack", "Strength", "Defence", "Thieving", "Other skills(exit)...");
+				player.getDialogueInterpreter().sendInput(true, "Enter a skill to prestige:");
+				player.setAttribute("runscript", new RunScript() { //This is within the sendInput script, which awkwardly requires internal execution.
+					@Override
+					public boolean handle() {
+						userInput[0] = (String)getValue();
+						System.out.println(userInput[0]);
+						for(int i = 0; i < 24; i++) {
+							String skill = Skills.SKILL_NAME[i];
+							if(userInput[0].equalsIgnoreCase(skill)){
+								isSkillInput[0] = true;
+								skillInput[0] = Skills.getSkillByName(skill);
+								break;
+							}
+						}
+						return true;
+					}
+				});
+				interpreter.sendDialogues(npc, FacialExpression.THINKING,"Let's see what we can do...");
 				stage++;
 				break;
 			case 991:
-				switch(buttonId){
-					case 1:
-						interpreter.sendDialogues(npc, FacialExpression.THINKING, "Looks like its not implemented");
-						//prestige attack
-						stage = 999;
-					case 2:
-						interpreter.sendDialogues(npc, FacialExpression.THINKING, "Looks like its not implemented");
-						//prestige strength
-						stage = 999;
-						break;
-					case 3:
-						interpreter.sendDialogues(npc, FacialExpression.THINKING, "Looks like its not implemented");
-						//prestige defence
-						stage = 999;
-					case 4:
-						interpreter.sendDialogues(npc, FacialExpression.THINKING, "well see");
-						//prestige thievery
-						stage = 999;
-					case 5://exit
-						stage = 999;
-						break;
+				if(!isSkillInput[0]) {
+					interpreter.sendDialogues(npc, FacialExpression.ANNOYED, "Umm, " + userInput[0] + " is not a skill...");
+					stage = 999;
+				} else if(skillInput[0] == Skills.THIEVING || skillInput[0] == Skills.STRENGTH || skillInput[0] == Skills.HITPOINTS ||
+						skillInput[0] == Skills.ATTACK || skillInput[0] == Skills.DEFENCE || skillInput[0] == Skills.RANGE ||
+						skillInput[0] == Skills.MAGIC || skillInput[0] == Skills.PRAYER) {
+					interpreter.sendDialogues(npc, FacialExpression.ASKING, "Are you sure you want to prestige " +
+							Skills.SKILL_NAME[skillInput[0]] + "?");
+					stage++;
+				} else {
+					stage = 999;
 				}
+				break;
+			case 992:
+				interpreter.sendDialogues(npc, FacialExpression.EVIL_LAUGH, "Absolutely certain?");
+				stage++;
+				break;
+			case 993:
+				interpreter.sendDialogues(npc, FacialExpression.NEUTRAL, "Click out now or forever prestige " + Skills.SKILL_NAME[skillInput[0]] + "!");
+				stage++;
+				break;
+			case 994:
+				player.getSkills().addPrestigeLevel(skillInput[0]);
+				player.getSkills().setStaticLevel(skillInput[0], 1);
+				Repository.sendNews(player.getUsername() + " has just achieved " + player.getSkills().getPrestigeLevel(skillInput[0]) + " prestige in "
+						+ Skills.SKILL_NAME[skillInput[0]] + "!");
+				interpreter.sendDialogues(npc, FacialExpression.HAPPY, Skills.SKILL_NAME[skillInput[0]] + " prestige is now " + player.getSkills().getPrestigeLevel(skillInput[0]) +
+						" Congrats!");
+				stage = 999;
 				break;
 			case 999:
 				end();

@@ -27,8 +27,8 @@ public final class Configurations {
 	/**
 	 * If the client is local.
 	 */
-	public static boolean LOCAL_MS = true;
-	public static boolean LOCAL_SERVER = true;
+	public static boolean LOCAL_MS = false;
+	public static boolean LOCAL_SERVER = false;
 
 	/**
 	 * Packaging.
