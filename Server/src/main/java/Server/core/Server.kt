@@ -59,7 +59,7 @@ object Server {
             val path = Paths.get("").toAbsolutePath().toString()
             println("Working Directory = $path")
             try {
-                ServerConfigParser("/worldprops/default.json")
+                ServerConfigParser("Server/worldprops/default.json")
             } catch(e: Exception) {
                 print("this ran")
                 ServerConfigParser("/default.json")
