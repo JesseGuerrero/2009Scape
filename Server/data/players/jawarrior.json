@@ -48,7 +48,7 @@
       false
     ]
   },
-  "exp_multiplier": "30.0",
+  "exp_multiplier": "3.0",
   "unlockedMusic": [
     "177",
     "141",
@@ -68,6 +68,7 @@
     "435",
     "180",
     "2",
+    "14",
     "324",
     "34",
     "81",
@@ -113,8 +114,10 @@
     "465",
     "20",
     "328",
+    "257",
     "157",
     "193",
+    "476",
     "267",
     "10",
     "155",
@@ -125,6 +128,8 @@
     "569",
     "91",
     "505",
+    "332",
+    "292",
     "35",
     "175",
     "529",
@@ -139,32 +144,32 @@
   ],
   "skills": [
     {
-      "static": "87",
-      "dynamic": "87",
+      "static": "99",
+      "dynamic": "99",
       "id": "0",
-      "experience": "4174857.5",
-      "prestige": "0"
+      "experience": "1.3035E7",
+      "prestige": "2"
     },
     {
-      "static": "70",
-      "dynamic": "70",
+      "static": "96",
+      "dynamic": "96",
       "id": "1",
-      "experience": "747205.0",
-      "prestige": "0"
+      "experience": "1.04064E7",
+      "prestige": "1"
     },
     {
-      "static": "93",
-      "dynamic": "93",
+      "static": "99",
+      "dynamic": "99",
       "id": "2",
-      "experience": "7639000.0",
-      "prestige": "0"
+      "experience": "1.3035E7",
+      "prestige": "3"
     },
     {
-      "static": "85",
-      "dynamic": "78",
+      "static": "96",
+      "dynamic": "116",
       "id": "3",
-      "experience": "3518845.424999974",
-      "prestige": "0"
+      "experience": "9928716.0",
+      "prestige": "2"
     },
     {
       "static": "14",
@@ -174,17 +179,17 @@
       "prestige": "0"
     },
     {
-      "static": "52",
-      "dynamic": "23",
+      "static": "90",
+      "dynamic": "57",
       "id": "5",
-      "experience": "124647.5",
+      "experience": "5578647.5",
       "prestige": "0"
     },
     {
-      "static": "55",
-      "dynamic": "55",
+      "static": "81",
+      "dynamic": "81",
       "id": "6",
-      "experience": "179385.0",
+      "experience": "2399835.0",
       "prestige": "0"
     },
     {
@@ -444,7 +449,7 @@
     "gardenerAttack": false
   },
   "settings": {
-    "attackStyle": "0",
+    "attackStyle": "3",
     "splitPrivate": true,
     "disableChatEffects": false,
     "clanChatSetting": "0",
@@ -773,7 +778,7 @@
       "0.0",
       "0.0"
     ],
-    "lootShareDelay": "1599716030766",
+    "lootShareDelay": "1599963956710",
     "godBooks": [
       false,
       false,
@@ -791,7 +796,7 @@
   "core_data": {
     "bank": [
       {
-        "amount": "73802",
+        "amount": "154236",
         "charge": "1000",
         "slot": "0",
         "id": "995"
@@ -989,7 +994,7 @@
         "id": "1381"
       },
       {
-        "amount": "211",
+        "amount": "196",
         "charge": "1000",
         "slot": "33",
         "id": "379"
@@ -1019,7 +1024,7 @@
         "id": "10498"
       },
       {
-        "amount": "153",
+        "amount": "1",
         "charge": "1000",
         "slot": "38",
         "id": "556"
@@ -1031,7 +1036,7 @@
         "id": "255"
       },
       {
-        "amount": "43",
+        "amount": "1",
         "charge": "1000",
         "slot": "40",
         "id": "554"
@@ -1127,7 +1132,7 @@
         "id": "771"
       },
       {
-        "amount": "18",
+        "amount": "1",
         "charge": "1000",
         "slot": "56",
         "id": "563"
@@ -1139,13 +1144,13 @@
         "id": "1753"
       },
       {
-        "amount": "23",
+        "amount": "994",
         "charge": "1000",
         "slot": "58",
         "id": "561"
       },
       {
-        "amount": "3",
+        "amount": "4399",
         "charge": "1000",
         "slot": "59",
         "id": "536"
@@ -1499,7 +1504,7 @@
         "id": "5302"
       },
       {
-        "amount": "7",
+        "amount": "1",
         "charge": "1000",
         "slot": "118",
         "id": "1163"
@@ -1545,6 +1550,48 @@
         "charge": "1000",
         "slot": "125",
         "id": "1303"
+      },
+      {
+        "amount": "493",
+        "charge": "1000",
+        "slot": "126",
+        "id": "2440"
+      },
+      {
+        "amount": "493",
+        "charge": "1000",
+        "slot": "127",
+        "id": "2436"
+      },
+      {
+        "amount": "2000",
+        "charge": "1000",
+        "slot": "128",
+        "id": "9291"
+      },
+      {
+        "amount": "94",
+        "charge": "1000",
+        "slot": "129",
+        "id": "2434"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "130",
+        "id": "159"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "131",
+        "id": "147"
+      },
+      {
+        "amount": "10",
+        "charge": "1000",
+        "slot": "132",
+        "id": "229"
       }
     ],
     "equipment": [
@@ -1609,79 +1656,169 @@
         "id": "2558"
       }
     ],
-    "location": "3239,3606,0",
+    "location": "3225,3220,0",
     "inventory": [
       {
         "amount": "1",
         "charge": "1000",
         "slot": "0",
-        "id": "379"
+        "id": "2440"
       },
       {
         "amount": "1",
         "charge": "1000",
         "slot": "1",
-        "id": "379"
+        "id": "2440"
       },
       {
         "amount": "1",
         "charge": "1000",
         "slot": "2",
-        "id": "379"
+        "id": "2436"
       },
       {
         "amount": "1",
         "charge": "1000",
         "slot": "3",
-        "id": "1163"
+        "id": "2436"
       },
       {
         "amount": "1",
         "charge": "1000",
         "slot": "4",
-        "id": "1163"
+        "id": "2434"
       },
       {
         "amount": "1",
         "charge": "1000",
         "slot": "5",
-        "id": "1163"
+        "id": "2434"
       },
       {
         "amount": "1",
         "charge": "1000",
         "slot": "6",
-        "id": "1163"
+        "id": "2434"
       },
       {
         "amount": "1",
         "charge": "1000",
         "slot": "7",
-        "id": "1163"
+        "id": "2434"
       },
       {
         "amount": "1",
         "charge": "1000",
         "slot": "8",
-        "id": "1163"
+        "id": "2434"
       },
       {
         "amount": "1",
         "charge": "1000",
         "slot": "9",
-        "id": "1163"
+        "id": "2434"
       },
       {
-        "amount": "1",
+        "amount": "7405",
         "charge": "1000",
         "slot": "10",
-        "id": "1163"
+        "id": "554"
+      },
+      {
+        "amount": "119",
+        "charge": "1000",
+        "slot": "11",
+        "id": "556"
       },
       {
         "amount": "1",
         "charge": "1000",
-        "slot": "11",
-        "id": "1163"
+        "slot": "13",
+        "id": "379"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "14",
+        "id": "379"
+      },
+      {
+        "amount": "89",
+        "charge": "1000",
+        "slot": "15",
+        "id": "563"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "16",
+        "id": "379"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "17",
+        "id": "379"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "18",
+        "id": "379"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "19",
+        "id": "379"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "20",
+        "id": "379"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "21",
+        "id": "379"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "22",
+        "id": "379"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "23",
+        "id": "379"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "24",
+        "id": "379"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "25",
+        "id": "379"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "26",
+        "id": "379"
+      },
+      {
+        "amount": "1",
+        "charge": "1000",
+        "slot": "27",
+        "id": "379"
       }
     ]
   },
@@ -1689,7 +1826,7 @@
     "duplicationFlag": "1",
     "macroFlag": "1"
   },
-  "totalEXP": "2.4731532424999908E7",
+  "totalEXP": "1.6943868342499968E8",
   "appearance": {
     "appearance_cache": [
       {
@@ -1725,7 +1862,7 @@
   },
   "milestone": {
     "skillMilestone": "3",
-    "combatMilestone": "8"
+    "combatMilestone": "12"
   },
   "bankPinManager": {
     "longRecovery": false

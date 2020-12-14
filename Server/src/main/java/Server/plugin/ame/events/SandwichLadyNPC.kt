@@ -18,12 +18,12 @@ class SandwichLadyEvent : AntiMacroEvent("Sandwich Lady",false,false, 0,1,2,3,4,
     }
 
     override fun start(player: Player?, login: Boolean, vararg args: Any?): Boolean {
-        super.init(player)
-        val location = Location.getRandomLocation(player?.location,6,true)
-        val npc = SandwichLadyNPC(location,player)
-        npc.init()
-        if(location == player?.location)
-            npc.moveStep()
+//        super.init(player)
+//        val location = Location.getRandomLocation(player?.location,6,true)
+//        val npc = SandwichLadyNPC(location,player)
+//        npc.init()
+//        if(location == player?.location)
+//            npc.moveStep()
         return true
     }
 

@@ -10,7 +10,7 @@
     "activity": "2009scape classic.",
     "pvpWorld": false,
     "msip": "127.0.0.1",
-    "default_xp_rate": "30",
+    "default_xp_rate": "300",
     "allow_slayer_reroll": false,
     "enable_default_clan": true,
     "enable_bots": true,

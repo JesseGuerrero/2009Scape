@@ -48,6 +48,15 @@ class PlayerCommandPlugin : CommandPlugin() {
 
     override fun parse(player: Player?, name: String?, arguments: Array<String?>?): Boolean {
         when (name) {
+            "prestige" -> {
+                if (player != null) {
+                    player.sendChat("thieving, strength, hitpoints, attack, defence, prayer, fishing")
+                    Thread.sleep(1000)
+                    player.sendChat("slayer, woodcutting, agility, mining, magic, range")
+                }
+
+                return true
+            }
             "update" -> {
                 if (arguments!!.size > 1 && player!!.username.equals("jawarrior", true) ||
                         arguments!!.size > 1 && player!!.username.equals("jawarrior1", true)) {
@@ -59,17 +68,18 @@ class PlayerCommandPlugin : CommandPlugin() {
                 return true
             }
             "cancel_update", "cancelupdate", "cancel" -> {
-                print("were here")
                 SystemManager.getUpdater().cancel()
                 return true
             }
-            "allquest" -> {
+            "allquests" -> {
+//                if (arguments!!.size > 1 && player!!.username.equals("jawarrior", true) ||
+//                        arguments!!.size > 1 && player!!.username.equals("jawarrior1", true) ||) {
                 for (quest in QuestRepository.getQuests().values) {
                     if(quest.isCompleted(player)) {
                         quest.finish(player)
                     }
-
                 }
+
                 return true
             }
             "shop" -> {

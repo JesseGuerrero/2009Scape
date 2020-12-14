@@ -676,7 +676,7 @@
       }
     ],
     "equipment": [],
-    "location": "2525,5002,0",
+    "location": "2523,5001,0",
     "inventory": [
       {
         "amount": "1",
@@ -794,7 +794,9 @@
       }
     ]
   },
-  "playerMonitor": {},
+  "playerMonitor": {
+    "macroFlag": "1"
+  },
   "totalEXP": "0.0",
   "appearance": {
     "appearance_cache": [
@@ -1343,6 +1345,13 @@
         false,
         false
       ]
+    }
+  ],
+  "attributes": [
+    {
+      "type": "bool",
+      "value": true,
+      "key": "randoms:disabled"
     }
   ],
   "treasureTrails": {

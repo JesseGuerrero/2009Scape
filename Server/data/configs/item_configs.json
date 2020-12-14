@@ -1448,7 +1448,7 @@
       "tradeable": "true",
       "low_alchemy": "61",
       "high_alchemy": "91",
-      "grand_exchange_price": "4134",
+      "grand_exchange_price": "1",
       "ge_buy_limit": "100",
       "archery_ticket_price": "0",
       "durability": null
@@ -1640,7 +1640,7 @@
       "tradeable": "true",
       "low_alchemy": "88",
       "high_alchemy": "132",
-      "grand_exchange_price": "1679",
+      "grand_exchange_price": "1",
       "ge_buy_limit": "1000",
       "archery_ticket_price": "0",
       "durability": null
@@ -5612,7 +5612,7 @@
       "low_alchemy": "49",
       "high_alchemy": "74",
       "shop_price": "372",
-      "grand_exchange_price": "228",
+      "grand_exchange_price": "1",
       "ge_buy_limit": "25000",
       "archery_ticket_price": "0",
       "durability": null
@@ -26152,7 +26152,7 @@
       "low_alchemy": "72",
       "high_alchemy": "108",
       "shop_price": "8000",
-      "grand_exchange_price": "898",
+      "grand_exchange_price": "1",
       "ge_buy_limit": "1000",
       "archery_ticket_price": "0",
       "durability": null
@@ -83441,7 +83441,7 @@
       "tradeable": "true",
       "low_alchemy": "120",
       "high_alchemy": "180",
-      "grand_exchange_price": "734",
+      "grand_exchange_price": "1",
       "equipment_slot": "13",
       "bonuses": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,115",
       "requirements": "{4,61}",

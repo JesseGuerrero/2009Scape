@@ -19,13 +19,10 @@ import java.nio.file.Paths
 import java.util.*
 
 /*
-* TODO:
-*  respawn all ground items 15 seconds
-*  remove death item loss
-* fix login parse
-* fix friends list
-* 2. Agility Dynamic check Run energy + 10 every prestige, also add special attack
-* 4. Evaluate new UMPIRE
+* TODO: Get server up on Trent's VPS
+* TODO: respawn all ground items 15 seconds
+* TODO: Make mining, woodcutting note 5% every prestige
+* TODO: Make RCing more runes per prestige, or save ess every other prestige
 * */
 
 /**
@@ -93,7 +90,6 @@ object Server {
         SystemLogger.log(GameWorld.getName() + " started in " + t.duration(false, "") + " milliseconds.")
         GEAutoStock.parse(ServerConstants.GRAND_EXCHANGE_DATA_PATH + "itemstostock.xml")
         BotGrandExchange.loadOffersFromDB()
-        // TODO Run the eco kick starter 1 time for the live server then comment it out
 //		ResourceManager.kickStartEconomy();
     }
 

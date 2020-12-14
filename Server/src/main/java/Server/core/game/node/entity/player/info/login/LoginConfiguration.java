@@ -114,7 +114,7 @@ public final class LoginConfiguration {
         }
         Repository.getLobbyPlayers().add(player);
         player.getPacketDispatch().sendString(getLastLogin(player), 378, 116);
-        player.getPacketDispatch().sendString("Welcome to " + GameWorld.getName(), 378, 115);
+        player.getPacketDispatch().sendString(GameWorld.getName(), 378, 115);
         player.getPacketDispatch().sendString(" ", 378, 37);
         player.getPacketDispatch().sendString("Want to stay up to date with the latest news and updates? Join our <br>discord by using the link below!", 378, 38);
         player.getPacketDispatch().sendString(" ", 378, 39);
@@ -183,7 +183,9 @@ public final class LoginConfiguration {
             //Dialogue from 2007 or thereabouts
             //Original is five lines, but if the same is done here it will break. Need to find another way of showing all this information.
             //player.getDialogueInterpreter().sendDialogue("Welcome to Lumbridge! To get more help, simply click on the", "Lumbridge Guide or one of the Tutors - these can be found by looking", "for the question mark icon on your mini-map. If you find you are", "lost at any time, look for a signpost or use the Lumbridge Home Port Spell.");
-            player.getDialogueInterpreter().sendPlaneMessageWithBlueTitle("Welcome to " + GameWorld.getSettings().getName() + "!","To customize your character, speak with","the makeover mage nearby. Hans at the castle","also provides some more options such as ironman,","xp rate settings, and more.");
+            //player.getDialogueInterpreter().sendPlaneMessageWithBlueTitle("Welcome to " + GameWorld.getSettings().getName() + "!","To customize your character, speak with","the makeover mage nearby. Hans at the castle","has options regarding prestige","xp rate is 3x");
+
+            player.sendChat("I should talk to this mage, then hans in lumbridge about prestige");
 
             //Appending the welcome message and some other stuff
             player.getPacketDispatch().sendMessage("Welcome to " + GameWorld.getName() + ".");
