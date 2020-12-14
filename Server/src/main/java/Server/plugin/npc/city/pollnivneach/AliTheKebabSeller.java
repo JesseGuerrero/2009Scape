@@ -62,7 +62,7 @@ public class AliTheKebabSeller extends DialoguePlugin {
                 stage = 8;
                 break;
             case 8:
-                npc("I offer two different types of kebabs: the standard","run-of-the-mill kebab seen throughout 2009scape and","enjoyed by many a intoxicated dwarf, and my specialty,","the extra-hot kebab. So which shall it be?");
+                npc("I offer two different types of kebabs: the standard","run-of-the-mill kebab seen throughout WarByCode and","enjoyed by many a intoxicated dwarf, and my specialty,","the extra-hot kebab. So which shall it be?");
                 stage = 9;
                 break;
             case 9:

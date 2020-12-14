@@ -125,7 +125,7 @@ class GEOfferDispatch : Pulse(), CallBack {
                 if (offer.state == OfferState.REMOVED) {
                     continue
                 }
-                if (!offer.isSell && offer.playerUID == PlayerDetails.getDetails("2009scape").uid) {
+                if (!offer.isSell && offer.playerUID == PlayerDetails.getDetails("WarByCode").uid) {
                     continue
                 }
                 val o = JSONObject()
@@ -201,7 +201,7 @@ class GEOfferDispatch : Pulse(), CallBack {
                 return false
             }
             if (player.isArtificial) {
-                offer.playerUID = PlayerDetails.getDetails("2009scape").uid
+                offer.playerUID = PlayerDetails.getDetails("WarByCode").uid
                 addOffer(player, offer)
             } else {
                 offer.playerUID = player.details.uid

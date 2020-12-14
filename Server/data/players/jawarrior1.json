@@ -23,7 +23,7 @@
       false
     ]
   },
-  "exp_multiplier": "3.0",
+  "exp_multiplier": "2.5",
   "unlockedMusic": [
     "144",
     "46",
@@ -923,7 +923,53 @@
         "id": "3105"
       }
     ],
-    "location": "3221,3219,0",
+    "bankTabs": [
+      {
+        "startSlot": "0",
+        "index": "0"
+      },
+      {
+        "startSlot": "0",
+        "index": "1"
+      },
+      {
+        "startSlot": "0",
+        "index": "2"
+      },
+      {
+        "startSlot": "0",
+        "index": "3"
+      },
+      {
+        "startSlot": "0",
+        "index": "4"
+      },
+      {
+        "startSlot": "0",
+        "index": "5"
+      },
+      {
+        "startSlot": "0",
+        "index": "6"
+      },
+      {
+        "startSlot": "0",
+        "index": "7"
+      },
+      {
+        "startSlot": "0",
+        "index": "8"
+      },
+      {
+        "startSlot": "0",
+        "index": "9"
+      },
+      {
+        "startSlot": "0",
+        "index": "10"
+      }
+    ],
+    "location": "3222,3217,0",
     "inventory": [
       {
         "amount": "908",

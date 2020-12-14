@@ -19,7 +19,7 @@
   {
     "id": "1",
     "name": "Man",
-    "examine": "One of 2009Scape's many citizens.",
+    "examine": "One of WarByCode's many citizens.",
     "lifepoints": "10",
     "attack_level": "3",
     "strength_level": "1",
@@ -41,7 +41,7 @@
   {
     "id": "2",
     "name": "Man",
-    "examine": "One of 2009Scape's many citizens.",
+    "examine": "One of WarByCode's many citizens.",
     "lifepoints": "10",
     "attack_level": "3",
     "strength_level": "1",
@@ -62,7 +62,7 @@
   {
     "id": "3",
     "name": "Man",
-    "examine": "One of 2009Scape's many citizens.",
+    "examine": "One of WarByCode's many citizens.",
     "lifepoints": "10",
     "attack_level": "3",
     "strength_level": "1",
@@ -83,7 +83,7 @@
   {
     "id": "4",
     "name": "Woman",
-    "examine": "One of 2009Scape's many citizens.",
+    "examine": "One of WarByCode's many citizens.",
     "lifepoints": "10",
     "attack_level": "3",
     "strength_level": "1",
@@ -103,7 +103,7 @@
   {
     "id": "5",
     "name": "Woman",
-    "examine": "One of 2009Scape's many citizens.",
+    "examine": "One of WarByCode's many citizens.",
     "lifepoints": "10",
     "attack_level": "3",
     "strength_level": "1",
@@ -123,7 +123,7 @@
   {
     "id": "6",
     "name": "Woman",
-    "examine": "One of 2009Scape's many citizens.",
+    "examine": "One of WarByCode's many citizens.",
     "lifepoints": "4",
     "attack_level": "3",
     "strength_level": "1",
@@ -410,7 +410,7 @@
   {
     "id": "24",
     "name": "Man",
-    "examine": "One of 2009Scape's many citizens.",
+    "examine": "One of WarByCode's many citizens.",
     "lifepoints": "4",
     "attack_level": "3",
     "strength_level": "3",
@@ -431,7 +431,7 @@
   {
     "id": "25",
     "name": "Woman",
-    "examine": "One of 2009Scape's many citizens.",
+    "examine": "One of WarByCode's many citizens.",
     "lifepoints": "4",
     "attack_level": "3",
     "strength_level": "3",

@@ -19,7 +19,7 @@ import java.nio.file.Paths
 import java.util.*
 
 /*
-* TODO: Get server up on Trent's VPS
+* TODO: Make a War By Code mega shelf so you can update 2009scape base independently
 * TODO: respawn all ground items 15 seconds
 * TODO: Make mining, woodcutting note 5% every prestige
 * TODO: Make RCing more runes per prestige, or save ess every other prestige
@@ -56,8 +56,14 @@ object Server {
             ServerConfigParser(args[0])
         } else {
             println("No config file supplied! Attempting to use default...")
-            println(Paths.get("").toAbsolutePath().toString())
-            ServerConfigParser("/worldprops/default.json")
+            val path = Paths.get("").toAbsolutePath().toString()
+            println("Working Directory = $path")
+            try {
+                ServerConfigParser("/worldprops/default.json")
+            } catch(e: Exception) {
+                print("this ran")
+                ServerConfigParser("/default.json")
+            }
         }
         if (GameWorld.getSettings()!!.isGui) {
             try {
@@ -73,6 +79,7 @@ object Server {
         SQLManager.init()
         Runtime.getRuntime().addShutdownHook(Thread(SystemShutdownHook()))
         SystemLogger.log("Starting NIO reactor...")
+        println("Port " + (43594 + GameWorld.getSettings()!!.worldId) + " is already in use!")
         try {
             NioReactor.configure(43594 + GameWorld.getSettings()!!.worldId).start()
         } catch (e: BindException) {

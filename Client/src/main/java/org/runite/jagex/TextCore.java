@@ -20,7 +20,7 @@ public class TextCore {
     /**Login Screen Text
      * Files that use these texts:
      */
-    static RSString RSLoadingPleaseWait = RSString.createRSString(GameLaunch.SETTINGS.getName() + " is loading )2 please wait)3)3)3");
+    static RSString RSLoadingPleaseWait = RSString.createRSString(GameLaunch.SETTINGS.getName()+ " is loading )2 please wait)3)3)3");
     static RSString LoadingConfig = RSString.createRSString("Loading config )2 ");
     static RSString LoadedConfig = RSString.createRSString("Loaded config");
     static RSString LoadingSprites = RSString.createRSString("Loading sprites )2 ");
@@ -39,7 +39,7 @@ public class TextCore {
     static RSString LoadingTitleScreen = RSString.createRSString("Loading title screen )2 ");
     static RSString LoadingGeneral = RSString.createRSString("Loading)3)3)3");
     static RSString LoadingWordPack = RSString.createRSString("Loading wordpack )2 ");
-    static RSString LoadingConnecting = RSString.createRSString("Connecting.. This takes a LONG time.");
+    static RSString LoadingConnecting = RSString.createRSString("Connecting.. This takes a little bit.");
     static RSString LoadedUpdateList = RSString.createRSString("Loaded update list");
     static RSString AttemptingReestablish = RSString.createRSString("Please wait )2 attempting to reestablish)3");
     static RSString CreatedWorld = RSString.createRSString("Created gameworld");

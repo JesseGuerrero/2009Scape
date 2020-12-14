@@ -8,7 +8,7 @@ import core.game.node.item.Item;
 import core.plugin.InitializablePlugin;
 
 /**
- * Created for 2009Scape
+ * Created for WarByCode
  * User: Ethan Kyle Millard
  * Date: March 15, 2020
  * Time: 11:49 AM

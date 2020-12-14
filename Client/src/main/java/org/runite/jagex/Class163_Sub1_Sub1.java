@@ -77,7 +77,7 @@ final class Class163_Sub1_Sub1 extends Class163_Sub1 {
                   ++Class117.anInt1616;
                   Class3_Sub13_Sub31.anInt3375 = 1;
                   if(Class123.anInt1658 == Class3_Sub28_Sub19.anInt3773) {
-                     Class123.anInt1658 = Class53.anInt867;
+                     Class123.anInt1658 = Class53.port;
                   } else {
                      Class123.anInt1658 = Class3_Sub28_Sub19.anInt3773;
                   }
@@ -157,7 +157,7 @@ final class Class163_Sub1_Sub1 extends Class163_Sub1 {
 
                if(Class117.anInt1616 < 1) {
                   if(Class123.anInt1658 == Class3_Sub28_Sub19.anInt3773) {
-                     Class123.anInt1658 = Class53.anInt867;
+                     Class123.anInt1658 = Class53.port;
                   } else {
                      Class123.anInt1658 = Class3_Sub28_Sub19.anInt3773;
                   }

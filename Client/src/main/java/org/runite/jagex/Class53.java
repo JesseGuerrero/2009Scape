@@ -7,7 +7,7 @@ final class Class53 {
 
    static int anInt865 = -1;
    static long aLong866 = 0L;
-   static int anInt867;
+   static int port;
 
 
    public static void method1169(boolean var0) {

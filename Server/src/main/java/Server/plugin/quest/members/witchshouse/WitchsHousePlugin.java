@@ -22,7 +22,7 @@ import core.plugin.PluginManager;
 import core.tools.RandomFunction;
 
 /**
- * Created for 2009Scape
+ * Created for WarByCode
  * User: Ethan Kyle Millard
  * Date: March 15, 2020
  * Time: 9:54 AM

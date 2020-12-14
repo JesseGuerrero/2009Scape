@@ -294,18 +294,18 @@ public final class LoginConfiguration {
     }
 
     /*
-    * Sets clan to "09infinity"
+    * Sets clan to "WarByCode"
      */
     private static void setClan(Player player) {
 
-        player.getCommunication().add(player, "09infinity");
+        player.getCommunication().add(player, "WarByCode");
 
         //creates clan and updates clan settings
-        core.game.system.communication.ClanRepository clan = ClanRepository.get("09infinity", true);
-        clan.setName("09infinity");
+        core.game.system.communication.ClanRepository clan = ClanRepository.get("WarByCode", true);
+        clan.setName("WarByCode");
         clan.setJoinRequirement(ClanRank.NONE);
 
-        Player p = new Player(PlayerDetails.getDetails("09infinity"));
+        Player p = new Player(PlayerDetails.getDetails("WarByCode"));
 
         p.getDetails().getCommunication().setJoinRequirement(clan.getJoinRequirement());
         MSPacketRepository.setClanSetting(p, 0, clan.getJoinRequirement());
@@ -314,11 +314,11 @@ public final class LoginConfiguration {
 
         clan.update();
 
-        player.getCommunication().setClanName("09infinity");
+        player.getCommunication().setClanName("WarByCode");
         player.getCommunication().setClan(clan);
 
         //joins clan
-        MSPacketRepository.sendClanRename(p, "09infinity");
+        MSPacketRepository.sendClanRename(p, "WarByCode");
     }
 
     /**

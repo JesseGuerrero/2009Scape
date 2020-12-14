@@ -10,7 +10,7 @@ import core.game.world.map.Location;
 import core.plugin.InitializablePlugin;
 
 /**
- * Created for 2009Scape
+ * Created for WarByCode
  * User: Ethan Kyle Millard
  * Date: March 25, 2020
  * Time: 8:28 PM

@@ -1,12 +1,54 @@
 package org.runite;
 
 import org.runite.jagex.GameShell;
+import org.runite.jagex.Signlink;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
+import static org.runite.jagex.Signlink.cacheDirectory;
 
 /**
  * Handles the launching of our Game Client.
  * @author Keldagrim Development Team
  *
  */
+
+class MyRunnable implements Runnable {
+
+	private File file;
+
+	public MyRunnable(File file) {
+		this.file = file;
+	}
+
+	public void run() {
+		Method method = null;
+		try {
+			method = URLClassLoader.class.getDeclaredMethod("addURL", new Class[]{URL.class});
+
+		method.setAccessible(true);
+		method.invoke(ClassLoader.getSystemClassLoader(), new Object[]{file.toURI().toURL()});
+		} catch (NoSuchMethodException | MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
+	}
+}
+
 
 /*
 
@@ -31,7 +73,16 @@ public class Client {
      r_game
 
 	 */
-	public static void main(String[]args) {
+	public static void main(String[]args) throws Exception {
+		//move HD Libs for Windows
+		Path pathHD = Paths.get(System.getProperty("user.home"), Signlink.cacheDirectory, "clientlibs.jar");
+		InputStream libsHDPath =  (Client.class.getClassLoader().getResource("clientlibs.jar")).openStream();
+		Files.copy(libsHDPath, pathHD, StandardCopyOption.REPLACE_EXISTING);
+		MyRunnable myRunnable = new MyRunnable(pathHD.toFile());
+		Thread t = new Thread(myRunnable);
+		t.start();
+
+
 		try {
 			//This is the actual IP Address
 			PUBLIC_IP_ADDRESS = "72.191.29.70";

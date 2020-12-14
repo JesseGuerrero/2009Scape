@@ -34,12 +34,12 @@ public final class TutorialBook extends Book {
 								new BookLine("cows, is useful in the", 66), new BookLine("Summoning skill and can", 67),
 								new BookLine("be easily sold for coins.", 68), new BookLine(" ", 69), new BookLine("    Credits/Double XP", 70), new BookLine("Credits are our way", 71), 
 								new BookLine("of thanking you for voting.", 72), new BookLine("You may spend credits", 73), new BookLine("in the online store at:", 74), 
-								new BookLine("www.2009Scape-pk.com/shop or", 75), new BookLine("by using our in-game ::shop.", 76))),
+								new BookLine("www.WarByCode-pk.com/shop or", 75), new BookLine("by using our in-game ::shop.", 76))),
 								new PageSet(
 										new Page(
 												new BookLine("    Suggestions", 55), 
 												new BookLine("Please suggest new features", 56), new BookLine("you'd like to see via", 57), new BookLine("the forums located at", 58), 
-												new BookLine("www.2009Scape-pk.com.", 59), new BookLine("We wholeheartedly look over", 60), new BookLine("and consider all suggestions.", 61))),
+												new BookLine("www.WarByCode-pk.com.", 59), new BookLine("We wholeheartedly look over", 60), new BookLine("and consider all suggestions.", 61))),
 
 	};
 

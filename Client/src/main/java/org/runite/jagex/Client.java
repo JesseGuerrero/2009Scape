@@ -392,21 +392,21 @@ public final class Client extends GameShell {
 
 			CS2Script.anInt2451 = ObjectDefinition.worldId;
 			Class3_Sub28_Sub7.method564(Class38.aClass87_665);
-			System.out.println("port = " + Class53.anInt867);
+			System.out.println("port = " + Class53.port);
 			System.out.println("Here: Config.MSIP = " + Configurations.MS_IP);
 			if(Class44.anInt718 == 0) {
 				ClientErrorException.worldListHost = Objects.requireNonNull(this.getCodeBase()).getHost();
-				Class53.anInt867 = 43594 + ObjectDefinition.worldId; //443 is secure port
+				Class53.port = 43594 + ObjectDefinition.worldId; //443 is secure port
 				Class3_Sub28_Sub19.anInt3773 = '\uaa4a';
 			} else if (Class44.anInt718 == 1) {
 				ClientErrorException.worldListHost = Objects.requireNonNull(this.getCodeBase()).getHost();
-				//System.out.println("port = " + Class53.anInt867);
-				Class53.anInt867 = ObjectDefinition.worldId + 50000;
+				//System.out.println("port = " + Class53.port);
+				Class53.port = ObjectDefinition.worldId + 50000;
 				Class3_Sub28_Sub19.anInt3773 = 40000 + ObjectDefinition.worldId;
 			} else if (Class44.anInt718 == 2) {
 				ClientErrorException.worldListHost = "127.0.0.1";
-				System.out.println("Setting worldListHost to 127.0.0.1, port = " + Class53.anInt867);
-				Class53.anInt867 = ObjectDefinition.worldId + '\uc350';
+				System.out.println("Setting worldListHost to 127.0.0.1, port = " + Class53.port);
+				Class53.port = ObjectDefinition.worldId + '\uc350';
 				Class3_Sub28_Sub19.anInt3773 = ObjectDefinition.worldId + '\u9c40';
 			}
 			if(1 == Class158.anInt2014) {
@@ -424,7 +424,7 @@ public final class Client extends GameShell {
 				Class3_Sub25.aShortArray2548 = Class164_Sub1.aShortArray3011;
 			}
 
-			currentPort = Class53.anInt867;
+			currentPort = Class53.port;
 			Class162.anInt2036 = Class3_Sub28_Sub19.anInt3773;
 			Class38_Sub1.accRegistryIp = Configurations.MS_IP;
 			Class123.anInt1658 = Class3_Sub28_Sub19.anInt3773;

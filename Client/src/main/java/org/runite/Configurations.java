@@ -2,6 +2,9 @@ package org.runite;
 import java.io.File;
 import java.math.BigInteger;
 
+//TODO: Change links to rs.warbycode.com/
+//Change name to WarByCode
+
 /**
  * A class with configurations stored.
  * @author Emperor
@@ -12,7 +15,7 @@ public final class Configurations {
 	/**
 	 * The website.
 	 */
-	public static final String WEBSITE = "http://www.os.frostblades.org";
+	public static final String WEBSITE = "https://warbycode.com/";
 	
 	/**
 	 * The client build.

@@ -6,7 +6,7 @@ import core.game.node.entity.player.link.quest.Quest;
 import core.plugin.InitializablePlugin;
 
 /**
- * Created for 2009Scape
+ * Created for WarByCode
  * User: Ethan Kyle Millard
  * Date: March 15, 2020
  * Time: 9:21 AM

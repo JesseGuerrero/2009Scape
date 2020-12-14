@@ -261,7 +261,7 @@ public class NPC extends Entity {
 		getSkills().setStaticLevel(Skills.DEFENCE, definition.getConfiguration(NPCConfigParser.DEFENCE_LEVEL, defaultLevel));
 		getSkills().setStaticLevel(Skills.RANGE, definition.getConfiguration(NPCConfigParser.RANGE_LEVEL, defaultLevel));
 		getSkills().setStaticLevel(Skills.MAGIC, definition.getConfiguration(NPCConfigParser.MAGIC_LEVEL, defaultLevel));
-		getSkills().setStaticLevel(Skills.HITPOINTS, definition.getConfiguration(NPCConfigParser.LIFEPOINTS, defaultLevel));
+		getSkills().setStaticLevel(Skills.HITPOINTS, definition.getConfiguration(NPCConfigParser.LIFEPOINTS, defaultLevel)+Skills.lifepointsFactor);
 		int lp = getSkills().getMaximumLifepoints();
 		if (this instanceof Familiar) {
 			lp = getAttribute("hp", lp);

@@ -119,7 +119,7 @@ public final class WorldList {
 	 * Populates the world list.
 	 */
 	static {
-		addWorld(new WorldDefinition(1, 0, FLAG_MEMBERS | FLAG_LOOTSHARE, "2009Scape Classic", "127.0.0.1", "Anywhere, USA", COUNTRY_USA));
+		addWorld(new WorldDefinition(1, 0, FLAG_MEMBERS | FLAG_LOOTSHARE, "WarByCode Classic", "127.0.0.1", "Anywhere, USA", COUNTRY_USA));
 	}
 
 	/**
