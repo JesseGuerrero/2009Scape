@@ -34,9 +34,9 @@ public final class ZombieEvent extends AntiMacroEvent {
 
 	@Override
 	public boolean start(Player player, boolean login, Object... args) {
-		final ZombieAmeNPC zombie = new ZombieAmeNPC(getId(player), player.getLocation(), this, player);
-		zombie.init();
-		super.init(player);
+//		final ZombieAmeNPC zombie = new ZombieAmeNPC(getId(player), player.getLocation(), this, player);
+//		zombie.init();
+//		super.init(player);
 		return true;
 	}
 

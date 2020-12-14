@@ -12,5 +12,4 @@ data/profile/**
 *.iml
 *.eml
 *.userlibraries
-data/players/**
 data/eco/offer_dispatch_db.emp

@@ -37,21 +37,36 @@ public final class NPCDropTables {
 	 * The npcs that will display drop messages
 	 */
 	public static final int[] MESSAGE_NPCS = { 50, 7133, 7134, 2881, 2882, 2883, 3200, 3340, 6247, 6203, 6260, 6222, 2745, 1160, 8133, 8610, 8611, 8612, 8613, 8614, 6204, 6206, 6208, 6261, 6263, 6265, 6223, 6225, 6227 };
-	
+
+//	/** //TODO: Must be updated before next base update
+//	 * The default drop table (holding the 100% drops).
+//	 */
+//	private final List<WeightedChanceItem> defaultTable = new ArrayList<>();
+//
+//	/**
+//	 * The charms drop table (holding the charm drops).
+//	 */
+//	private final List<WeightedChanceItem> charmTable = new ArrayList<>();
+//
+//	/**
+//	 * The main drop table (holding the main drops).
+//	 */
+//	public final List<WeightedChanceItem> mainTable = new ArrayList<>();
+//
 	/**
 	 * The default drop table (holding the 100% drops).
 	 */
-	private final List<WeightedChanceItem> defaultTable = new ArrayList<>();
+	public final List<ChanceItem> defaultTable = new ArrayList<>();
 
 	/**
 	 * The charms drop table (holding the charm drops).
 	 */
-	private final List<WeightedChanceItem> charmTable = new ArrayList<>();
+	public final List<ChanceItem> charmTable = new ArrayList<>();
 
 	/**
 	 * The main drop table (holding the main drops).
 	 */
-	private final List<WeightedChanceItem> mainTable = new ArrayList<>();
+	public final List<ChanceItem> mainTable = new ArrayList<>();
 
 	/**
 	 * The NPC definitions.
@@ -76,6 +91,46 @@ public final class NPCDropTables {
 		this.def = def;
 	}
 
+
+//	/**
+//	 * Handles the dropping.
+//	 * @param npc The NPC dropping the loot.
+//	 * @param looter The entity gaining the loot.
+//	 */
+//	public void drop(NPC npc, Entity looter) {
+//		Player p = looter instanceof Player ? (Player) looter : null;
+//
+//		DropTables table = DropTables.forId(npc.getId());
+//		if(table != null){
+//			table.getDrops().forEach(drop -> createDrop(drop,p,npc,npc.getDropLocation()));
+//			DropPlugins.getDrops(npc.getId()).forEach(drop -> createDrop(drop,p,npc,npc.getDropLocation()));
+//			return;
+//		}
+//
+//		if (!charmTable.isEmpty()) {
+//			boolean rollCharms = RandomFunction.random(5) == 3;
+//			if(rollCharms) {
+//				List<Item> reward = RandomFunction.rollChanceTable(false, charmTable);
+//				reward.stream().forEach(item -> {
+//					createDrop(item, p, npc, npc.getDropLocation());
+//				});
+//			}
+//		}
+//		RandomFunction.rollChanceTable(false,defaultTable).stream().forEach(item -> {
+//			createDrop(item, p, npc, npc.getDropLocation());
+//		});
+//		RandomFunction.rollChanceTable(false,mainTable).stream().forEach(item -> {
+//			//boolean hasWealthRing = p != null && p.getEquipment().getNew(EquipmentContainer.SLOT_RING).getId() == 2572;
+//			boolean isRDTSlot = item.getId() == RareDropTable.SLOT_ITEM_ID;
+//			if (isRDTSlot) {
+//				item = RareDropTable.retrieve();
+//			}
+//			if (item != null && p != null && npc != null) {
+//				createDrop(item, p, npc, npc.getDropLocation());
+//			}
+//		});
+//	}
+
 	/**
 	 * Handles the dropping.
 	 * @param npc The NPC dropping the loot.
@@ -84,33 +139,103 @@ public final class NPCDropTables {
 	public void drop(NPC npc, Entity looter) {
 		Player p = looter instanceof Player ? (Player) looter : null;
 
+		boolean isPlayera = false;
+		if (looter instanceof Player)
+			isPlayera = true;
+		final boolean isPlayer = isPlayera;
+
+		boolean onTask = false;
+		if (isPlayer) {
+			int[] taskIds = {};
+			boolean success = false;
+			try {
+				taskIds = p.getSlayer().getTask().ids;
+				success = true;
+			} catch (Exception e) {
+				System.out.println("Empty task");
+			}
+			if (success) {
+				if (p.getSlayer().getTask().ids != null) {
+					for (int i = 0; i < taskIds.length; i++) {
+						if (taskIds[i] == npc.getId()) {
+							//System.out.println("Slayer " + npc.getId());
+							onTask = true;
+						}
+					}
+					if (onTask) {
+						int killsLeft = p.getSlayer().getAmount();
+						if (killsLeft % 10 == 0) {
+							p.getPacketDispatch().sendMessage("You have " + killsLeft + " kills left on task.");
+						}
+
+					}
+				}
+				//System.out.println("task: " + onTask);
+			}
+		}
+		final boolean onTasks = onTask;//to go in lambda
+
+
 		DropTables table = DropTables.forId(npc.getId());
-		if(table != null){
-			table.getDrops().forEach(drop -> createDrop(drop,p,npc,npc.getDropLocation()));
-			DropPlugins.getDrops(npc.getId()).forEach(drop -> createDrop(drop,p,npc,npc.getDropLocation()));
+		if (table != null) {
+			table.getDrops().forEach(item -> {
+				//slayer prestige
+				if (onTasks && isPlayer)
+					item.setAmount((int) (Math.floor(item.getAmount() * (1 + p.getSkills().getPrestigeLevel(Skills.SLAYER) / 10.0))));
+				createDrop(item, p, npc, npc.getDropLocation());
+			});
+			DropPlugins.getDrops(npc.getId()).forEach(item -> {
+				//slayer prestige
+				if (onTasks && isPlayer)
+					item.setAmount((int) (Math.floor(item.getAmount() * (1 + p.getSkills().getPrestigeLevel(Skills.SLAYER) / 10.0))));
+
+				createDrop(item, p, npc, npc.getDropLocation());
+			});
 			return;
 		}
 
 		if (!charmTable.isEmpty()) {
 			boolean rollCharms = RandomFunction.random(5) == 3;
-			if(rollCharms) {
-				createDrop(RandomFunction.rollWeightedChanceTable(charmTable),p,npc,npc.getDropLocation());
+			if (rollCharms) {
+//				createDrop(RandomFunction.rollWeightedChanceTable(charmTable),p,npc,npc.getDropLocation());//Figure this out
+				List<Item> reward = RandomFunction.rollChanceTable(false, charmTable);
+				reward.stream().forEach(item -> {
+					//slayer prestige
+					if (onTasks && isPlayer)
+						item.setAmount((int) (Math.floor(item.getAmount() * (1 + p.getSkills().getPrestigeLevel(Skills.SLAYER) / 10.0))));
+
+					createDrop(item, p, npc, npc.getDropLocation());
+				});
 			}
 		}
-		defaultTable.forEach(drop -> {
-			createDrop(drop.getItem(),p,npc,npc.getDropLocation());
+//		defaultTable.forEach(drop -> {
+//			createDrop(drop.getItem(),p,npc,npc.getDropLocation());//figure this out later
+		RandomFunction.rollChanceTable(false, defaultTable).stream().forEach(item -> {
+
+			//slayerprestige
+			if (onTasks && isPlayer)
+				item.setAmount((int) (Math.floor(item.getAmount() * (1 + p.getSkills().getPrestigeLevel(Skills.SLAYER)) / 10.0)));
+
+			createDrop(item, p, npc, npc.getDropLocation());
 		});
-		Item item = RandomFunction.rollWeightedChanceTable(mainTable);
+//		Item item = RandomFunction.rollWeightedChanceTable(mainTable);//figure this out later
+
+		RandomFunction.rollChanceTable(false, mainTable).stream().forEach(item -> {
 			//boolean hasWealthRing = p != null && p.getEquipment().getNew(EquipmentContainer.SLOT_RING).getId() == 2572;
-		if(item != null) {
+//		if(item != null) {//new
 			boolean isRDTSlot = item.getId() == RareDropTable.SLOT_ITEM_ID;
 			if (isRDTSlot) {
 				item = RareDropTable.retrieve();
 			}
 			if (item != null && p != null && npc != null) {
+				//slayer prestige
+				if (onTasks && isPlayer)
+					item.setAmount((int) (Math.floor(item.getAmount() * (1 + p.getSkills().getPrestigeLevel(Skills.SLAYER) / 10.0))));
+
 				createDrop(item, p, npc, npc.getDropLocation());
 			}
-		}
+//		}
+		});
 	}
 
 	/**
@@ -255,24 +380,45 @@ public final class NPCDropTables {
 		return (1 / (1 + def.getCombatLevel())) * 10;
 	}
 
+//	/**//TODO: Must be updated before next base update
+//	 * @return the defaultTable.
+//	 */
+//	public List<WeightedChanceItem> getDefaultTable() {
+//		return defaultTable;
+//	}
+//
+//	/**
+//	 * @return the charmTable.
+//	 */
+//	public List<WeightedChanceItem> getCharmTable() {
+//		return charmTable;
+//	}
+//
+//	/**
+//	 * @return the mainTable.
+//	 */
+//	public List<WeightedChanceItem> getMainTable() {
+//		return mainTable;
+//	}
+
 	/**
 	 * @return the defaultTable.
 	 */
-	public List<WeightedChanceItem> getDefaultTable() {
+	public List<ChanceItem> getDefaultTable() {
 		return defaultTable;
 	}
 
 	/**
 	 * @return the charmTable.
 	 */
-	public List<WeightedChanceItem> getCharmTable() {
+	public List<ChanceItem> getCharmTable() {
 		return charmTable;
 	}
 
 	/**
 	 * @return the mainTable.
 	 */
-	public List<WeightedChanceItem> getMainTable() {
+	public List<ChanceItem> getMainTable() {
 		return mainTable;
 	}
 

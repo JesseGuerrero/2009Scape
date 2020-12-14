@@ -3,11 +3,20 @@ package core.game.node.entity.player.info.login;
 import core.game.component.CloseEvent;
 import core.game.component.Component;
 import core.game.node.entity.player.Player;
+import core.game.node.entity.player.info.PlayerDetails;
 import core.game.node.entity.player.link.HintIconManager;
 import core.game.node.entity.player.link.emote.Emotes;
 import core.game.node.entity.player.link.music.MusicEntry;
 import core.game.node.item.Item;
+import core.game.system.communication.ClanRank;
+import core.game.system.communication.ClanRepository;
 import core.game.system.task.Pulse;
+import core.tools.PlayerLoader;
+import plugin.Getlineonce;
+import plugin.quest.tutorials.tutorialisland.CharacterDesign;
+import plugin.quest.tutorials.tutorialisland.TutorialSession;
+import core.game.node.entity.player.Player;
+import core.game.system.SystemManager;
 import core.game.world.GameWorld;
 import core.game.world.map.RegionManager;
 import core.game.world.repository.Repository;
@@ -241,7 +250,7 @@ public final class LoginConfiguration {
 
             return;
         }
-        player.getPacketDispatch().sendMessage("Welcome to " + GameWorld.getName() + ".");
+        player.getPacketDispatch().sendMessage("Welcome, my liege, to " + GameWorld.getName() + ".");
         //player.getPacketDispatch().sendMessage("You are currently playing in beta version 1.2");
         if (player.getDetails().isMuted()) {
             player.getPacketDispatch().sendMessage("You are muted.");
@@ -252,7 +261,7 @@ public final class LoginConfiguration {
     }
 
     /**
-     * Method used to configure all possible settings for the player.
+     * Method used to configure all possible settings for the player. This starts at login.
      *
      * @param player the player.
      */
@@ -275,6 +284,39 @@ public final class LoginConfiguration {
         player.getInterfaceManager().close();
         player.getEmoteManager().refresh();
         player.getInterfaceManager().openInfoBars();
+
+        //turn off randos
+        player.getAntiMacroHandler().isDisabled = true;
+        player.setAttribute("/save:randoms:disabled",true);
+        //LoginConfiguration.setClan(player);
+    }
+
+    /*
+    * Sets clan to "09infinity"
+     */
+    private static void setClan(Player player) {
+
+        player.getCommunication().add(player, "09infinity");
+
+        //creates clan and updates clan settings
+        core.game.system.communication.ClanRepository clan = ClanRepository.get("09infinity", true);
+        clan.setName("09infinity");
+        clan.setJoinRequirement(ClanRank.NONE);
+
+        Player p = new Player(PlayerDetails.getDetails("09infinity"));
+
+        p.getDetails().getCommunication().setJoinRequirement(clan.getJoinRequirement());
+        MSPacketRepository.setClanSetting(p, 0, clan.getJoinRequirement());
+
+
+
+        clan.update();
+
+        player.getCommunication().setClanName("09infinity");
+        player.getCommunication().setClan(clan);
+
+        //joins clan
+        MSPacketRepository.sendClanRename(p, "09infinity");
     }
 
     /**

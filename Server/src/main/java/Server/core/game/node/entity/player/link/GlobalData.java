@@ -307,7 +307,7 @@ public final class GlobalData implements SavingModule {
 	/**
 	 * Whether or not randoms are enabled
 	 */
-	private boolean macroDisabled = false;
+	private boolean macroDisabled = true;
 
 	@Override
 	public void save(ByteBuffer buffer) {

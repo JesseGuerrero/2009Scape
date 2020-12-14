@@ -780,6 +780,8 @@ class PlayerSaver (val player: Player){
         val locStr = "${loctemp.x},${loctemp.y},${loctemp.z}"
         coreData.put("location",locStr)
 
+        //player.details.communication.contacts.
+
         root.put("core_data",coreData)
     }
 }

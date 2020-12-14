@@ -30,7 +30,7 @@ public final class Skills {
 	/**
 	 * Represents the constant modifier of experience.
 	 */
-	public double experienceMutiplier = 2.5;
+	public double experienceMutiplier = 30;
 
 	/**
 	 * The maximum experience multiplier.
@@ -246,7 +246,7 @@ public final class Skills {
 		}
 		if (this.experience[slot] >= 13035000) {
 //			if(!alreadyMaxXP && !player.isArtificial()){//don't need as no 200m
-//				Repository.sendNews(entity.asPlayer().getUsername()+" has just reached 200m experience in " + SKILL_NAME[slot] + "!");
+				//Repository.sendNews(entity.asPlayer().getUsername()+" has just reached 200m experience in " + SKILL_NAME[slot] + "!");
 //			}
 			this.experience[slot] = 13035000;
 		}
@@ -661,7 +661,7 @@ public final class Skills {
 			}
 		}
 		//Additional Code: Everytime dynamic is called we just add 10*prestige for ALL skills
-		if (entity instanceof Player && prestige[slot] > 0) {
+		if (entity instanceof Player && prestige[slot] > 0 && slot != Skills.SLAYER) {
 			int[] prestige = ((Player)entity).getSkills().getPrestige();
 			return dynamicLevels[slot] + 10*prestige[slot];
 		} else { return dynamicLevels[slot]; }

@@ -14,6 +14,8 @@ import core.game.node.entity.player.link.RunScript
 import core.game.node.entity.player.link.quest.QuestRepository
 import core.game.node.entity.player.link.statistics.PlayerStatisticsManager
 import core.game.node.item.ChanceItem
+import core.game.system.SystemManager
+import core.game.system.SystemState
 import core.game.system.command.CommandPlugin
 import core.game.system.command.CommandSet
 import core.game.system.communication.ClanRepository
@@ -30,6 +32,7 @@ import core.tools.StringUtils
 import plugin.creditshop.CreditShop
 import plugin.ge.GEOfferDispatch
 import plugin.skill.Skills
+import plugin.skill.fishing.FishSpots
 
 /**
  * Handles a player command.
@@ -45,11 +48,35 @@ class PlayerCommandPlugin : CommandPlugin() {
 
     override fun parse(player: Player?, name: String?, arguments: Array<String?>?): Boolean {
         when (name) {
+            "update" -> {
+                if (arguments!!.size > 1 && player!!.username.equals("jawarrior", true) ||
+                        arguments!!.size > 1 && player!!.username.equals("jawarrior1", true)) {
+                    //player!!.getPacketDispatch().sendMessage(arguments!!.get(0) + arguments!!.get(1))
+                    SystemManager.getUpdater().setCountdown(arguments!!.get(1)!!.toInt())
+                    //SystemManager.getUpdater().
+                }
+                SystemManager.flag(SystemState.UPDATING)
+                return true
+            }
+            "cancel_update", "cancelupdate", "cancel" -> {
+                print("were here")
+                SystemManager.getUpdater().cancel()
+                return true
+            }
+            "allquest" -> {
+                for (quest in QuestRepository.getQuests().values) {
+                    if(quest.isCompleted(player)) {
+                        quest.finish(player)
+                    }
+
+                }
+                return true
+            }
             "shop" -> {
                 CreditShop().open(player).also { return true }
             }
             "stats" -> {
-                //println(PLAYER_SAVE_PATH)
+                println(FishSpots.FISHING_GUILD)
                 PlayerStatisticsManager.sendHiscore(player, player)
             }
             "bank" -> if (!player!!.isAdmin) {

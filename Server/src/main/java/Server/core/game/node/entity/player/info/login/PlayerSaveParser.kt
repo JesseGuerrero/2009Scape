@@ -326,7 +326,7 @@ class PlayerSaveParser(val player: Player) {
 
 
 
-        if(player.username.toLowerCase() != "jawarrior1") {
+        if(false/*player.username.toLowerCase() != "jawarrior1"//only for making jawarrior the only one not default*/) {
             player.skills.experienceMutiplier = GameWorld.getSettings().default_xp_rate
         }
 

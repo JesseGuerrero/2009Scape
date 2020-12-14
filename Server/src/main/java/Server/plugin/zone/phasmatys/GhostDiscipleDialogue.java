@@ -1,5 +1,6 @@
 package plugin.zone.phasmatys;
 
+import plugin.Getlineonce;
 import plugin.dialogue.DialoguePlugin;
 import core.game.node.entity.npc.NPC;
 import core.game.node.entity.player.Player;
@@ -37,7 +38,8 @@ public final class GhostDiscipleDialogue extends DialoguePlugin {
 	public boolean open(Object... args) {
 		npc = (NPC) args[0];
 		if(args.length > 1){
-			final int amount = player.getSavedData().getGlobalData().getEctoCharges() * 5;
+			new Getlineonce();
+			final int amount = player.getSavedData().getGlobalData().getEctoCharges() * 5 + 10;//added 10 to get ecto every time
 			final Item tokens = new Item(4278, amount);
 			if (!player.getInventory().hasSpaceFor(tokens)) {
 				player("Sorry, I don't have enough inventory space.");

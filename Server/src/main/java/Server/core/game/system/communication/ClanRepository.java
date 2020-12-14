@@ -367,7 +367,7 @@ public final class ClanRepository {
 	 */
 	public static ClanRepository get(String owner, boolean create) {
 		ClanRepository clan = CLAN_REPOSITORY.get(owner);
-		if (clan != null) {
+		if (clan != null) { //If there is a clan already, then return it
 			return clan;
 		}
 		Player player = Repository.getPlayer(owner);

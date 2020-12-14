@@ -92,38 +92,38 @@ public final class EvilTwinRandomEvent extends AntiMacroEvent {
 
 	@Override
 	public boolean start(final Player player, boolean login, Object... args) {
-		region = DynamicRegion.create(7504);
-		region.setMusicId(612);
-		registerRegion(region.getId());
-		currentCrane = new GameObject(14976, region.getBaseLocation().transform(14, 12, 0), 10, 0);
-		if (login) {
-			int hash = player.getAttribute("ame:evil_twin", 0);
-			molly = NPC.create(getMollyId(hash), region.getBaseLocation().transform(4, 15, 0));
-			molly.init();
-			spawnSuspects(hash);
-			toggleVisibleNPCs(player.getLocation().getLocalX() < 9);
-			player.getProperties().setTeleportLocation(region.getBaseLocation().transform(offsetX, offsetY, 0));
-			return true;
-		}
-		TwinClothColor color = RandomFunction.getRandomElement(TwinClothColor.values());
-		int model = RandomFunction.random(5);
-		final int hash = color.ordinal() | (model << 16);
-		player.setAttribute("ame:evil_twin", hash);
-		int npcId = getMollyId(hash);
-		molly = NPC.create(npcId, Location.getRandomLocation(player.getLocation(), 2, true));
-		molly.init();
-		molly.graphics(Graphics.create(86, 96));
-		molly.sendChat("I need your help, " + player.getUsername() + ".");
-		molly.face(player);
-		player.lock(4);
-		player.setAttribute("ame:location", player.getLocation());
-		GameWorld.Pulser.submit(new Pulse(3) {
-			@Override
-			public boolean pulse() {
-				teleport(player, molly, hash);
-				return true;
-			}
-		});
+//		region = DynamicRegion.create(7504);
+//		region.setMusicId(612);
+//		registerRegion(region.getId());
+//		currentCrane = new GameObject(14976, region.getBaseLocation().transform(14, 12, 0), 10, 0);
+//		if (login) {
+//			int hash = player.getAttribute("ame:evil_twin", 0);
+//			molly = NPC.create(getMollyId(hash), region.getBaseLocation().transform(4, 15, 0));
+//			molly.init();
+//			spawnSuspects(hash);
+//			toggleVisibleNPCs(player.getLocation().getLocalX() < 9);
+//			player.getProperties().setTeleportLocation(region.getBaseLocation().transform(offsetX, offsetY, 0));
+//			return true;
+//		}
+//		TwinClothColor color = RandomFunction.getRandomElement(TwinClothColor.values());
+//		int model = RandomFunction.random(5);
+//		final int hash = color.ordinal() | (model << 16);
+//		player.setAttribute("ame:evil_twin", hash);
+//		int npcId = getMollyId(hash);
+//		molly = NPC.create(npcId, Location.getRandomLocation(player.getLocation(), 2, true));
+//		molly.init();
+//		molly.graphics(Graphics.create(86, 96));
+//		molly.sendChat("I need your help, " + player.getUsername() + ".");
+//		molly.face(player);
+//		player.lock(4);
+//		player.setAttribute("ame:location", player.getLocation());
+//		GameWorld.Pulser.submit(new Pulse(3) {
+//			@Override
+//			public boolean pulse() {
+//				teleport(player, molly, hash);
+//				return true;
+//			}
+//		});
 		return true;
 	}
 

@@ -15,6 +15,7 @@ import core.net.packet.context.MessageContext;
 import core.net.packet.out.CommunicationMessage;
 import core.net.packet.out.ContactPackets;
 import core.tools.StringUtils;
+import plugin.Getlineonce;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -344,7 +345,10 @@ public final class CommunicationInfo {
 		if (clan != null) {
 			clan.rank(contact, ClanRank.FRIEND);
 		}
+
+		//the actual adding
 		info.contacts.put(contact, new Contact(contact));
+
 		Player target = Repository.getPlayer(contact);
 		if (target != null) {
 			if (showActive(player, target)) {
